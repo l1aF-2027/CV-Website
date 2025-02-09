@@ -132,7 +132,7 @@ const Contact = () => {
                   </div>
                   <div className="flex-1">
                     <div className="text-accent">{item.title}</div>
-                    <div className="text-xl">{item.description}</div>
+                    <div>{item.description}</div>
                   </div>
                 </li>
               })}
