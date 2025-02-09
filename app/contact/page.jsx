@@ -11,7 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const customToastStyle = {
-  background: '#333',
+  background: '#27272c',
   color: '#fff',
 };
 

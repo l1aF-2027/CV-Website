@@ -1,8 +1,17 @@
+# My CV website
+
+[![Open website](https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white)](https://l1af.vercel.app)
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+First, install the dependencies:
+```bash
 xargs npm install < dependencies.txt
-First, run the development server:
+```
+
+Second, run the development server:
 
 ```bash
 npm run dev
