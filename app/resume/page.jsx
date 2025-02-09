@@ -17,8 +17,8 @@ const about = {
       fieldValue: "Ha Huy Hoang"
     },
     {
-      fieldName: "Born",
-      fieldValue: "05/10/2004"
+      fieldName: "Gender",
+      fieldValue: "Male"
     },
     {
       fieldName: "Phone",
