@@ -10,6 +10,11 @@ import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+const customToastStyle = {
+  background: '#333',
+  color: '#fff',
+};
+
 const info = [
   {
     icon: <FaPhoneAlt />,
@@ -44,6 +49,13 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validation check
+    if (!formData.firstname || !formData.lastname || !formData.email || !formData.phone || !formData.company || !formData.service || !formData.message) {
+      toast.error("Please fill in all fields before submitting.");
+      return;
+    }
+
     emailjs.send(
       "service_rukeg9l",
       "template_6u83hze",
@@ -128,7 +140,7 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer toastStyle={customToastStyle} />
     </motion.section>
   );
 };
