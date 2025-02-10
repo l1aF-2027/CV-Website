@@ -13,7 +13,7 @@ const Photo = () => {
                     transition: { delay: 0, duration: 0.2, ease: "easeIn" }
                 }}
             >
-                <div className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] absolute">
+                <div className="w-[298px] h-[298px] xl:w-[490px] xl:h-[490px] absolute">
                     <Image
                         src="/assets/photo1.png"
                         priority
