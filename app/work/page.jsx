@@ -1,159 +1,151 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkedAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
-import emailjs from "emailjs-com";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import CustomImage from "@/components/CustomImage"; // Import the custom image component
+import React, { useState, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { BsArrowUpRight, BsGithub } from "react-icons/bs";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import Link from "next/link";
+import Image from "next/image";
+import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
+import CustomImage from "@/components/CustomImage";
 
-const customToastStyle = {
-  background: '#27272c',
-  color: '#fff',
-};
-
-const info = [
+const projects = [
   {
-    icon: <FaPhoneAlt />,
-    title: "Phone",
-    description: "(+84) 903 517 448",
+    num: '01',
+    title: 'Multimodal Sacarsm Detection on Vietnamese Social Media Texts',
+    description: 'I won Second Place at UIT Data Science Challenge 2024 (Nov 2024) with above subject, using PaddleOCR, VietOCR, ViT, and Jina Embedding in my pipeline.',
+    stack: [{ name: "Python" }, { name: "TensorFlow" }, { name: "Streamlit" }],
+    image: '/assets/work/thumb1.png',
+    githubLink: 'https://github.com/l1aF-2027/UIT-Data-Science-Challenge-2024',
+    link: 'https://multimodal-sacarsm-detection-on-vietnamese-social-media-texts.streamlit.app/'
   },
   {
-    icon: <FaEnvelope />,
-    title: "Email",
-    description: "ha.huy.hoang.tkl@gmail.com",
+    num: '02',
+    title: 'Vietnameses Traffic Sign Classification through Images',
+    description: 'This is my project for Introduction to Computer Vision, utilizing Color Histogram and HOG features, combined with SVM and KNN classifiers to solve the problem.',
+    stack: [{ name: "Python" }, { name: "Streamlit" }],
+    image: '/assets/work/thumb2.png',
+    githubLink: 'https://github.com/l1aF-2027/Traffic-Sign-Classification-through-Images',
+    link: 'https://traffic-sign-classification-through-images.streamlit.app/'
+  },
+  {
+    num: '03',
+    title: 'Website for Managing Course Registration and Tuition Payment',
+    description: 'This is my project for Introduction to Software Engineering, using MySQL (database), Spring Boot (backend), and Node.js (frontend).',
+    stack: [{ name: "Node.js" }, { name: "Spring Boot" }, { name: "MySQL" }],
+    image: '/assets/work/thumb3.png',
+    githubLink: 'https://github.com/l1aF-2027/Website-QuanLyViecDangKiMonHocVaThuHocPhi',
+    link: 'https://github.com/l1aF-2027/Website-QuanLyViecDangKiMonHocVaThuHocPhi'
   },
 ];
 
-const Contact = () => {
-  const searchParams = useSearchParams();
-  const service = searchParams.get("service");
+const Work = () => {
+  const [project, setProject] = useState(projects[0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const swiperRef = useRef(null);
 
-  const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    phone: "",
-    company: "",
-    service: service || "",
-    message: "",
-  });
-
-  useEffect(() => {
-    if (service) {
-      setFormData((prevData) => ({ ...prevData, service }));
-    }
-  }, [service]);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSelectChange = (value) => {
-    setFormData({ ...formData, service: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Validation check
-    if (!formData.firstname || !formData.lastname || !formData.email || !formData.phone || !formData.company || !formData.service || !formData.message) {
-      toast.error("Please fill in all fields before submitting.");
-      return;
-    }
-
-    emailjs.send(
-      "service_rukeg9l",
-      "template_6u83hze",
-      formData,
-      "nJDk_ZYPg0iWh3Br5"
-    ).then((response) => {
-      console.log("SUCCESS!", response.status, response.text);
-      toast.success("Your message has been sent successfully!");
-    }).catch((err) => {
-      console.error("FAILED...", err);
-      toast.error("Failed to send your message. Please try again.");
-    });
+  const handleSlideChange = (swiper) => {
+    const currentIndex = swiper.activeIndex;
+    setProject(projects[currentIndex]);
+    setCurrentIndex(currentIndex);
   };
 
   return (
-    <motion.section initial={{ opacity: 0 }}
+    <motion.div
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0, duration: 0.2, ease: "easeIn" } }}
-      className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0">
+      className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0"
+    >
       <div className="container mx-auto">
-        <div className="flex flex-col xl:flex-row gap-[30px]">
-          {/* form */}
-          <motion.div
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 200, damping: 10, duration: 0.1, delay: 0.1 }}
-            className="xl:h-[54%] order-2 xl:order-none"
-          >
-            <form className="xl:h-[600px] flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl" onSubmit={handleSubmit}>
-              <h3 className="text-4xl text-accent">
-                Let's work together
-              </h3>
-              <p className="text-white/60"></p>
-              {/* input */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input name="firstname" placeholder="First Name" value={formData.firstname} onChange={handleChange} />
-                <Input name="lastname" placeholder="Last Name" value={formData.lastname} onChange={handleChange} />
-                <Input name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} />
-                <Input name="phone" placeholder="Phone" value={formData.phone} onChange={handleChange} />
-                <Input name="company" placeholder="Company" value={formData.company} onChange={handleChange} />
-                {/* select */}
-                <Select name="service" value={formData.service} onValueChange={handleSelectChange}>
-                  <SelectTrigger className="w-full rounded-xl">
-                    <SelectValue placeholder="Select a service" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="AI Engineer">AI Engineer</SelectItem>
-                      <SelectItem value="Data Scientist">Data Scientist</SelectItem>
-                      <SelectItem value="Data Analyst">Data Analyst</SelectItem>
-                      <SelectItem value="Backend Developer">Backend Developer</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* text area */}
-              <Textarea className="h-[200px]" name="message" placeholder="Type your message here" value={formData.message} onChange={handleChange} />
-              {/* button send */}
-              <Button type="submit" size="md" className="max-w-40">Send Message</Button>
-            </form>
-          </motion.div>
-          {/* info */}
-          <motion.div
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 200, damping: 10, duration: 0.1, delay: 0.2 }}
-            className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mx-0"
-          >
-            <ul className="flex flex-col gap-10">
-              {info.map((item, index) => {
-                return <li key={index} className="flex items-center gap-6">
-                  <div className="w-[52px] h-[52px] xl:w-[72px] xl:h-[72px] bg-[#27272c] text-accent rounded-xl flex items-center justify-center">
-                    <div className="text-[28px]">{item.icon}</div>
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={1}
+          className="xl:h-[560px] mb-12"
+          onSlideChange={handleSlideChange}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+        >
+          {projects.map((project, index) => (
+            <SwiperSlide key={index} className="w-full">
+              <motion.div
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1, transition: { type: "spring", stiffness: 200, damping: 10, duration: 0.2, delay: 0.1 * index } }}
+                className="flex flex-col xl:flex-row xl:gap-[30px]"
+              >
+                <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
+                  <div className="flex flex-col gap-[30px] h-[50%]">
+                    <div className="text-8xl leading-none font-extrabold text-transparent text-outline text-outline-hover">
+                      {project.num}
+                    </div>
+                    <h2 className="text-[30px] font-bold leading-none text-white group-hover:text-accent transition-all duration-100 capitalize">
+                      {project.title}
+                    </h2>
+                    <p className="text-white/60">{project.description}</p>
+                    <ul className="flex gap-4">
+                      {project.stack.map((item, index) => (
+                        <li key={index} className="text-xl text-accent">
+                          {item.name}
+                          {index !== project.stack.length - 1 && ','}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="border border-white/20"></div>
+                    <div className="pl-5 flex item-center gap-4">
+                      <Link href={project.link}>
+                        <TooltipProvider delayDuration={0}>
+                          <Tooltip>
+                            <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group hover:rotate-45">
+                              <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Web deploy</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </Link>
+                      <Link href={project.githubLink}>
+                        <TooltipProvider delayDuration={0}>
+                          <Tooltip>
+                            <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">
+                              <BsGithub className="text-white text-3xl group-hover:text-accent" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Github repository</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </Link>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <div className="text-accent">{item.title}</div>
-                    <div>{item.description}</div>
+                </div>
+                <div className="w-full xl:w-[50%]">
+                  <div className="h-[460px] relative group flex justify-center items-center">
+                    <div>
+                      <CustomImage src={project.image} fill className="object-cover rounded-3xl" alt="" />
+                    </div>
                   </div>
-                </li>
-              })}
-            </ul>
-          </motion.div>
-        </div>
+                </div>
+              </motion.div>
+            </SwiperSlide>
+          ))}
+          <div className="flex gap-2 absolute right-0 bottom-[calc(70%_-_22px)] xl:bottom-[calc(10%_-_22px)] xl: bottom-0 z-20 w-full justify-between xl:w-max xl: justify none">
+            <button
+              className={`bg-transparent text-[22px] w-[35px] h-[35px] flex justify-center items-center transition-all rounded-full ${currentIndex === 0 ? 'text-gray-500' : 'text-accent hover:bg-accent hover:text-primary'}`}
+              onClick={() => currentIndex > 0 && swiperRef.current.slidePrev()}
+            >
+              <PiCaretLeftBold />
+            </button>
+            <button
+              className={`bg-transparent text-[22px] w-[35px] h-[35px] flex justify-center items-center transition-all rounded-full ${currentIndex === projects.length - 1 ? 'text-gray-500' : 'text-accent hover:bg-accent hover:text-primary'}`}
+              onClick={() => currentIndex < projects.length - 1 && swiperRef.current.slideNext()}
+            >
+              <PiCaretRightBold />
+            </button>
+          </div>
+        </Swiper>
       </div>
-      <ToastContainer toastStyle={customToastStyle} />
-    </motion.section>
+    </motion.div>
   );
 };
 
-export default Contact;
+export default Work;
