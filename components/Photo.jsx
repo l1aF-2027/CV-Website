@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import CustomImage from "@/components/CustomImage"; // Import the custom image component
 
 const Photo = () => {
     return (
@@ -14,7 +14,7 @@ const Photo = () => {
                 }}
             >
                 <div className="w-[298px] h-[298px] xl:w-[490px] xl:h-[490px] absolute">
-                    <Image
+                    <CustomImage
                         src="/assets/photo1.png"
                         priority
                         quality={100}
