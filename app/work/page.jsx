@@ -15,7 +15,7 @@ const projects = [
     title: 'Multimodal Sacarsm Detection on Vietnamese Social Media Texts',
     description: 'I won Second Place at UIT Data Science Challenge 2024 (Nov 2024) with above subject, using PaddleOCR, VietOCR, ViT, and Jina Embedding in my pipeline.',
     stack: [{ name: "Python" }, { name: "TensorFlow" }, { name: "Streamlit" }],
-    image: '/CV-Website/tree/main/assets/work/thumb1.png',
+    image: '/assets/work/thumb1.png',
     githubLink: 'https://github.com/l1aF-2027/UIT-Data-Science-Challenge-2024',
     link: 'https://multimodal-sacarsm-detection-on-vietnamese-social-media-texts.streamlit.app/'
   },
@@ -24,7 +24,7 @@ const projects = [
     title: 'Vietnameses Traffic Sign Classification through Images',
     description: 'This is my project for Introduction to Computer Vision, utilizing Color Histogram and HOG features, combined with SVM and KNN classifiers to solve the problem.',
     stack: [{ name: "Python" }, { name: "Streamlit" }],
-    image: '/CV-Website/tree/main/assets/work/thumb2.png',
+    image: '/assets/work/thumb2.png',
     githubLink: 'https://github.com/l1aF-2027/Traffic-Sign-Classification-through-Images',
     link: 'https://traffic-sign-classification-through-images.streamlit.app/'
   },
@@ -33,7 +33,7 @@ const projects = [
     title: 'Website for Managing Course Registration and Tuition Payment',
     description: 'This is my project for Introduction to Software Engineering, using MySQL (database), Spring Boot (backend), and Node.js (frontend).',
     stack: [{ name: "Node.js" }, { name: "Spring Boot" }, { name: "MySQL" }],
-    image: '/CV-Website/tree/main/assets/work/thumb3.png',
+    image: '/assets/work/thumb3.png',
     githubLink: 'https://github.com/l1aF-2027/Website-QuanLyViecDangKiMonHocVaThuHocPhi',
     link: 'https://github.com/l1aF-2027/Website-QuanLyViecDangKiMonHocVaThuHocPhi'
   },
