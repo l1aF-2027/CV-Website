@@ -1,11 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkedAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
@@ -156,4 +156,10 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+const ContactPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Contact />
+  </Suspense>
+);
+
+export default ContactPage;
