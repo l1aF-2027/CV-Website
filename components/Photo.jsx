@@ -15,7 +15,7 @@ const Photo = () => {
             >
                 <div className="w-[298px] h-[298px] xl:w-[490px] xl:h-[490px] absolute">
                     <Image
-                        src="/public/assets/photo1.png"
+                        src="/assets/photo1.png"
                         priority
                         quality={100}
                         fill
