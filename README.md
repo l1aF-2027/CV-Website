@@ -7,9 +7,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 First, install the dependencies:
-```bash
-xargs npm install < dependencies.txt
-```
+- macOS/Linux/WSL: `xargs npm install < dependencies.txt`
+- Windows: `Get-Content dependencies.txt | ForEach-Object { npm install $_ }`
 
 Second, run the development server:
 
