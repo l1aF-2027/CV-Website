@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,15 +30,24 @@ const info = [
 ];
 
 const Contact = () => {
+  const searchParams = useSearchParams();
+  const service = searchParams.get("service");
+
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
     email: "",
     phone: "",
     company: "",
-    service: "",
+    service: service || "",
     message: "",
   });
+
+  useEffect(() => {
+    if (service) {
+      setFormData((prevData) => ({ ...prevData, service }));
+    }
+  }, [service]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -102,10 +112,10 @@ const Contact = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectItem value="ai">AI Engineer</SelectItem>
-                      <SelectItem value="ds">Data Scientist</SelectItem>
-                      <SelectItem value="da">Data Analyst</SelectItem>
-                      <SelectItem value="bd">Backend Developer</SelectItem>
+                      <SelectItem value="AI Engineer">AI Engineer</SelectItem>
+                      <SelectItem value="Data Scientist">Data Scientist</SelectItem>
+                      <SelectItem value="Data Analyst">Data Analyst</SelectItem>
+                      <SelectItem value="Backend Developer">Backend Developer</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
