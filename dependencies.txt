@@ -1,7 +1,0 @@
-shadcn@latest
-react-icons
-framer-motion
-react-countup
-swiper
-emailjs-com
-react-toastify

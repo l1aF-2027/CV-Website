@@ -17,7 +17,7 @@ const Header = () => {
         {/* container: width tự động theo breakpoint
           max-auto: margin trái phải auto để căn giữa */}
         {/* logo */}
-        <Link href="">
+        <Link href="/">
           <h1 className="text-4xl font-semibold">
             Huy Hoang<span className="text-accent">.</span>
           </h1>
