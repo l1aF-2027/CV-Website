@@ -73,6 +73,11 @@ const education = {
       degree: "Back End Developer Learning Path",
       duration: "2/2025"
     },
+    {
+      institution: "NVIDIA Workshop",
+      degree: "Applications of AI for Anomaly Detection",
+      duration: "4/2025"
+    },
   ]
 }
 
