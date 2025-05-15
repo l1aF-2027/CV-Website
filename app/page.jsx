@@ -33,7 +33,7 @@ const Home = () => {
               {/* Button of socials */}
               <div className="flex flex-col xl:flex-row items-center gap-8">
                 {/* download CV */}
-                <a href="/assets/photo2.png" download>
+                <a href="/assets/HaHuyHoang_CV.pdf" download>
                   <Button variant="outline" size="lg" className="uppercase flex items-center gap-2">
                     <span>Download CV</span>
                     <FiDownload className="w-4 h-4" />
@@ -62,8 +62,8 @@ const Home = () => {
           className="order-1 xl:order-none mb-8 xl:mb-0"
         >
           <Stats />
-      </motion.div>
         </motion.div>
+      </motion.div>
     </section>
   );
 };
