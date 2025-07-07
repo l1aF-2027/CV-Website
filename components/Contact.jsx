@@ -67,8 +67,8 @@ const Contact = () => {
         }
 
         emailjs.send(
-            "service_rukeg9l",
-            "template_6u83hze",
+            "service_bjys1c1",
+            "template_6u83hze   ",
             formData,
             "nJDk_ZYPg0iWh3Br5"
         ).then((response) => {
