@@ -31,12 +31,12 @@ const projects = [
   },
   {
     num: '03',
-    title: 'Website for Managing Course Registration and Tuition Payment',
-    description: 'This is my project for Introduction to Software Engineering, using MySQL (database), Spring Boot (backend), and Node.js (frontend).',
-    stack: [{ name: "Node.js" }, { name: "Spring Boot" }, { name: "MySQL" }],
+    title: 'UIT Admissions Chatbot',
+    description: 'Built a web-based chatbot using NLP to answer UIT admissions FAQs, combining rule-based and intent-based models.',
+    stack: [{ name: "Python" }, { name: "FastAPI" }, { name: "Next.js" }, { name: "TailwindCSS" }, { name: "Transformers" }],
     image: '/assets/work/thumb3.png',
     githubLink: 'https://github.com/l1aF-2027/Website-QuanLyViecDangKiMonHocVaThuHocPhi',
-    link: 'https://github.com/l1aF-2027/Website-QuanLyViecDangKiMonHocVaThuHocPhi'
+    link: 'https://uit-admissions-chatbot.vercel.app/'
   },
 ];
 
