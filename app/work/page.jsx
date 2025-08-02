@@ -22,12 +22,12 @@ const projects = [
   },
   {
     num: '02',
-    title: 'Vietnameses Traffic Sign Classification through Images',
-    description: 'This is my project for Introduction to Computer Vision, utilizing Color Histogram and HOG features, combined with SVM and KNN classifiers to solve the problem.',
-    stack: [{ name: "Python" }, { name: "Streamlit" }],
+    title: 'Social Trend VietNam',
+    description: 'An open-source platform to collect, analyze, and visualize social media trends in Vietnam, with a dedicated repo for training an ABSA model (aspect‑based sentiment analysis).',
+    stack: [{ name: "Python" }, { name: "Kafka" }, { name: "FastAPI" }, { name: "Next.js" }, { name: "TailwindCSS" }],
     image: '/assets/work/thumb2.png',
-    githubLink: 'https://github.com/l1aF-2027/Traffic-Sign-Classification-through-Images',
-    link: 'https://traffic-sign-classification-through-images.streamlit.app/'
+    githubLink: 'https://github.com/l1aF-2027/Social-Trend-VietNam',
+    link: 'https://github.com/l1aF-2027/Social-Trend-VietNam/'
   },
   {
     num: '03',
@@ -80,10 +80,10 @@ const Work = () => {
                     <h2 className="text-[30px] font-bold leading-none text-white group-hover:text-accent transition-all duration-100 capitalize">
                       {project.title}
                     </h2>
-                    <p className="text-white/60">{project.description}</p>
-                    <ul className="flex gap-4">
+                    <p className="text-white/60 text-small gap-1">{project.description}</p>
+                    <ul className="flex gap-2">
                       {project.stack.map((item, index) => (
-                        <li key={index} className="text-xl text-accent">
+                        <li key={index} className="text-small text-accent">
                           {item.name}
                           {index !== project.stack.length - 1 && ','}
                         </li>

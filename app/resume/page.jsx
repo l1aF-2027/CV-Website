@@ -51,7 +51,7 @@ const about = {
 const education = {
   icon: "/assets/resume/badge.svg",
   title: "Education",
-  description: "I am among the first cohort of the AI major at VNU-HCM  University of Information Technology , striving for academic excellence.",
+  description: "I am among the first cohort of the AI major at VNU-HCM  University of Information Technology, striving for academic excellence.",
   items: [
     {
       institution: "VNU-HCM UIT",
@@ -149,7 +149,7 @@ const Resume = () => {
               <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: 100, opacity: 0 }} transition={{ type: "spring", stiffness: 200, damping: 10, duration: 0.1 }}>
                 <div className="flex flex-col gap-[30px] text-center xl:text-left">
                   <h3 className="text-4xl font-bold text-accent">{education.title}</h3>
-                  <p className="max-w-[800px] text-white/60 mx-auto xl:mx-0">{education.description}</p>
+                  <p className="max-w-[800px] text-[15px] text-white/60 mx-auto xl:mx-0">{education.description}</p>
                   <ScrollArea className="h-[400px]">
                     <ul className="grid grid-cols-1 xl:grid-cols-2 gap-[30px]">
                       {education.items.map((item, index) => {
@@ -174,7 +174,7 @@ const Resume = () => {
                 <div className="flex flex-col gap-[30px]">
                   <div className="flex flex-col gap-[30px] text-center xl:text-left">
                     <h3 className="text-4xl font-bold text-accent">{skills.title}</h3>
-                    <p className="max-w-[800px] text-white/60 mx-auto xl:mx-0 ">{skills.description}</p>
+                    <p className="max-w-[800px] text-[15px] text-white/60 mx-auto xl:mx-0 ">{skills.description}</p>
                   </div>
                   <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 xl:gap-[30px] ">
                     {skills.skillList.map((skill, index) => {
@@ -203,7 +203,7 @@ const Resume = () => {
               <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: 100, opacity: 0 }} transition={{ type: "spring", stiffness: 200, damping: 10, duration: 0.1 }}>
                 <div className="flex flex-col gap-[30px]">
                   <h3 className="text-4xl font-bold text-accent">{about.title}</h3>
-                  <p className="max-w-[800px] text-white/60 mx-auto xl:mx-0">{formatDescription(about.description)}</p>
+                  <p className="max-w-[800px] text-[15px] text-white/60 mx-auto xl:mx-0">{formatDescription(about.description)}</p>
                   <ul className="grid grid-cols-1 xl:grid-cols-2 gap-y-4 max-w-[800px] mx-auto xl:mx-0">
                     {about.info.map((item, index) => {
                       return <li key={index} className="flex items-center justify-center xl:justify-start gap-1">

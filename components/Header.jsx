@@ -24,7 +24,7 @@ const Header = () => {
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden xl:flex items-center gap-8">
+        <div className="hidden xl:flex items-center gap-8 bg-[#232329] rounded-xl px-8 py-2 border-accent">
           <Nav />
           <Link href="/contact">
             <Button>Hire me</Button>
