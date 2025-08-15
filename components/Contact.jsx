@@ -43,11 +43,26 @@ const Contact = () => {
         message: "",
     });
 
+    // Handle service selection from URL params
     useEffect(() => {
         if (service) {
             setFormData((prevData) => ({ ...prevData, service }));
         }
     }, [service]);
+
+    // Listen for custom event from Services component
+    useEffect(() => {
+        const handleServiceSelect = (event) => {
+            const selectedService = event.detail.service;
+            setFormData((prevData) => ({ ...prevData, service: selectedService }));
+        };
+
+        window.addEventListener('selectService', handleServiceSelect);
+
+        return () => {
+            window.removeEventListener('selectService', handleServiceSelect);
+        };
+    }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -74,6 +89,16 @@ const Contact = () => {
         ).then((response) => {
             console.log("SUCCESS!", response.status, response.text);
             toast.success("Your message has been sent successfully!");
+            // Reset form after successful submission
+            setFormData({
+                firstname: "",
+                lastname: "",
+                email: "",
+                phone: "",
+                company: "",
+                service: "",
+                message: "",
+            });
         }).catch((err) => {
             console.error("FAILED...", err);
             toast.error("Failed to send your message. Please try again.");

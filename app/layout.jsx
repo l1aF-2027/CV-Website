@@ -20,10 +20,11 @@ export default function RootLayout({ children }) {
   return (
 
     <html lang="en">
-      <body
-        className={geistMono.variable}>
-        <Header />
-        {children}
+      <body className={geistMono.variable}>
+        <Header className="fixed top-0 left-0 w-full z-50 bg-primary" />
+        <main className="pt-24 xl:pt-32">
+          {children}
+        </main>
       </body>
     </html>
   );
