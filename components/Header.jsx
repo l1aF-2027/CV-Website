@@ -6,7 +6,7 @@ import MobileNav from "./MobileNav";
 const Header = () => {
   return (
     // Thẻ header với các class Tailwind
-    <header className="fixed top-0 left-0 w-full bg-primary py-8 xl:py-12 text-white">
+    <header className="fixed top-0 left-0 w-full py-8 xl:py-12 text-white">
       {/* py-8: padding trên dưới 2rem (32px)
         xl:py-12: padding 3rem (48px) trên màn xl trở lên
         text-white: màu chữ trắng
@@ -24,7 +24,7 @@ const Header = () => {
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden xl:flex items-center gap-8 bg-[#232329] rounded-xl px-8 py-2 border-accent">
+        <div className="hidden xl:flex items-center gap-8 bg-transparent rounded-xl px-8 py-2 border-accent">
           <Nav />
           <Link href="#contact">
             <Button>Hire me</Button>

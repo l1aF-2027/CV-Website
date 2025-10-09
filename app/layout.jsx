@@ -1,6 +1,7 @@
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 const geistMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -21,10 +22,13 @@ export default function RootLayout({ children }) {
 
     <html lang="en">
       <body className={geistMono.variable}>
-        <Header className="fixed top-0 left-0 w-full z-50 bg-primary" />
-        <main className="pt-24 xl:pt-32">
-          {children}
-        </main>
+        <AnimatedBackground />
+        <div style={{ position: "relative", zIndex: 10 }}>
+          <Header className="fixed top-0 left-0 w-full z-50" />
+          <main className="pt-24 xl:pt-32">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );

@@ -16,7 +16,7 @@ export default function Page() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-primary text-white">
+    <main className="min-h-screen text-white">
       <section id="home" className="scroll-mt-24 xl:scroll-mt-32">
         <Home />
       </section>
@@ -37,4 +37,3 @@ export default function Page() {
     </main>
   )
 }
-  
