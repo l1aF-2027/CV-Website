@@ -46,4 +46,16 @@
   section {
     scroll-margin-top: 120px;
   }
+
+  /* Hide NEAT watermark with multiple selectors and !important */
+  canvas + a,
+  canvas ~ a,
+  div[style*=""] a[href*="neat"],
+  a[href*="firecms"],
+  a[href*="neat"] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 }
