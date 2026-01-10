@@ -120,6 +120,37 @@ const education = {
     ]
 }
 
+// experience data
+const experience = {
+    icon: "/assets/resume/badge.svg",
+    title: "My Experience",
+    description: "I have had the privilege of working with talented teams on challenging projects, contributing to the development of innovative AI solutions.",
+    items: [
+        {
+            company: "FPT Software",
+            position: "AI Engineer",
+            duration: "10/2025 - Present",
+            logo: "/assets/resume/experience/fpt.png",
+            summary: [
+                "Automated reverse source code workflows using n8n to improve efficiency.",
+                "Contributed to data preprocessing tasks for the Document KT project.",
+                "Developed API and RPA triggers for ITSM tickets utilizing Exchange Online and Microsoft Graph."
+            ]
+        },
+        {
+            company: "XBStation",
+            position: "AI Intern",
+            duration: "08/2025 - 10/2025",
+            logo: "/assets/resume/experience/xbstation.png",
+            summary: [
+                "Researched niche open-source technologies in Edge AI to expand domain expertise.",
+                "Optimized deep learning models for real-time drone deployment under resource constraints.",
+                "Deployed models on diverse edge hardware, including OAK-D S2, Radax CM5, and Qualcomm-based carrier boards."
+            ]
+        }
+    ]
+};
+
 // skills data
 const skills = {
     title: "Skills",
@@ -172,21 +203,24 @@ const formatDescription = (description) => {
 
 const Resume = () => {
 
-    const [expandedEducation, setExpandedEducation] = useState({})
+    const [educationExpanded, setEducationExpanded] = useState(false);
+    const [experienceExpanded, setExperienceExpanded] = useState(false);
     // const [expandedSkills, setExpandedSkills] = useState({})
     // const [expandedAbout, setExpandedAbout] = useState(false)
 
-    const toggleEducationExpand = (index) => {
-        setExpandedEducation((prev) => ({
-            ...prev,
-            [index]: !prev[index],
-        }))
+    const toggleEducationExpand = () => {
+        setEducationExpanded((prev) => !prev);
+    }
+
+    const toggleExperienceExpand = () => {
+        setExperienceExpanded((prev) => !prev);
     }
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.2, ease: "easeIn" } }} className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0">
             <div className="container mx-auto">
-                <Tabs defaultValue="education" className="flex flex-col xl:flex-row gap-[60px]">
+                <Tabs defaultValue="experience" className="flex flex-col xl:flex-row gap-[60px]">
                     <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-6">
+                        <TabsTrigger value="experience">Experience</TabsTrigger>
                         <TabsTrigger value="education">Education</TabsTrigger>
                         <TabsTrigger value="skills">Skills</TabsTrigger>
                         <TabsTrigger value="about">About Me</TabsTrigger>
@@ -194,6 +228,84 @@ const Resume = () => {
 
                     {/* content */}
                     <div className="min-h-[70vh] w-full">
+                        {/* experience */}
+                        <TabsContent value="experience" className="w-full">
+                            <motion.div
+                                initial={{ x: -100, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                exit={{ x: 100, opacity: 0 }}
+                                transition={{ type: "spring", stiffness: 200, damping: 10, duration: 0.1 }}
+                            >
+                                <div className="flex flex-col gap-[30px] text-center xl:text-left">
+                                    <h3 className="text-4xl font-bold text-accent">{experience.title}</h3>
+                                    <p className="max-w-[800px] text-[15px] text-white/60 mx-auto xl:mx-0">{experience.description}</p>
+                                    <ScrollArea className="h-[400px] px-4">
+                                        <ul className="grid grid-cols-1 xl:grid-cols-2 gap-[30px]">
+                                            {experience.items.map((item, index) => {
+                                                return (
+                                                    <li key={index} className="bg-[#232329] rounded-xl overflow-hidden">
+                                                        <div className="h-[184px] py-6 px-10 flex flex-col justify-center items-center lg:items-start gap-1 relative">
+                                                            <Button
+                                                                variant="ghost"
+                                                                size="sm"
+                                                                onClick={toggleExperienceExpand}
+                                                                className="absolute top-2 right-2 h-8 w-8 p-0 text-accent hover:text-accent/80"
+                                                            >
+                                                                {experienceExpanded ? <FaMinus /> : <FaPlus />}
+                                                            </Button>
+                                                            <span className="text-accent">{item.duration}</span>
+                                                            <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
+                                                                {item.position}
+                                                            </h3>
+                                                            <div className="flex items-center gap-3">
+                                                                <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
+                                                                <p className="text-white/60">{item.company}</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <AnimatePresence>
+                                                            {experienceExpanded && (
+                                                                <motion.div
+                                                                    initial={{ height: 0, opacity: 0 }}
+                                                                    animate={{ height: "auto", opacity: 1 }}
+                                                                    exit={{ height: 0, opacity: 0 }}
+                                                                    transition={{ duration: 0.3 }}
+                                                                    className="overflow-hidden"
+                                                                >
+                                                                    <Card className="m-4 bg-[#1a1a1f] border-accent/20">
+                                                                        <CardContent className="p-4">
+                                                                            {item.logo && (
+                                                                                <div className="mb-4">
+                                                                                    <Image
+                                                                                        src={item.logo}
+                                                                                        alt={item.company}
+                                                                                        width={150}
+                                                                                        height={150}
+                                                                                        className="rounded-lg mx-auto object-cover"
+                                                                                    />
+                                                                                </div>
+                                                                            )}
+                                                                            <div>
+                                                                                <p className="text-white/80 font-medium">Summary:</p>
+                                                                                <ul className="list-disc list-inside text-white/60 ml-2">
+                                                                                    {item.summary.map((point, idx) => (
+                                                                                        <li key={idx}>{point}</li>
+                                                                                    ))}
+                                                                                </ul>
+                                                                            </div>
+                                                                        </CardContent>
+                                                                    </Card>
+                                                                </motion.div>
+                                                            )}
+                                                        </AnimatePresence>
+                                                    </li>
+                                                )
+                                            })}
+                                        </ul>
+                                    </ScrollArea>
+                                </div>
+                            </motion.div>
+                        </TabsContent>
                         {/* education */}
                         <TabsContent value="education" className="w-full">
                             <motion.div
@@ -214,10 +326,10 @@ const Resume = () => {
                                                             <Button
                                                                 variant="ghost"
                                                                 size="sm"
-                                                                onClick={() => toggleEducationExpand(index)}
+                                                                onClick={toggleEducationExpand}
                                                                 className="absolute top-2 right-2 h-8 w-8 p-0 text-accent hover:text-accent/80"
                                                             >
-                                                                {expandedEducation[index] ? <FaMinus /> : <FaPlus />}
+                                                                {educationExpanded ? <FaMinus /> : <FaPlus />}
                                                             </Button>
                                                             <span className="text-accent">{item.duration}</span>
                                                             <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
@@ -230,7 +342,7 @@ const Resume = () => {
                                                         </div>
 
                                                         <AnimatePresence>
-                                                            {expandedEducation[index] && (
+                                                            {educationExpanded && (
                                                                 <motion.div
                                                                     initial={{ height: 0, opacity: 0 }}
                                                                     animate={{ height: "auto", opacity: 1 }}

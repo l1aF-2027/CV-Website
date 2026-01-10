@@ -1,6 +1,5 @@
 "use client"
-import { usePathname } from "next/navigation"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 
 const links = [
     {
@@ -26,12 +25,38 @@ const links = [
 ]
 
 const Nav = () => {
-    const pathname = usePathname()
+    const [activeLink, setActiveLink] = useState("#home");
 
-    // Scroll to top on page load/reload
     useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveLink(`#${entry.target.id}`);
+                    }
+                });
+            },
+            {
+                rootMargin: "-140px 0px -60% 0px",
+                threshold: 0,
+            }
+        );
+
+        const sections = links.map(link => document.querySelector(link.path));
+        sections.forEach(section => {
+            if (section) {
+                observer.observe(section);
+            }
+        });
+
+        return () => {
+            sections.forEach(section => {
+                if (section) {
+                    observer.unobserve(section);
+                }
+            });
+        };
+    }, []);
 
     const handleClick = (e, path) => {
         e.preventDefault()
@@ -57,7 +82,8 @@ const Nav = () => {
                         href={link.path}
                         key={index}
                         onClick={(e) => handleClick(e, link.path)}
-                        className="capitalize font-medium hover:text-accent transition-all cursor-pointer"
+                        className={`capitalize font-medium hover:text-accent transition-all cursor-pointer ${activeLink === link.path ? "text-accent border-b-2 border-accent" : ""
+                            }`}
                     >
                         {link.name}
                     </a>

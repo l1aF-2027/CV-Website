@@ -18,13 +18,15 @@ const Header = () => {
           max-auto: margin trái phải auto để căn giữa */}
         {/* logo */}
         <Link href="/">
-          <h1 className="text-4xl font-semibold">
-            Huy Hoang<span className="text-accent">.</span>
-          </h1>
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4">
+            <h1 className="text-4xl font-semibold">
+              Huy Hoang<span className="text-accent">.</span>
+            </h1>
+          </div>
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden xl:flex items-center gap-8 bg-transparent rounded-xl px-8 py-2 border-accent">
+        <div className="hidden xl:flex items-center gap-8 bg-slate-800/50 backdrop-blur-sm rounded-xl px-8 py-2">
           <Nav />
           <Link href="#contact">
             <Button>Hire me</Button>
@@ -32,7 +34,7 @@ const Header = () => {
         </div>
 
         {/* mobile nav */}
-        <div className="xl:hidden">
+        <div className="xl:hidden bg-slate-800/50 backdrop-blur-sm rounded-lg p-2">
           <MobileNav />
         </div>
       </div>
