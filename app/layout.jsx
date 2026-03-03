@@ -102,8 +102,10 @@ export const metadata = {
     apple: "/web.ico",
   },
 
-  // ── Verification (add Search Console token when available) ──
-  // verification: { google: "YOUR_GOOGLE_VERIFICATION_TOKEN" },
+  // ── Verification ──────────────────────────────────────────────
+  verification: {
+    google: "tsq-VDYRvE2CWe_8KcHeNw9Jp0zpOOP9cgp_r998POM",
+  },
 };
 
 // JSON-LD – Structured data for Google rich results (Person schema)
