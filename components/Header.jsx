@@ -1,45 +1,130 @@
-import Link from "next/link";
-import { Button } from "./ui/button";
-import Nav from "./Nav";
-import MobileNav from "./MobileNav";
-// Arrow function component React
-const Header = () => {
-  return (
-    // Thẻ header với các class Tailwind
-    <header className="fixed top-0 left-0 w-full py-8 xl:py-12 text-white">
-      {/* py-8: padding trên dưới 2rem (32px)
-        xl:py-12: padding 3rem (48px) trên màn xl trở lên
-        text-white: màu chữ trắng
-        bg-pink-50/20: màu nền hồng nhạt với độ trong suốt 20% */}
+"use client"
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import Nav from "./Nav"
+import MobileNav from "./MobileNav"
+import { motion } from "framer-motion"
 
-      {/* Container căn giữa nội dung */}
-      <div className="container mx-auto flex justify-between items-center">
-        {/* container: width tự động theo breakpoint
-          max-auto: margin trái phải auto để căn giữa */}
-        {/* logo */}
+const Header = () => {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const handleHireClick = (e) => {
+    e.preventDefault()
+    const target = document.querySelector("#contact")
+    if (!target) return
+    const header = document.querySelector('header')
+    const headerH = header ? header.offsetHeight : 80
+    const rect = target.getBoundingClientRect()
+    window.scrollTo({ top: Math.max(0, window.scrollY + rect.top - headerH), behavior: 'smooth' })
+  }
+
+  return (
+    <motion.header
+      className="fixed top-0 left-0 w-full z-50"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="container mx-auto flex justify-between items-center py-4 xl:py-5">
+
+        {/* ── Logo pill ── */}
         <Link href="/">
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4">
-            <h1 className="text-4xl font-semibold">
-              Huy Hoang<span className="text-accent">.</span>
+          <motion.div
+            className="px-5 py-3 rounded-2xl cursor-pointer transition-all duration-300"
+            style={{
+              background: scrolled ? "rgba(10, 10, 20, 0.80)" : "rgba(15, 15, 30, 0.60)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              border: "1px solid rgba(255,255,255,0.09)",
+              boxShadow: scrolled
+                ? "0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)"
+                : "0 2px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.04)",
+            }}
+            whileHover={{
+              scale: 1.02,
+              borderColor: "rgba(0,200,255,0.25)",
+              boxShadow: "0 4px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,200,255,0.1), inset 0 1px 0 rgba(255,255,255,0.06)",
+            }}
+            transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          >
+            <h1 className="text-xl xl:text-2xl font-heading font-bold tracking-tight leading-none">
+              <span className="text-white">Huy</span>
+              <span className="gradient-text ml-1.5">Hoang</span>
+              <span
+                className="text-accent"
+                style={{ textShadow: "0 0 12px rgba(0, 200, 255, 0.8)" }}
+              >.</span>
             </h1>
-          </div>
+          </motion.div>
         </Link>
 
-        {/* desktop nav */}
-        <div className="hidden xl:flex items-center gap-8 bg-slate-800/50 backdrop-blur-sm rounded-xl px-8 py-2">
+        {/* ── Desktop nav pill ── */}
+        <div
+          className="hidden xl:flex items-center gap-1"
+          style={{
+            background: scrolled ? "rgba(10, 10, 20, 0.80)" : "rgba(15, 15, 30, 0.60)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid rgba(255,255,255,0.09)",
+            borderRadius: "1rem",
+            padding: "6px 6px 6px 8px",
+            boxShadow: scrolled
+              ? "0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)"
+              : "0 2px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.04)",
+            transition: "all 0.4s ease",
+          }}
+        >
           <Nav />
-          <Link href="#contact">
-            <Button>Hire me</Button>
-          </Link>
+
+          {/* divider */}
+          <div className="w-px h-5 mx-2" style={{ background: "rgba(255,255,255,0.1)" }} />
+
+          {/* Hire me button — its own pill inside the nav pill */}
+          <motion.button
+            onClick={handleHireClick}
+            className="px-5 py-2.5 rounded-xl font-heading font-semibold text-xs text-black relative overflow-hidden group"
+            style={{
+              background: "linear-gradient(135deg, #00c8ff, #7c3aed)",
+              flexShrink: 0,
+            }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,200,255,0.4)" }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          >
+            <span className="relative z-10">Hire me</span>
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ background: "linear-gradient(135deg, #7c3aed, #00c8ff)" }}
+            />
+          </motion.button>
         </div>
 
-        {/* mobile nav */}
-        <div className="xl:hidden bg-slate-800/50 backdrop-blur-sm rounded-lg p-2">
+        {/* ── Mobile nav pill ── */}
+        <div
+          className="xl:hidden"
+          style={{
+            background: scrolled ? "rgba(10, 10, 20, 0.80)" : "rgba(15, 15, 30, 0.60)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid rgba(255,255,255,0.09)",
+            borderRadius: "0.875rem",
+            padding: "6px",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
+            transition: "all 0.4s ease",
+          }}
+        >
           <MobileNav />
         </div>
-      </div>
-    </header>
-  );
-};
 
-export default Header;
+      </div>
+    </motion.header>
+  )
+}
+
+export default Header

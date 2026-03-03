@@ -2,74 +2,80 @@
 export default {
     darkMode: ["class"],
     content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-	container: {
-		center: true,
-		padding: '15px',
-	},
-	screens: {
-		sm: '640px',
-		md: '768px',
-		lg: '960px',
-		xl: '1200px'
-	},
-	fontFamily: {
-		primary: "var(--font-jetbrainsMono)",
-	},
-	extend: {
-  		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
-			// màu nền
-  			primary: '#1c1c22',
-			
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
-
-			// màu nhấn tạo sự tương phản với nền
-  			accent: {
-  				DEFAULT: '#0099FF',
-				hover: '#0099FF',
-  			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
-  			},
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			}
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		}
-  	}
-  },
-  plugins: [require("tailwindcss-animate")],
+        "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+        "./components/**/*.{js,ts,jsx,tsx,mdx}",
+        "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
+    theme: {
+        container: {
+            center: true,
+            padding: '15px',
+        },
+        screens: {
+            sm: '640px',
+            md: '768px',
+            lg: '960px',
+            xl: '1200px'
+        },
+        fontFamily: {
+            heading: "var(--font-sora)",
+            body: "var(--font-inter)",
+            mono: "var(--font-jetbrainsMono)",
+        },
+        extend: {
+            colors: {
+                background: 'hsl(var(--background))',
+                foreground: 'hsl(var(--foreground))',
+                card: {
+                    DEFAULT: 'hsl(var(--card))',
+                    foreground: 'hsl(var(--card-foreground))'
+                },
+                popover: {
+                    DEFAULT: 'hsl(var(--popover))',
+                    foreground: 'hsl(var(--popover-foreground))'
+                },
+                primary: '#0a0a14',
+                secondary: {
+                    DEFAULT: 'hsl(var(--secondary))',
+                    foreground: 'hsl(var(--secondary-foreground))'
+                },
+                muted: {
+                    DEFAULT: 'hsl(var(--muted))',
+                    foreground: 'hsl(var(--muted-foreground))'
+                },
+                accent: {
+                    DEFAULT: '#00c8ff',
+                    hover: '#00a8d9',
+                    violet: '#7c3aed',
+                },
+                surface: {
+                    DEFAULT: '#12121e',
+                    elevated: '#1a1a2e',
+                },
+                destructive: {
+                    DEFAULT: 'hsl(var(--destructive))',
+                    foreground: 'hsl(var(--destructive-foreground))'
+                },
+                border: 'hsl(var(--border))',
+                input: 'hsl(var(--input))',
+                ring: 'hsl(var(--ring))',
+            },
+            borderRadius: {
+                lg: 'var(--radius)',
+                md: 'calc(var(--radius) - 2px)',
+                sm: 'calc(var(--radius) - 4px)',
+                '2xl': '1rem',
+                '3xl': '1.5rem',
+            },
+            animation: {
+                'float': 'float 4s ease-in-out infinite',
+                'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                'blink': 'blink 1s step-end infinite',
+                'marquee': 'marquee 25s linear infinite',
+                'spin-slow': 'spin-slow 20s linear infinite',
+                'shimmer': 'shimmer-text 4s linear infinite',
+            },
+        }
+    },
+    plugins: [require("tailwindcss-animate")],
 };

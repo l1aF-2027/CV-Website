@@ -16,21 +16,22 @@ export default function Page() {
   }, [])
 
   return (
-    <main className="min-h-screen text-white">
-      <section id="home" className="scroll-mt-24 xl:scroll-mt-32">
+    <main className="text-white">
+      {/* min-h-screen on each section ensures clicking nav always shows a full clean viewport */}
+      <section id="home" className="min-h-screen">
         <Home />
       </section>
-      <section id="services" className="scroll-mt-24 xl:scroll-mt-32">
+      <section id="services" className="min-h-screen">
         <Services />
       </section>
-      <section id="resume" className="scroll-mt-24 xl:scroll-mt-32">
+      <section id="resume" className="min-h-screen">
         <Resume />
       </section>
-      <section id="work" className="scroll-mt-24 xl:scroll-mt-32">
+      <section id="work" className="min-h-screen">
         <Work />
       </section>
-      <section id="contact" className="scroll-mt-24 xl:scroll-mt-32">
-        <Suspense fallback={<div>Loading...</div>}>
+      <section id="contact" className="min-h-screen">
+        <Suspense fallback={<div className="min-h-screen" />}>
           <Contact />
         </Suspense>
       </section>

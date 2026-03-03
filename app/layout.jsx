@@ -1,27 +1,161 @@
-import { JetBrains_Mono } from "next/font/google";
+import { Sora, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import AnimatedBackground from "@/components/AnimatedBackground";
 
-const geistMono = JetBrains_Mono({
+const sora = Sora({
   subsets: ["latin"],
-  weights: ['100', '200', '300', '400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: "--font-sora",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: "--font-inter",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
   variable: "--font-jetbrainsMono",
 });
 
+const siteUrl = "https://l1af.vercel.app"; // update when deployed
+
 export const metadata = {
-  title: "Huy Hoang - AI Engineer",
-  icons:
-  {
-    icon: 'web.ico',
-  }
+  // ── Core ───────────────────────────────────────────────
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Hà Huy Hoàng | AI Engineer & Machine Learning",
+    template: "%s | Hà Huy Hoàng",
+  },
+  description:
+    "Hà Huy Hoàng (Ha Huy Hoang) – AI Engineer chuyên ML model optimization, Edge AI, và Data Science. Tốt nghiệp VNU-HCM UIT điểm 9.1/4.0, hiện làm AI Engineer tại FPT Software.",
+  keywords: [
+    "Hà Huy Hoàng",
+    "Ha Huy Hoang",
+    "Huy Hoang AI Engineer",
+    "AI Engineer Vietnam",
+    "Machine Learning Engineer Vietnam",
+    "Edge AI Engineer",
+    "Data Scientist Vietnam",
+    "FPT Software AI",
+    "VNU HCM UIT AI",
+    "Deep Learning Vietnam",
+    "PyTorch TensorFlow Vietnam",
+    "Python AI Engineer",
+    "portfolio AI engineer",
+    "l1aF-2027",
+  ],
+  authors: [{ name: "Hà Huy Hoàng", url: siteUrl }],
+  creator: "Hà Huy Hoàng",
+  publisher: "Hà Huy Hoàng",
+
+  // ── Open Graph (Facebook, LinkedIn, Zalo…) ────────────
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "Hà Huy Hoàng Portfolio",
+    title: "Hà Huy Hoàng | AI Engineer & Machine Learning",
+    description:
+      "AI Engineer specializing in ML model optimization, Edge AI deployment, and Data Science. 2nd Place UIT Data Science Challenge 2024.",
+    locale: "vi_VN",
+    alternateLocale: "en_US",
+    images: [
+      {
+        url: "/assets/og-image.png", // add a 1200×630 image here later
+        width: 1200,
+        height: 630,
+        alt: "Hà Huy Hoàng – AI Engineer Portfolio",
+      },
+    ],
+  },
+
+  // ── Twitter / X ────────────────────────────────────────
+  twitter: {
+    card: "summary_large_image",
+    title: "Hà Huy Hoàng | AI Engineer",
+    description:
+      "AI Engineer specializing in ML model optimization and Edge AI deployment. Portfolio of Hà Huy Hoàng.",
+    images: ["/assets/og-image.png"],
+  },
+
+  // ── Canonical & robots ─────────────────────────────────
+  alternates: {
+    canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  // ── Icons ──────────────────────────────────────────────
+  icons: {
+    icon: "/web.ico",
+    apple: "/web.ico",
+  },
+
+  // ── Verification (add Search Console token when available) ──
+  // verification: { google: "YOUR_GOOGLE_VERIFICATION_TOKEN" },
+};
+
+// JSON-LD – Structured data for Google rich results (Person schema)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Hà Huy Hoàng",
+  alternateName: ["Ha Huy Hoang", "Huy Hoang"],
+  url: siteUrl,
+  image: `${siteUrl}/assets/photo1.png`,
+  jobTitle: "AI Engineer",
+  worksFor: {
+    "@type": "Organization",
+    name: "FPT Software",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "VNU-HCM University of Information Technology",
+  },
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Deep Learning",
+    "Edge AI",
+    "Computer Vision",
+    "Data Science",
+    "PyTorch",
+    "TensorFlow",
+    "FastAPI",
+    "Next.js",
+  ],
+  nationality: "Vietnamese",
+  email: "ha.huy.hoang.tkl@gmail.com",
+  sameAs: [
+    "https://github.com/l1aF-2027",
+    "https://www.linkedin.com/in/hoang-huy-6b77a12a8/",
+  ],
+  description:
+    "Hà Huy Hoàng is an AI Engineer specializing in ML model optimization, Edge AI deployment, and Data Science. Graduate of VNU-HCM UIT with GPA 9.1/4.0, 2nd Place at UIT Data Science Challenge 2024.",
 };
 
 export default function RootLayout({ children }) {
   return (
-
-    <html lang="en">
-      <body className={geistMono.variable}>
+    <html lang="vi">
+      <head>
+        {/* JSON-LD structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
         <AnimatedBackground />
         <div style={{ position: "relative", zIndex: 10 }}>
           <Header className="fixed top-0 left-0 w-full z-50" />
