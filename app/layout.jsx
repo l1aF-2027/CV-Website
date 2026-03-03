@@ -27,7 +27,7 @@ export const metadata = {
   // ── Core ───────────────────────────────────────────────
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Hà Huy Hoàng | AI Engineer & Machine Learning",
+    default: "Ha Huy Hoang",
     template: "%s | Hà Huy Hoàng",
   },
   description:
