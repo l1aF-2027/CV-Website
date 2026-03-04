@@ -108,7 +108,7 @@ const ExperienceTab = () => {
             {/* Animated vertical line */}
             <div className="relative pl-8">
                 <motion.div
-                    className="absolute left-3 top-0 w-[2px] bg-gradient-to-b from-accent via-violet-500 to-transparent"
+                    className="absolute left-3 top-0 w-[2px] bg-gradient-to-b from-accent via-amber-400 to-transparent"
                     initial={{ height: 0 }}
                     animate={inView ? { height: "100%" } : { height: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
@@ -235,7 +235,7 @@ const ImageLightbox = ({ src, alt, onClose }) => {
                         style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(10px)" }}
                     >
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                            <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                     </button>
 
@@ -309,8 +309,8 @@ const EducationTab = () => {
                                             style={{ background: "rgba(0,200,255,0.25)" }}
                                         >
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
-                                                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                                                <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+                                                <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                                <line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
                                             </svg>
                                         </div>
                                     </motion.div>
@@ -432,7 +432,7 @@ const AboutTab = () => {
                     >
                         <div
                             className="w-2 h-2 rounded-full flex-shrink-0"
-                            style={{ background: "linear-gradient(135deg, #00c8ff, #7c3aed)", boxShadow: "0 0 8px rgba(0,200,255,0.5)" }}
+                            style={{ background: "linear-gradient(135deg, #00c8ff, #f5a623)", boxShadow: "0 0 8px rgba(0,200,255,0.5)" }}
                         />
                         <span className="font-body text-accent text-sm font-medium min-w-[90px]">{item.label}:</span>
                         <span className="font-body text-white/70 text-sm">{item.value}</span>

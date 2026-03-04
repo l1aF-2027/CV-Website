@@ -73,10 +73,11 @@ const ServiceDropdown = ({ value, onChange }) => {
                             left: 0,
                             right: 0,
                             zIndex: 50,
-                            background: "rgba(12, 12, 24, 0.97)",
+                            background: "rgba(15, 15, 35, 0.95)",
                             border: "1px solid rgba(0,200,255,0.2)",
                             borderRadius: "0.875rem",
-                            backdropFilter: "blur(20px)",
+                            backdropFilter: "blur(24px)",
+                            WebkitBackdropFilter: "blur(24px)",
                             boxShadow: "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,200,255,0.05)",
                             overflow: "hidden",
                             transformOrigin: "top",
@@ -281,7 +282,7 @@ const Contact = () => {
                                 type="submit"
                                 disabled={sending}
                                 className="w-full py-4 rounded-xl font-heading font-semibold text-sm text-black relative overflow-hidden"
-                                style={{ background: sending ? "rgba(0,200,255,0.5)" : "linear-gradient(135deg, #00c8ff, #7c3aed)" }}
+                                style={{ background: sending ? "rgba(0,200,255,0.5)" : "linear-gradient(135deg, #00c8ff, #f5a623)" }}
                                 whileHover={!sending ? { scale: 1.01, boxShadow: "0 10px 40px rgba(0,200,255,0.3)" } : {}}
                                 whileTap={!sending ? { scale: 0.99 } : {}}
                             >

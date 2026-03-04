@@ -82,7 +82,7 @@ const Home = () => {
             <div
                 className="absolute top-1/4 right-10 w-[400px] h-[400px] rounded-full pointer-events-none"
                 style={{
-                    background: "radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(245,166,35,0.07) 0%, transparent 70%)",
                     filter: "blur(40px)",
                 }}
             />
@@ -107,8 +107,8 @@ const Home = () => {
                             }}
                         >
                             <span
-                                className="w-2 h-2 rounded-full bg-emerald-400"
-                                style={{ boxShadow: "0 0 8px rgba(52, 211, 153, 0.8)", animation: "pulse-glow 2s ease-in-out infinite" }}
+                                className="w-2 h-2 rounded-full bg-amber-400"
+                                style={{ boxShadow: "0 0 8px rgba(245, 166, 35, 0.8)", animation: "pulse-glow 2s ease-in-out infinite" }}
                             />
                             Available for new opportunities
                         </motion.div>
@@ -159,7 +159,7 @@ const Home = () => {
                             <a href="/assets/HaHuyHoang_CV.pdf" download>
                                 <motion.button
                                     className="flex items-center gap-2.5 px-7 py-3.5 rounded-full font-heading font-semibold text-sm text-black relative overflow-hidden group"
-                                    style={{ background: "linear-gradient(135deg, #00c8ff, #7c3aed)" }}
+                                    style={{ background: "linear-gradient(135deg, #00c8ff, #f5a623)" }}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.97 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -170,7 +170,7 @@ const Home = () => {
                                     </span>
                                     <div
                                         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                        style={{ background: "linear-gradient(135deg, #7c3aed, #00c8ff)" }}
+                                        style={{ background: "linear-gradient(135deg, #f5a623, #00c8ff)" }}
                                     />
                                 </motion.button>
                             </a>
@@ -221,74 +221,110 @@ const Home = () => {
                         </motion.div>
                     </motion.div>
 
-                    {/* ── Avatar column ──────────────────────── */}
+                    {/* ── Hero portrait — bold, large with accent circle ── */}
                     <motion.div
-                        className="flex-shrink-0 order-1 xl:order-2"
-                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+                        className="flex-shrink-0 order-1 xl:order-2 relative"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
                     >
-                        <div className="relative w-[280px] h-[280px] xl:w-[360px] xl:h-[360px]">
-                            {/* Spinning gradient ring */}
-                            <div
-                                className="absolute inset-[-6px] rounded-full animate-spin-slow"
-                                style={{
-                                    background: "conic-gradient(from 0deg, #00c8ff, #7c3aed, #00c8ff)",
-                                    padding: "3px",
-                                }}
-                            >
-                                <div className="w-full h-full rounded-full bg-primary" />
-                            </div>
+                        <div className="relative w-[300px] h-[380px] xl:w-[480px] xl:h-[600px]">
 
-                            {/* Glow behind avatar */}
-                            <div
-                                className="absolute inset-0 rounded-full"
+                            {/* ── Decorative accent circle behind the person ── */}
+                            <motion.div
+                                className="absolute rounded-full"
                                 style={{
-                                    background: "radial-gradient(circle, rgba(0,200,255,0.2) 0%, transparent 70%)",
-                                    filter: "blur(20px)",
+                                    width: "85%",
+                                    height: "0",
+                                    paddingBottom: "85%",
+                                    top: "5%",
+                                    left: "50%",
+                                    transform: "translateX(-50%)",
+                                    background: "linear-gradient(135deg, rgba(0,200,255,0.2) 0%, rgba(245,166,35,0.25) 50%, rgba(0,200,255,0.15) 100%)",
+                                    border: "1.5px solid rgba(0,200,255,0.2)",
+                                    boxShadow: "0 0 60px rgba(0,200,255,0.15), 0 0 120px rgba(245,166,35,0.1), inset 0 0 60px rgba(0,200,255,0.05)",
+                                }}
+                                animate={{
+                                    boxShadow: [
+                                        "0 0 60px rgba(0,200,255,0.15), 0 0 120px rgba(245,166,35,0.1), inset 0 0 60px rgba(0,200,255,0.05)",
+                                        "0 0 80px rgba(0,200,255,0.25), 0 0 140px rgba(245,166,35,0.15), inset 0 0 80px rgba(0,200,255,0.08)",
+                                        "0 0 60px rgba(0,200,255,0.15), 0 0 120px rgba(245,166,35,0.1), inset 0 0 60px rgba(0,200,255,0.05)",
+                                    ],
+                                }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            />
+
+                            {/* Secondary smaller circle — top right decorative */}
+                            <div
+                                className="absolute w-16 h-16 xl:w-24 xl:h-24 rounded-full hidden xl:block"
+                                style={{
+                                    top: "2%",
+                                    right: "-8%",
+                                    background: "linear-gradient(135deg, rgba(245,166,35,0.3), rgba(0,200,255,0.15))",
+                                    border: "1px solid rgba(245,166,35,0.25)",
+                                    boxShadow: "0 0 30px rgba(245,166,35,0.2)",
                                 }}
                             />
 
-                            {/* Avatar image */}
-                            <div className="relative w-full h-full rounded-full overflow-hidden" style={{ zIndex: 2 }}>
+                            {/* Small accent dot — bottom left */}
+                            <div
+                                className="absolute w-4 h-4 xl:w-6 xl:h-6 rounded-full hidden xl:block"
+                                style={{
+                                    bottom: "25%",
+                                    left: "-5%",
+                                    background: "rgba(0,200,255,0.4)",
+                                    boxShadow: "0 0 15px rgba(0,200,255,0.5)",
+                                }}
+                            />
+
+                            {/* ── The person image — large and prominent ── */}
+                            <div
+                                className="absolute inset-0"
+                                style={{
+                                    maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+                                    WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+                                }}
+                            >
                                 <Image
-                                    src="/assets/photo1.png"
+                                    src="/assets/image.png"
                                     alt="Ha Huy Hoang"
                                     fill
                                     className="object-cover object-top"
+                                    style={{ zIndex: 2 }}
                                     priority
+                                    sizes="(max-width: 1280px) 300px, 480px"
                                 />
                             </div>
 
                             {/* Floating stat badge — top right */}
                             <motion.div
-                                className="absolute -top-2 -right-4 xl:-right-8 px-3 py-1.5 rounded-xl font-body text-xs font-semibold text-white"
+                                className="absolute top-6 -right-2 xl:top-4 xl:-right-10 px-3.5 py-2 rounded-xl font-body text-xs font-semibold text-white"
                                 style={{
-                                    background: "rgba(124, 58, 237, 0.9)",
-                                    backdropFilter: "blur(10px)",
-                                    border: "1px solid rgba(124,58,237,0.4)",
-                                    boxShadow: "0 4px 20px rgba(124,58,237,0.4)",
-                                    zIndex: 3,
+                                    background: "rgba(245, 166, 35, 0.9)",
+                                    backdropFilter: "blur(12px)",
+                                    border: "1px solid rgba(245,166,35,0.5)",
+                                    boxShadow: "0 4px 20px rgba(245,166,35,0.5)",
+                                    zIndex: 10,
                                 }}
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
+                                initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
                                 transition={{ delay: 1.0, duration: 0.5 }}
                             >
-                                🎓 Validictorian (GPA: 4.0)
+                                🎓 Valedictorian (GPA: 4.0)
                             </motion.div>
 
                             {/* Floating badge — bottom left */}
                             <motion.div
-                                className="absolute -bottom-2 -left-4 xl:-left-8 px-3 py-1.5 rounded-xl font-body text-xs font-semibold text-white"
+                                className="absolute bottom-[30%] -left-4 xl:-left-12 px-3.5 py-2 rounded-xl font-body text-xs font-semibold text-white"
                                 style={{
                                     background: "rgba(0, 140, 200, 0.9)",
-                                    backdropFilter: "blur(10px)",
-                                    border: "1px solid rgba(0,200,255,0.4)",
-                                    boxShadow: "0 4px 20px rgba(0,200,255,0.4)",
-                                    zIndex: 3,
+                                    backdropFilter: "blur(12px)",
+                                    border: "1px solid rgba(0,200,255,0.5)",
+                                    boxShadow: "0 4px 20px rgba(0,200,255,0.5)",
+                                    zIndex: 10,
                                 }}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
+                                initial={{ opacity: 0, scale: 0.8, x: -20 }}
+                                animate={{ opacity: 1, scale: 1, x: 0 }}
                                 transition={{ delay: 1.2, duration: 0.5 }}
                             >
                                 🏆 2nd Place UIT DS Challenge

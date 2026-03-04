@@ -27,7 +27,7 @@ const projects = [
     image: "/assets/work/thumb2.png",
     githubLink: "https://github.com/l1aF-2027/Social-Trend-VietNam",
     link: "https://github.com/l1aF-2027/Social-Trend-VietNam/",
-    color: "#7c3aed",
+    color: "#f5a623",
   },
   {
     num: "03",

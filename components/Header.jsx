@@ -38,13 +38,13 @@ const Header = () => {
           <motion.div
             className="px-5 py-3 rounded-2xl cursor-pointer transition-all duration-300"
             style={{
-              background: scrolled ? "rgba(10, 10, 20, 0.80)" : "rgba(15, 15, 30, 0.60)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.09)",
+              background: scrolled ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.03)",
+              backdropFilter: "blur(24px)",
+              WebkitBackdropFilter: "blur(24px)",
+              border: "1px solid rgba(255,255,255,0.12)",
               boxShadow: scrolled
-                ? "0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)"
-                : "0 2px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.04)",
+                ? "0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)"
+                : "0 2px 12px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.06)",
             }}
             whileHover={{
               scale: 1.02,
@@ -68,15 +68,15 @@ const Header = () => {
         <div
           className="hidden xl:flex items-center gap-1"
           style={{
-            background: scrolled ? "rgba(10, 10, 20, 0.80)" : "rgba(15, 15, 30, 0.60)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(255,255,255,0.09)",
+            background: scrolled ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.03)",
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
+            border: "1px solid rgba(255,255,255,0.12)",
             borderRadius: "1rem",
             padding: "6px 6px 6px 8px",
             boxShadow: scrolled
-              ? "0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)"
-              : "0 2px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.04)",
+              ? "0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)"
+              : "0 2px 12px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.06)",
             transition: "all 0.4s ease",
           }}
         >
@@ -90,7 +90,7 @@ const Header = () => {
             onClick={handleHireClick}
             className="px-5 py-2.5 rounded-xl font-heading font-semibold text-xs text-black relative overflow-hidden group"
             style={{
-              background: "linear-gradient(135deg, #00c8ff, #7c3aed)",
+              background: "linear-gradient(135deg, #00c8ff, #f5a623)",
               flexShrink: 0,
             }}
             whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,200,255,0.4)" }}
@@ -100,7 +100,7 @@ const Header = () => {
             <span className="relative z-10">Hire me</span>
             <div
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: "linear-gradient(135deg, #7c3aed, #00c8ff)" }}
+              style={{ background: "linear-gradient(135deg, #f5a623, #00c8ff)" }}
             />
           </motion.button>
         </div>
@@ -109,13 +109,13 @@ const Header = () => {
         <div
           className="xl:hidden"
           style={{
-            background: scrolled ? "rgba(10, 10, 20, 0.80)" : "rgba(15, 15, 30, 0.60)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(255,255,255,0.09)",
+            background: scrolled ? "rgba(255, 255, 255, 0.06)" : "rgba(255, 255, 255, 0.03)",
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
+            border: "1px solid rgba(255,255,255,0.12)",
             borderRadius: "0.875rem",
             padding: "6px",
-            boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.06)",
             transition: "all 0.4s ease",
           }}
         >

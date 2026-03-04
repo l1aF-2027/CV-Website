@@ -114,7 +114,7 @@ const ServiceCard = ({ service, index }) => {
             {/* Bottom gradient line */}
             <div
                 className="absolute bottom-0 left-0 right-0 h-[2px] rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: "linear-gradient(90deg, transparent, #00c8ff, #7c3aed, transparent)" }}
+                style={{ background: "linear-gradient(90deg, transparent, #00c8ff, #f5a623, transparent)" }}
             />
         </motion.div>
     );

@@ -77,10 +77,11 @@ const MobileNav = () => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        className="fixed inset-0 z-40 flex flex-col items-center justify-center"
+                        className="fixed inset-0 z-[60] flex flex-col items-center justify-center"
                         style={{
-                            background: "rgba(10, 10, 20, 0.97)",
+                            background: "rgba(8, 8, 20, 0.92)",
                             backdropFilter: "blur(30px)",
+                            WebkitBackdropFilter: "blur(30px)",
                         }}
                         initial={{ opacity: 0, clipPath: "circle(0% at calc(100% - 40px) 24px)" }}
                         animate={{ opacity: 1, clipPath: "circle(150% at calc(100% - 40px) 24px)" }}

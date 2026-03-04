@@ -49,6 +49,7 @@ const Nav = () => {
 
     const handleClick = (e, path) => {
         e.preventDefault()
+        setActiveLink(path)
         scrollToSection(path)
     }
 

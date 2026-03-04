@@ -161,7 +161,7 @@ export default function RootLayout({ children }) {
         <AnimatedBackground />
         <div style={{ position: "relative", zIndex: 10 }}>
           <Header className="fixed top-0 left-0 w-full z-50" />
-          <main className="pt-24 xl:pt-32">
+          <main className="pt-10 xl:pt-20">
             {children}
           </main>
         </div>
