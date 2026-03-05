@@ -228,7 +228,7 @@ const Home = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
                     >
-                        <div className="relative w-[300px] h-[380px] xl:w-[480px] xl:h-[600px]">
+                        <div className="relative w-[400px] h-[380px] xl:w-[480px] xl:h-[600px]">
 
                             {/* ── Decorative accent circle behind the person ── */}
                             <motion.div
@@ -298,7 +298,7 @@ const Home = () => {
 
                             {/* Floating stat badge — top right */}
                             <motion.div
-                                className="absolute top-6 -right-2 xl:top-4 xl:-right-10 px-3.5 py-2 rounded-xl font-body text-xs font-semibold text-white"
+                                className="absolute top-6 -right-10 xl:-right-5 px-3.5 py-2 rounded-xl font-body text-xs font-semibold text-white"
                                 style={{
                                     background: "rgba(245, 166, 35, 0.9)",
                                     backdropFilter: "blur(12px)",
