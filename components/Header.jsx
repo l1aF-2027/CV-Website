@@ -48,8 +48,8 @@ const Header = () => {
             }}
             whileHover={{
               scale: 1.02,
-              borderColor: "rgba(0,200,255,0.25)",
-              boxShadow: "0 4px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,200,255,0.1), inset 0 1px 0 rgba(255,255,255,0.06)",
+              borderColor: "rgba(255, 255, 255,0.25)",
+              boxShadow: "0 4px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(255, 255, 255,0.1), inset 0 1px 0 rgba(255,255,255,0.06)",
             }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           >
@@ -58,7 +58,7 @@ const Header = () => {
               <span className="gradient-text ml-1.5">Hoang</span>
               <span
                 className="text-accent"
-                style={{ textShadow: "0 0 12px rgba(0, 200, 255, 0.8)" }}
+                style={{ textShadow: "0 0 12px rgba(255, 255, 255, 0.8)" }}
               >.</span>
             </h1>
           </motion.div>
@@ -90,17 +90,17 @@ const Header = () => {
             onClick={handleHireClick}
             className="px-5 py-2.5 rounded-xl font-heading font-semibold text-xs text-black relative overflow-hidden group"
             style={{
-              background: "linear-gradient(135deg, #00c8ff, #f5a623)",
+              background: "linear-gradient(135deg, #ffffff, #e2e8f0)",
               flexShrink: 0,
             }}
-            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,200,255,0.4)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(255, 255, 255,0.4)" }}
             whileTap={{ scale: 0.96 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           >
             <span className="relative z-10">Hire me</span>
             <div
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: "linear-gradient(135deg, #f5a623, #00c8ff)" }}
+              style={{ background: "linear-gradient(135deg, #e2e8f0, #ffffff)" }}
             />
           </motion.button>
         </div>

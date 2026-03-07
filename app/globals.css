@@ -71,18 +71,18 @@
     background: #0a0a14;
   }
   ::-webkit-scrollbar-thumb {
-    background: #00c8ff55;
+    background: #ffffff55;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #00c8ff99;
+    background: #ffffff99;
   }
 }
 
 @layer utilities {
   /* Gradient text */
   .gradient-text {
-    background: linear-gradient(135deg, #00c8ff 0%, #f5a623 60%, #00c8ff 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 60%, #ffffff 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -92,7 +92,7 @@
 
   /* Glow effects */
   .glow {
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.3), 0 0 60px rgba(0, 200, 255, 0.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 60px rgba(255, 255, 255, 0.1);
   }
 
   .glow-gold {
@@ -100,7 +100,7 @@
   }
 
   .glow-text {
-    text-shadow: 0 0 20px rgba(0, 200, 255, 0.6), 0 0 40px rgba(0, 200, 255, 0.3);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.3);
   }
 
   /* Glass morphism */
@@ -125,12 +125,12 @@
   }
 
   .text-outline-accent {
-    -webkit-text-stroke: 1px #00c8ff;
+    -webkit-text-stroke: 1px #fbbf24;
     color: transparent;
   }
   
   .text-outline-hover {
-    -webkit-text-stroke: 1px #00c8ff;
+    -webkit-text-stroke: 1px #fbbf24;
   }
 
   /* Accent gradient border */
@@ -146,7 +146,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, #00c8ff, #f5a623);
+    background: linear-gradient(135deg, #ffffff, #e2e8f0);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -166,7 +166,7 @@
     position: absolute;
     inset: -2px;
     border-radius: inherit;
-    background: conic-gradient(from var(--angle, 0deg), #00c8ff, #f5a623, #00c8ff);
+    background: conic-gradient(from var(--angle, 0deg), #ffffff, #e2e8f0, #ffffff);
     animation: rotate-gradient 4s linear infinite;
     z-index: -1;
     opacity: 0;
@@ -190,8 +190,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 10px rgba(0, 200, 255, 0.4); }
-  50% { box-shadow: 0 0 30px rgba(0, 200, 255, 0.8), 0 0 60px rgba(0, 200, 255, 0.3); }
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); }
+  50% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.3); }
 }
 
 @keyframes rotate-gradient {

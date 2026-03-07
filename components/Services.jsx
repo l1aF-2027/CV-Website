@@ -62,9 +62,9 @@ const ServiceCard = ({ service, index }) => {
             }}
             whileHover={{
                 y: -6,
-                background: "rgba(0, 200, 255, 0.04)",
-                borderColor: "rgba(0, 200, 255, 0.2)",
-                boxShadow: "0 20px 60px rgba(0, 200, 255, 0.08), 0 0 0 1px rgba(0, 200, 255, 0.1)",
+                background: "rgba(255, 255, 255, 0.04)",
+                borderColor: "rgba(255, 255, 255, 0.2)",
+                boxShadow: "0 20px 60px rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.1)",
             }}
         >
             {/* Number + arrow row */}
@@ -114,7 +114,7 @@ const ServiceCard = ({ service, index }) => {
             {/* Bottom gradient line */}
             <div
                 className="absolute bottom-0 left-0 right-0 h-[2px] rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: "linear-gradient(90deg, transparent, #00c8ff, #f5a623, transparent)" }}
+                style={{ background: "linear-gradient(90deg, transparent, #ffffff, #e2e8f0, transparent)" }}
             />
         </motion.div>
     );

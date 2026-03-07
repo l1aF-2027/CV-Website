@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { FiDownload } from "react-icons/fi";
 import { FaGithub, FaLinkedinIn, FaFacebook, FaEnvelope } from "react-icons/fa";
+import { GraduationCap, Trophy } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -75,14 +76,14 @@ const Home = () => {
             <div
                 className="absolute top-1/3 left-10 w-[500px] h-[500px] rounded-full pointer-events-none"
                 style={{
-                    background: "radial-gradient(circle, rgba(0,200,255,0.07) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(255, 255, 255,0.07) 0%, transparent 70%)",
                     filter: "blur(40px)",
                 }}
             />
             <div
                 className="absolute top-1/4 right-10 w-[400px] h-[400px] rounded-full pointer-events-none"
                 style={{
-                    background: "radial-gradient(circle, rgba(245,166,35,0.07) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(255, 255, 255,0.07) 0%, transparent 70%)",
                     filter: "blur(40px)",
                 }}
             />
@@ -102,13 +103,13 @@ const Home = () => {
                             variants={itemVariants}
                             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 font-body text-sm text-white/70"
                             style={{
-                                background: "rgba(0, 200, 255, 0.07)",
-                                border: "1px solid rgba(0, 200, 255, 0.2)",
+                                background: "rgba(255, 255, 255, 0.07)",
+                                border: "1px solid rgba(255, 255, 255, 0.2)",
                             }}
                         >
                             <span
-                                className="w-2 h-2 rounded-full bg-amber-400"
-                                style={{ boxShadow: "0 0 8px rgba(245, 166, 35, 0.8)", animation: "pulse-glow 2s ease-in-out infinite" }}
+                                className="w-2 h-2 rounded-full bg-emerald-400"
+                                style={{ boxShadow: "0 0 8px rgba(255, 255, 255, 0.8)", animation: "pulse-glow 2s ease-in-out infinite" }}
                             />
                             Available for new opportunities
                         </motion.div>
@@ -121,7 +122,7 @@ const Home = () => {
                         >
                             <span className="text-white/90">Hello, I'm</span>
                             <br />
-                            <span className="gradient-text">Ha Huy Hoang</span>
+                            <span className="text-accent">Ha Huy Hoang</span>
                         </motion.h1>
 
                         {/* Typewriter role */}
@@ -132,13 +133,13 @@ const Home = () => {
                             <span className="font-heading font-semibold text-xl xl:text-2xl text-white/50">~/</span>
                             <span
                                 className="font-heading font-semibold text-xl xl:text-2xl text-accent"
-                                style={{ textShadow: "0 0 20px rgba(0, 200, 255, 0.5)" }}
+                                style={{ textShadow: "0 0 20px rgba(255, 255, 255, 0.5)" }}
                             >
                                 {role}
                             </span>
                             <span
                                 className="font-mono text-accent text-2xl animate-blink"
-                                style={{ textShadow: "0 0 20px rgba(0, 200, 255, 0.5)" }}
+                                style={{ textShadow: "0 0 20px rgba(255, 255, 255, 0.5)" }}
                             >|</span>
                         </motion.div>
 
@@ -159,7 +160,7 @@ const Home = () => {
                             <a href="/assets/HaHuyHoang_CV.pdf" download>
                                 <motion.button
                                     className="flex items-center gap-2.5 px-7 py-3.5 rounded-full font-heading font-semibold text-sm text-black relative overflow-hidden group"
-                                    style={{ background: "linear-gradient(135deg, #00c8ff, #f5a623)" }}
+                                    style={{ background: "linear-gradient(135deg, #ffffff, #e2e8f0)" }}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.97 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -170,7 +171,7 @@ const Home = () => {
                                     </span>
                                     <div
                                         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                        style={{ background: "linear-gradient(135deg, #f5a623, #00c8ff)" }}
+                                        style={{ background: "linear-gradient(135deg, #e2e8f0, #ffffff)" }}
                                     />
                                 </motion.button>
                             </a>
@@ -186,7 +187,7 @@ const Home = () => {
                                     background: "rgba(255,255,255,0.05)",
                                     border: "1px solid rgba(255,255,255,0.12)",
                                 }}
-                                whileHover={{ scale: 1.05, borderColor: "rgba(0,200,255,0.3)" }}
+                                whileHover={{ scale: 1.05, borderColor: "rgba(255, 255, 255,0.3)" }}
                                 whileTap={{ scale: 0.97 }}
                             >
                                 View Projects
@@ -208,8 +209,8 @@ const Home = () => {
                                         }}
                                         whileHover={{
                                             scale: 1.15,
-                                            borderColor: "rgba(0,200,255,0.4)",
-                                            boxShadow: "0 0 15px rgba(0,200,255,0.25)",
+                                            borderColor: "rgba(255, 255, 255,0.4)",
+                                            boxShadow: "0 0 15px rgba(255, 255, 255,0.25)",
                                         }}
                                         whileTap={{ scale: 0.9 }}
                                         transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -240,15 +241,15 @@ const Home = () => {
                                     top: "5%",
                                     left: "50%",
                                     transform: "translateX(-50%)",
-                                    background: "linear-gradient(135deg, rgba(0,200,255,0.2) 0%, rgba(245,166,35,0.25) 50%, rgba(0,200,255,0.15) 100%)",
-                                    border: "1.5px solid rgba(0,200,255,0.2)",
-                                    boxShadow: "0 0 60px rgba(0,200,255,0.15), 0 0 120px rgba(245,166,35,0.1), inset 0 0 60px rgba(0,200,255,0.05)",
+                                    background: "linear-gradient(135deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.25) 50%, rgba(255, 255, 255,0.15) 100%)",
+                                    border: "1.5px solid rgba(255, 255, 255,0.2)",
+                                    boxShadow: "0 0 60px rgba(255, 255, 255,0.15), 0 0 120px rgba(255, 255, 255,0.1), inset 0 0 60px rgba(255, 255, 255,0.05)",
                                 }}
                                 animate={{
                                     boxShadow: [
-                                        "0 0 60px rgba(0,200,255,0.15), 0 0 120px rgba(245,166,35,0.1), inset 0 0 60px rgba(0,200,255,0.05)",
-                                        "0 0 80px rgba(0,200,255,0.25), 0 0 140px rgba(245,166,35,0.15), inset 0 0 80px rgba(0,200,255,0.08)",
-                                        "0 0 60px rgba(0,200,255,0.15), 0 0 120px rgba(245,166,35,0.1), inset 0 0 60px rgba(0,200,255,0.05)",
+                                        "0 0 60px rgba(255, 255, 255,0.15), 0 0 120px rgba(255, 255, 255,0.1), inset 0 0 60px rgba(255, 255, 255,0.05)",
+                                        "0 0 80px rgba(255, 255, 255,0.25), 0 0 140px rgba(255, 255, 255,0.15), inset 0 0 80px rgba(255, 255, 255,0.08)",
+                                        "0 0 60px rgba(255, 255, 255,0.15), 0 0 120px rgba(255, 255, 255,0.1), inset 0 0 60px rgba(255, 255, 255,0.05)",
                                     ],
                                 }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -260,9 +261,9 @@ const Home = () => {
                                 style={{
                                     top: "2%",
                                     right: "-8%",
-                                    background: "linear-gradient(135deg, rgba(245,166,35,0.3), rgba(0,200,255,0.15))",
-                                    border: "1px solid rgba(245,166,35,0.25)",
-                                    boxShadow: "0 0 30px rgba(245,166,35,0.2)",
+                                    background: "linear-gradient(135deg, rgba(255, 255, 255,0.3), rgba(255, 255, 255,0.15))",
+                                    border: "1px solid rgba(255, 255, 255,0.25)",
+                                    boxShadow: "0 0 30px rgba(255, 255, 255,0.2)",
                                 }}
                             />
 
@@ -272,8 +273,8 @@ const Home = () => {
                                 style={{
                                     bottom: "25%",
                                     left: "-5%",
-                                    background: "rgba(0,200,255,0.4)",
-                                    boxShadow: "0 0 15px rgba(0,200,255,0.5)",
+                                    background: "rgba(255, 255, 255,0.4)",
+                                    boxShadow: "0 0 15px rgba(255, 255, 255,0.5)",
                                 }}
                             />
 
@@ -300,34 +301,40 @@ const Home = () => {
                             <motion.div
                                 className="absolute top-6 -right-10 xl:-right-5 px-3.5 py-2 rounded-xl font-body text-xs font-semibold text-white"
                                 style={{
-                                    background: "rgba(245, 166, 35, 0.9)",
+                                    background: "rgba(255, 255, 255, 0.27)",
                                     backdropFilter: "blur(12px)",
-                                    border: "1px solid rgba(245,166,35,0.5)",
-                                    boxShadow: "0 4px 20px rgba(245,166,35,0.5)",
+                                    border: "1px solid rgba(255, 255, 255,0.5)",
+                                    boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
                                     zIndex: 10,
                                 }}
                                 initial={{ opacity: 0, scale: 0.8, y: -10 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 transition={{ delay: 1.0, duration: 0.5 }}
                             >
-                                🎓 Valedictorian (GPA: 4.0)
+                                <div className="flex items-center gap-2.5">
+                                    <GraduationCap className="w-4 h-4 text-white" />
+                                    <span className="text-white">Valedictorian (GPA: 4.0)</span>
+                                </div>
                             </motion.div>
 
                             {/* Floating badge — bottom left */}
                             <motion.div
-                                className="absolute bottom-[30%] -left-4 xl:-left-12 px-3.5 py-2 rounded-xl font-body text-xs font-semibold text-white"
+                                className="absolute bottom-[30%] -left-4 xl:-left-12 px-3.5 py-2 rounded-xl font-body text-xs font-semibold text-primary"
                                 style={{
-                                    background: "rgba(0, 140, 200, 0.9)",
+                                    background: "rgba(251, 191, 36, 0.90)",
                                     backdropFilter: "blur(12px)",
-                                    border: "1px solid rgba(0,200,255,0.5)",
-                                    boxShadow: "0 4px 20px rgba(0,200,255,0.5)",
+                                    border: "1px solid rgba(251, 191, 36, 0.5)",
+                                    boxShadow: "0 4px 20px rgba(251, 191, 36, 0.5)",
                                     zIndex: 10,
                                 }}
                                 initial={{ opacity: 0, scale: 0.8, x: -20 }}
                                 animate={{ opacity: 1, scale: 1, x: 0 }}
                                 transition={{ delay: 1.2, duration: 0.5 }}
                             >
-                                🏆 2nd Place UIT DS Challenge
+                                <div className="flex items-center gap-2.5">
+                                    <Trophy className="w-4 h-4" />
+                                    <span>2nd Place UIT DS Challenge</span>
+                                </div>
                             </motion.div>
                         </div>
                     </motion.div>
@@ -355,12 +362,12 @@ const Home = () => {
                             key={i}
                             className="flex-1 min-w-[130px] py-5 px-6 text-center xl:text-left"
                             style={{ background: "rgba(255,255,255,0.03)" }}
-                            whileHover={{ background: "rgba(0, 200, 255, 0.05)" }}
+                            whileHover={{ background: "rgba(255, 255, 255, 0.05)" }}
                             transition={{ duration: 0.2 }}
                         >
                             <div
                                 className="text-3xl xl:text-4xl font-heading font-bold text-accent mb-1"
-                                style={{ textShadow: "0 0 20px rgba(0,200,255,0.4)" }}
+                                style={{ textShadow: "0 0 20px rgba(255, 255, 255,0.4)" }}
                             >
                                 {stat.num}
                             </div>

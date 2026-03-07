@@ -1,7 +1,6 @@
 import { Sora, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import AnimatedBackground from "@/components/AnimatedBackground";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -158,7 +157,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
-        <AnimatedBackground />
         <div style={{ position: "relative", zIndex: 10 }}>
           <Header className="fixed top-0 left-0 w-full z-50" />
           <main className="pt-10 xl:pt-20">

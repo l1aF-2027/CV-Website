@@ -88,7 +88,7 @@ const skillList = [
     { icon: <FaHtml5 />, name: "HTML5", color: "#E34F26" },
     { icon: <FaCss3 />, name: "CSS3", color: "#1572B6" },
     { icon: <SiNextdotjs />, name: "Next.js", color: "#FFFFFF" },
-    { icon: <SiTailwindcss />, name: "Tailwind CSS", color: "#06B6D4" },
+    { icon: <SiTailwindcss />, name: "Tailwind CSS", color: "#ffffff" },
 ];
 
 // ── Sub-components ──────────────────────────────────────────────────────────
@@ -127,7 +127,7 @@ const ExperienceTab = () => {
                             {/* Timeline dot */}
                             <motion.div
                                 className="absolute -left-5 top-6 w-3 h-3 rounded-full border-2 border-accent"
-                                style={{ background: "#0a0a14", boxShadow: "0 0 10px rgba(0,200,255,0.5)" }}
+                                style={{ background: "#0a0a14", boxShadow: "0 0 10px rgba(255, 255, 255,0.5)" }}
                                 initial={{ scale: 0 }}
                                 animate={inView ? { scale: 1 } : { scale: 0 }}
                                 transition={{ delay: 0.4 + i * 0.2, type: "spring", stiffness: 300 }}
@@ -136,7 +136,7 @@ const ExperienceTab = () => {
                             <motion.div
                                 className="rounded-2xl overflow-hidden cursor-pointer group"
                                 style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
-                                whileHover={{ borderColor: "rgba(0,200,255,0.2)", background: "rgba(0,200,255,0.03)" }}
+                                whileHover={{ borderColor: "rgba(255, 255, 255,0.2)", background: "rgba(255, 255, 255,0.03)" }}
                                 onClick={() => setExpanded(expanded === i ? null : i)}
                             >
                                 <div className="p-5 flex items-start justify-between gap-4">
@@ -145,7 +145,7 @@ const ExperienceTab = () => {
                                             <span className="font-mono text-accent text-xs">{item.duration}</span>
                                             <span
                                                 className="px-2 py-0.5 rounded text-xs font-mono"
-                                                style={{ background: "rgba(0,200,255,0.1)", color: "#00c8ff", border: "1px solid rgba(0,200,255,0.2)" }}
+                                                style={{ background: "rgba(255, 255, 255,0.1)", color: "#ffffff", border: "1px solid rgba(255, 255, 255,0.2)" }}
                                             >
                                                 {i === 0 ? "Current" : "Past"}
                                             </span>
@@ -284,7 +284,7 @@ const EducationTab = () => {
                         onClick={() => setActiveCard(activeCard === i ? null : i)}
                         className="rounded-2xl overflow-hidden cursor-pointer group"
                         style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
-                        whileHover={{ borderColor: "rgba(0,200,255,0.2)", background: "rgba(0,200,255,0.03)", y: -3 }}
+                        whileHover={{ borderColor: "rgba(255, 255, 255,0.2)", background: "rgba(255, 255, 255,0.03)", y: -3 }}
                     >
                         <div className="p-5">
                             <div className="flex items-start gap-4 mb-3">
@@ -306,7 +306,7 @@ const EducationTab = () => {
                                         {/* Zoom overlay hint */}
                                         <div
                                             className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 rounded-xl"
-                                            style={{ background: "rgba(0,200,255,0.25)" }}
+                                            style={{ background: "rgba(255, 255, 255,0.25)" }}
                                         >
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
                                                 <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -324,7 +324,7 @@ const EducationTab = () => {
                             {item.extra && (
                                 <div
                                     className="inline-block px-2.5 py-1 rounded-lg font-mono text-xs text-accent mb-2"
-                                    style={{ background: "rgba(0,200,255,0.1)", border: "1px solid rgba(0,200,255,0.2)" }}
+                                    style={{ background: "rgba(255, 255, 255,0.1)", border: "1px solid rgba(255, 255, 255,0.2)" }}
                                 >
                                     {item.extra}
                                 </div>
@@ -432,7 +432,7 @@ const AboutTab = () => {
                     >
                         <div
                             className="w-2 h-2 rounded-full flex-shrink-0"
-                            style={{ background: "linear-gradient(135deg, #00c8ff, #f5a623)", boxShadow: "0 0 8px rgba(0,200,255,0.5)" }}
+                            style={{ background: "linear-gradient(135deg, #ffffff, #e2e8f0)", boxShadow: "0 0 8px rgba(255, 255, 255,0.5)" }}
                         />
                         <span className="font-body text-accent text-sm font-medium min-w-[90px]">{item.label}:</span>
                         <span className="font-body text-white/70 text-sm">{item.value}</span>
@@ -494,10 +494,10 @@ const Resume = () => {
                             onClick={() => setActiveTab(tab.id)}
                             className="relative px-5 py-2.5 rounded-xl font-heading font-semibold text-sm transition-all duration-300"
                             style={{
-                                color: activeTab === tab.id ? "#00c8ff" : "rgba(255,255,255,0.4)",
-                                background: activeTab === tab.id ? "rgba(0,200,255,0.1)" : "rgba(255,255,255,0.03)",
-                                border: activeTab === tab.id ? "1px solid rgba(0,200,255,0.3)" : "1px solid rgba(255,255,255,0.07)",
-                                boxShadow: activeTab === tab.id ? "0 4px 20px rgba(0,200,255,0.15)" : "none",
+                                color: activeTab === tab.id ? "#ffffff" : "rgba(255,255,255,0.4)",
+                                background: activeTab === tab.id ? "rgba(255, 255, 255,0.1)" : "rgba(255,255,255,0.03)",
+                                border: activeTab === tab.id ? "1px solid rgba(255, 255, 255,0.3)" : "1px solid rgba(255,255,255,0.07)",
+                                boxShadow: activeTab === tab.id ? "0 4px 20px rgba(255, 255, 255,0.15)" : "none",
                             }}
                         >
                             {tab.label}

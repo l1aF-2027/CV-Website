@@ -16,7 +16,7 @@ const projects = [
     image: "/assets/work/thumb1.png",
     githubLink: "https://github.com/l1aF-2027/UIT-Data-Science-Challenge-2024",
     link: "https://multimodal-sacarsm-detection-on-vietnamese-social-media-texts.streamlit.app/",
-    color: "#00c8ff",
+    color: "#ffffff",
   },
   {
     num: "02",
@@ -27,7 +27,7 @@ const projects = [
     image: "/assets/work/thumb2.png",
     githubLink: "https://github.com/l1aF-2027/Social-Trend-VietNam",
     link: "https://github.com/l1aF-2027/Social-Trend-VietNam/",
-    color: "#f5a623",
+    color: "#e2e8f0",
   },
   {
     num: "03",
@@ -38,7 +38,7 @@ const projects = [
     image: "/assets/work/thumb3.png",
     githubLink: "https://github.com/l1aF-2027/Website-QuanLyViecDangKiMonHocVaThuHocPhi",
     link: "https://uit-admissions-chatbot.vercel.app/",
-    color: "#06b6d4",
+    color: "#ffffff",
   },
 ];
 
@@ -80,7 +80,7 @@ const ProjectCard = ({ project, index }) => {
         {/* Number badge */}
         <div
           className="absolute top-4 left-4 font-heading font-extrabold text-5xl leading-none select-none"
-          style={{ WebkitTextStroke: `2px ${project.color}66`, color: "transparent" }}
+          style={{ WebkitTextStroke: `2px #fbbf24`, color: "transparent" }}
         >
           {project.num}
         </div>
@@ -97,7 +97,7 @@ const ProjectCard = ({ project, index }) => {
             >
               <Link href={project.link} target="_blank" rel="noopener noreferrer">
                 <motion.div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white"
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white hover:text-accent transition-colors"
                   style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)" }}
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 0.9 }}
@@ -107,7 +107,7 @@ const ProjectCard = ({ project, index }) => {
               </Link>
               <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
                 <motion.div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white"
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white hover:text-accent transition-colors"
                   style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)" }}
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 0.9 }}
@@ -150,7 +150,7 @@ const ProjectCard = ({ project, index }) => {
       {/* Bottom accent line */}
       <div
         className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ background: `linear-gradient(90deg, transparent, ${project.color}, transparent)` }}
+        style={{ background: `linear-gradient(90deg, transparent, #fbbf24, transparent)` }}
       />
     </motion.div>
   );
@@ -180,7 +180,7 @@ const Work = () => {
             className="font-heading font-bold text-white mb-4"
             style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
           >
-            Featured <span className="gradient-text">Projects</span>
+            Featured <span className="text-accent">Projects</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

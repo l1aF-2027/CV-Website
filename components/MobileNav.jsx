@@ -146,8 +146,8 @@ const MobileNav = () => {
                                             onClick={(e) => handleClick(e, link.path)}
                                             className="w-full text-center py-3 text-lg font-heading font-semibold capitalize rounded-2xl transition-all duration-200"
                                             style={{
-                                                color: activeLink === link.path ? "#00c8ff" : "rgba(255,255,255,0.7)",
-                                                background: activeLink === link.path ? "rgba(0, 200, 255, 0.08)" : "transparent",
+                                                color: activeLink === link.path ? "#ffffff" : "rgba(255,255,255,0.7)",
+                                                background: activeLink === link.path ? "rgba(255, 255, 255, 0.08)" : "transparent",
                                             }}
                                             initial={{ opacity: 0, x: 20 }}
                                             animate={{ opacity: 1, x: 0 }}

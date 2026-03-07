@@ -44,8 +44,8 @@ export default {
                     foreground: 'hsl(var(--muted-foreground))'
                 },
                 accent: {
-                    DEFAULT: '#00c8ff',
-                    hover: '#00a8d9',
+                    DEFAULT: '#fbbf24', // Amber/Gold accent
+                    hover: '#f59e0b',
                     violet: '#7c3aed',
                 },
                 surface: {

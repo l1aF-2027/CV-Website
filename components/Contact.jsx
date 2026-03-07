@@ -19,7 +19,7 @@ const socials = [
 ];
 
 const inputClass = `w-full bg-transparent px-4 py-3.5 rounded-xl font-body text-sm text-white placeholder:text-white/25 outline-none transition-all duration-300
-  border border-white/10 focus:border-accent/60 focus:shadow-[0_0_0_3px_rgba(0,200,255,0.08)]`;
+  border border-white/10 focus:border-accent/60 focus:shadow-[0_0_0_3px_rgba(255, 255, 255,0.08)]`;
 
 const SERVICE_OPTIONS = ["AI Engineer", "Data Scientist", "Data Analyst", "Backend Developer"];
 
@@ -43,9 +43,9 @@ const ServiceDropdown = ({ value, onChange }) => {
                 className="w-full px-4 py-3.5 rounded-xl font-body text-sm text-left flex items-center justify-between transition-all duration-300"
                 style={{
                     background: "rgba(255,255,255,0.03)",
-                    border: open ? "1px solid rgba(0,200,255,0.4)" : "1px solid rgba(255,255,255,0.1)",
+                    border: open ? "1px solid rgba(255, 255, 255,0.4)" : "1px solid rgba(255,255,255,0.1)",
                     color: value ? "white" : "rgba(255,255,255,0.25)",
-                    boxShadow: open ? "0 0 0 3px rgba(0,200,255,0.08)" : "none",
+                    boxShadow: open ? "0 0 0 3px rgba(255, 255, 255,0.08)" : "none",
                 }}
             >
                 <span>{value || "Select a Service"}</span>
@@ -74,11 +74,11 @@ const ServiceDropdown = ({ value, onChange }) => {
                             right: 0,
                             zIndex: 50,
                             background: "rgba(15, 15, 35, 0.95)",
-                            border: "1px solid rgba(0,200,255,0.2)",
+                            border: "1px solid rgba(255, 255, 255,0.2)",
                             borderRadius: "0.875rem",
                             backdropFilter: "blur(24px)",
                             WebkitBackdropFilter: "blur(24px)",
-                            boxShadow: "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,200,255,0.05)",
+                            boxShadow: "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255, 255, 255,0.05)",
                             overflow: "hidden",
                             transformOrigin: "top",
                         }}
@@ -92,13 +92,13 @@ const ServiceDropdown = ({ value, onChange }) => {
                                 onClick={() => { onChange(opt); setOpen(false); }}
                                 className="px-4 py-3 font-body text-sm cursor-pointer flex items-center gap-3 transition-all duration-150"
                                 style={{
-                                    color: value === opt ? "#00c8ff" : "rgba(255,255,255,0.65)",
-                                    background: value === opt ? "rgba(0,200,255,0.07)" : "transparent",
+                                    color: value === opt ? "#ffffff" : "rgba(255,255,255,0.65)",
+                                    background: value === opt ? "rgba(255, 255, 255,0.07)" : "transparent",
                                 }}
-                                whileHover={{ background: "rgba(0,200,255,0.06)", color: "#ffffff", x: 4 }}
+                                whileHover={{ background: "rgba(255, 255, 255,0.06)", color: "#ffffff", x: 4 }}
                             >
                                 {value === opt && (
-                                    <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" style={{ boxShadow: "0 0 6px rgba(0,200,255,0.8)" }} />
+                                    <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" style={{ boxShadow: "0 0 6px rgba(255, 255, 255,0.8)" }} />
                                 )}
                                 {value !== opt && <span className="w-1.5 h-1.5 flex-shrink-0" />}
                                 {opt}
@@ -163,10 +163,10 @@ const Contact = () => {
     };
 
     return (
-        <section className="min-h-[80vh] flex flex-col justify-center py-20 xl:py-28">
+        <section className="pt-8 pb-8">
             <div className="container mx-auto">
                 {/* Header */}
-                <div ref={headRef} className="text-center mb-16">
+                <div ref={headRef} className="text-center mb-12 xl:mb-16">
                     <motion.span
                         initial={{ opacity: 0, y: 15 }}
                         animate={headInView ? { opacity: 1, y: 0 } : {}}
@@ -212,7 +212,7 @@ const Contact = () => {
                                 >
                                     <div
                                         className="w-12 h-12 rounded-xl flex items-center justify-center text-accent text-xl flex-shrink-0"
-                                        style={{ background: "rgba(0,200,255,0.1)", border: "1px solid rgba(0,200,255,0.2)" }}
+                                        style={{ background: "rgba(255, 255, 255,0.1)", border: "1px solid rgba(255, 255, 255,0.2)" }}
                                     >
                                         {item.icon}
                                     </div>
@@ -231,7 +231,7 @@ const Contact = () => {
                                     <motion.div
                                         className="w-10 h-10 rounded-xl flex items-center justify-center text-white/40 hover:text-accent transition-colors duration-200"
                                         style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                                        whileHover={{ scale: 1.1, borderColor: "rgba(0,200,255,0.3)", boxShadow: "0 0 15px rgba(0,200,255,0.2)" }}
+                                        whileHover={{ scale: 1.1, borderColor: "rgba(255, 255, 255,0.3)", boxShadow: "0 0 15px rgba(255, 255, 255,0.2)" }}
                                         whileTap={{ scale: 0.9 }}
                                     >
                                         {s.icon}
@@ -282,8 +282,8 @@ const Contact = () => {
                                 type="submit"
                                 disabled={sending}
                                 className="w-full py-4 rounded-xl font-heading font-semibold text-sm text-black relative overflow-hidden"
-                                style={{ background: sending ? "rgba(0,200,255,0.5)" : "linear-gradient(135deg, #00c8ff, #f5a623)" }}
-                                whileHover={!sending ? { scale: 1.01, boxShadow: "0 10px 40px rgba(0,200,255,0.3)" } : {}}
+                                style={{ background: sending ? "rgba(255, 255, 255,0.5)" : "linear-gradient(135deg, #ffffff, #e2e8f0)" }}
+                                whileHover={!sending ? { scale: 1.01, boxShadow: "0 10px 40px rgba(255, 255, 255,0.3)" } : {}}
                                 whileTap={!sending ? { scale: 0.99 } : {}}
                             >
                                 {sending ? (
@@ -303,7 +303,7 @@ const Contact = () => {
 
             <ToastContainer
                 position="bottom-right"
-                toastStyle={{ background: "#12121e", color: "#ffffff", border: "1px solid rgba(0,200,255,0.2)" }}
+                toastStyle={{ background: "#12121e", color: "#ffffff", border: "1px solid rgba(255, 255, 255,0.2)" }}
             />
         </section>
     );

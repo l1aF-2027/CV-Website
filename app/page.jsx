@@ -5,6 +5,7 @@ import Services from "@/components/Services"
 import Resume from "@/components/Resume"
 import Work from "@/components/Work"
 import Contact from "@/components/Contact"
+import KeyboardBackground from "@/components/KeyboardBackground"
 
 export default function Page() {
   useEffect(() => {
@@ -16,7 +17,8 @@ export default function Page() {
   }, [])
 
   return (
-    <main className="text-white">
+    <main className="text-white relative w-full">
+      <KeyboardBackground />
       {/* min-h-screen on each section ensures clicking nav always shows a full clean viewport */}
       <section id="home" className="min-h-screen">
         <Home />
@@ -30,8 +32,8 @@ export default function Page() {
       <section id="work" className="min-h-screen">
         <Work />
       </section>
-      <section id="contact" className="min-h-screen">
-        <Suspense fallback={<div className="min-h-screen" />}>
+      <section id="contact">
+        <Suspense fallback={<div />}>
           <Contact />
         </Suspense>
       </section>

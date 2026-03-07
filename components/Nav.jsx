@@ -67,7 +67,7 @@ const Nav = () => {
                         onMouseLeave={() => setHoveredLink(null)}
                         className="relative px-4 py-2 capitalize font-body font-medium text-sm rounded-lg transition-colors duration-200 cursor-pointer"
                         style={{
-                            color: isActive ? "#00c8ff" : isHovered ? "#ffffff" : "rgba(255,255,255,0.6)",
+                            color: isActive ? "#ffffff" : isHovered ? "#ffffff" : "rgba(255,255,255,0.6)",
                         }}
                     >
                         {/* Hover / active background pill */}
@@ -77,9 +77,9 @@ const Nav = () => {
                                 className="absolute inset-0 rounded-lg"
                                 style={{
                                     background: isActive
-                                        ? "rgba(0, 200, 255, 0.1)"
+                                        ? "rgba(255, 255, 255, 0.1)"
                                         : "rgba(255, 255, 255, 0.05)",
-                                    border: isActive ? "1px solid rgba(0, 200, 255, 0.2)" : "1px solid rgba(255,255,255,0.06)"
+                                    border: isActive ? "1px solid rgba(255, 255, 255, 0.2)" : "1px solid rgba(255,255,255,0.06)"
                                 }}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
