@@ -1,11 +1,16 @@
 "use client"
 import { useEffect, Suspense } from "react"
+import dynamic from "next/dynamic"
 import Home from "@/components/Home"
-import Services from "@/components/Services"
-import Resume from "@/components/Resume"
-import Work from "@/components/Work"
-import Contact from "@/components/Contact"
-import KeyboardBackground from "@/components/KeyboardBackground"
+
+// Dynamically import heavy components below the fold
+const Services = dynamic(() => import("@/components/Services"), { ssr: true })
+const Resume = dynamic(() => import("@/components/Resume"), { ssr: true })
+const Work = dynamic(() => import("@/components/Work"), { ssr: true })
+const Contact = dynamic(() => import("@/components/Contact"), { ssr: true })
+
+// KeyboardBackground uses canvas and window, so we absolutely must disable SSR
+const KeyboardBackground = dynamic(() => import("@/components/KeyboardBackground"), { ssr: false })
 
 export default function Page() {
   useEffect(() => {
