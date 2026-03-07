@@ -30,7 +30,7 @@ export const metadata = {
     template: "%s | Hà Huy Hoàng",
   },
   description:
-    "Hà Huy Hoàng (Ha Huy Hoang) – AI Engineer chuyên ML model optimization, Edge AI, và Data Science. Tốt nghiệp VNU-HCM UIT điểm 9.1/4.0, hiện làm AI Engineer tại FPT Software.",
+    "Hà Huy Hoàng (Ha Huy Hoang) – AI Engineer specializing in ML model optimization, Edge AI, and Data Science. Graduated from VNU-HCM UIT with GPA 9.1/4.0, currently working as an AI Engineer at FPT Software.",
   keywords: [
     "Hà Huy Hoàng",
     "Ha Huy Hoang",
@@ -148,7 +148,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi">
+    <html lang="en">
       <head>
         {/* JSON-LD structured data */}
         <script
