@@ -63,6 +63,7 @@ const MobileNav = () => {
             {/* Toggle button */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle mobile menu"
                 className="relative w-10 h-10 flex items-center justify-center rounded-xl text-white z-50"
                 style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
                 whileTap={{ scale: 0.9 }}
@@ -131,6 +132,7 @@ const MobileNav = () => {
                                 <div className="w-full flex justify-end mb-4">
                                     <motion.button
                                         onClick={() => setIsOpen(false)}
+                                        aria-label="Close mobile menu"
                                         className="w-10 h-10 flex items-center justify-center rounded-xl text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
                                         whileTap={{ scale: 0.9 }}
                                     >

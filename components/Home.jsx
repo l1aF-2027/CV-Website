@@ -159,6 +159,7 @@ const Home = () => {
                         >
                             <a href="/assets/HaHuyHoang_CV.pdf" download>
                                 <motion.button
+                                    aria-label="Download Curriculum Vitae"
                                     className="flex items-center gap-2.5 px-7 py-3.5 rounded-full font-heading font-semibold text-sm text-black relative overflow-hidden group"
                                     style={{ background: "linear-gradient(135deg, #ffffff, #e2e8f0)" }}
                                     whileHover={{ scale: 1.05 }}
@@ -292,7 +293,9 @@ const Home = () => {
                                     fill
                                     className="object-cover object-top"
                                     style={{ zIndex: 2 }}
-                                    priority
+                                    priority={true}
+                                    fetchPriority="high"
+                                    decoding="sync"
                                     sizes="(max-width: 1280px) 300px, 480px"
                                 />
                             </div>
@@ -366,8 +369,8 @@ const Home = () => {
                             transition={{ duration: 0.2 }}
                         >
                             <div
-                                className="text-3xl xl:text-4xl font-heading font-bold text-accent mb-1"
-                                style={{ textShadow: "0 0 20px rgba(255, 255, 255,0.4)" }}
+                                className="text-3xl xl:text-4xl font-heading font-bold mb-1"
+                                style={{ color: "#fbbf24", textShadow: "0 0 10px rgba(251, 191, 36, 0.5)" }}
                             >
                                 {stat.num}
                             </div>

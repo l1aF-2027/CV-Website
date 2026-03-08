@@ -228,9 +228,9 @@ const ImageLightbox = ({ src, alt, onClose }) => {
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    {/* Close button */}
                     <button
                         onClick={onClose}
+                        aria-label="Close"
                         className="absolute -top-4 -right-4 z-10 w-9 h-9 rounded-full flex items-center justify-center text-white/60 hover:text-white transition-colors"
                         style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(10px)" }}
                     >

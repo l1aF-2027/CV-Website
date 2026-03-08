@@ -27,10 +27,10 @@ export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "Ha Huy Hoang",
-    template: "%s | Hà Huy Hoàng",
+    template: "%s | Ha Huy Hoang",
   },
   description:
-    "Hà Huy Hoàng (Ha Huy Hoang) – AI Engineer specializing in ML model optimization, Edge AI, and Data Science. Graduated from VNU-HCM UIT with GPA 9.1/4.0, currently working as an AI Engineer at FPT Software.",
+    "Ha Huy Hoang – AI Engineer specializing in ML model optimization, Edge AI, and Data Science. Graduated from VNU-HCM UIT with GPA 9.1/4.0, currently working as an AI Engineer at FPT Software.",
   keywords: [
     "Hà Huy Hoàng",
     "Ha Huy Hoang",
@@ -47,16 +47,16 @@ export const metadata = {
     "portfolio AI engineer",
     "l1aF-2027",
   ],
-  authors: [{ name: "Hà Huy Hoàng", url: siteUrl }],
-  creator: "Hà Huy Hoàng",
-  publisher: "Hà Huy Hoàng",
+  authors: [{ name: "Ha Huy Hoang", url: siteUrl }],
+  creator: "Ha Huy Hoang",
+  publisher: "Ha Huy Hoang",
 
   // ── Open Graph (Facebook, LinkedIn, Zalo…) ────────────
   openGraph: {
     type: "website",
     url: siteUrl,
-    siteName: "Hà Huy Hoàng Portfolio",
-    title: "Hà Huy Hoàng | AI Engineer & Machine Learning",
+    siteName: "Ha Huy Hoang",
+    title: "Ha Huy Hoang",
     description:
       "AI Engineer specializing in ML model optimization, Edge AI deployment, and Data Science. 2nd Place UIT Data Science Challenge 2024.",
     locale: "vi_VN",
@@ -66,7 +66,7 @@ export const metadata = {
         url: "/assets/og-image.png", // add a 1200×630 image here later
         width: 1200,
         height: 630,
-        alt: "Hà Huy Hoàng – AI Engineer Portfolio",
+        alt: "Ha Huy Hoang",
       },
     ],
   },
@@ -74,9 +74,9 @@ export const metadata = {
   // ── Twitter / X ────────────────────────────────────────
   twitter: {
     card: "summary_large_image",
-    title: "Hà Huy Hoàng | AI Engineer",
+    title: "Ha Huy Hoang",
     description:
-      "AI Engineer specializing in ML model optimization and Edge AI deployment. Portfolio of Hà Huy Hoàng.",
+      "AI Engineer specializing in ML model optimization and Edge AI deployment. Portfolio of Ha Huy Hoang.",
     images: ["/assets/og-image.png"],
   },
 
@@ -97,8 +97,8 @@ export const metadata = {
 
   // ── Icons ──────────────────────────────────────────────
   icons: {
-    icon: "/web.ico",
-    apple: "/web.ico",
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 
   // ── Verification ──────────────────────────────────────────────
