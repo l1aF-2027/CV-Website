@@ -50,18 +50,7 @@ const techStack = [
     "CUDA", "Edge AI", "Kafka", "n8n", "Transformers", "Computer Vision",
 ];
 
-// Stagger container variants
-const containerVariants = {
-    hidden: {},
-    show: {
-        transition: { staggerChildren: 0.12, delayChildren: 0.3 },
-    },
-};
 
-const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-};
 
 const Home = () => {
     const role = useTypewriter(
@@ -92,19 +81,14 @@ const Home = () => {
                 <div className="flex flex-col xl:flex-row items-center justify-between gap-12 xl:gap-20">
 
                     {/* ── Text column ──────────────────────────── */}
-                    <motion.div
-                        className="flex-1 text-center xl:text-left order-2 xl:order-1"
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="show"
-                    >
+                    <div className="flex-1 text-center xl:text-left order-2 xl:order-1">
                         {/* Available badge */}
-                        <motion.div
-                            variants={itemVariants}
-                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 font-body text-sm text-white/70"
+                        <div
+                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 font-body text-sm text-white/70 animate-fade-in-up"
                             style={{
                                 background: "rgba(255, 255, 255, 0.07)",
                                 border: "1px solid rgba(255, 255, 255, 0.2)",
+                                animationDelay: "0.3s"
                             }}
                         >
                             <span
@@ -112,23 +96,22 @@ const Home = () => {
                                 style={{ boxShadow: "0 0 8px rgba(255, 255, 255, 0.8)", animation: "pulse-glow 2s ease-in-out infinite" }}
                             />
                             Available for new opportunities
-                        </motion.div>
+                        </div>
 
                         {/* Name */}
-                        <motion.h1
-                            variants={itemVariants}
-                            className="font-heading font-bold leading-none mb-2"
-                            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+                        <h1
+                            className="font-heading font-bold leading-none mb-2 animate-fade-in-up"
+                            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", animationDelay: "0.42s" }}
                         >
                             <span className="text-white/90">Hello, I'm</span>
                             <br />
                             <span className="text-accent">Ha Huy Hoang</span>
-                        </motion.h1>
+                        </h1>
 
                         {/* Typewriter role */}
-                        <motion.div
-                            variants={itemVariants}
-                            className="flex items-center justify-center xl:justify-start gap-1 mt-3 mb-6"
+                        <div
+                            className="flex items-center justify-center xl:justify-start gap-1 mt-3 mb-6 animate-fade-in-up"
+                            style={{ animationDelay: "0.54s" }}
                         >
                             <span className="font-heading font-semibold text-xl xl:text-2xl text-white/50">~/</span>
                             <span
@@ -141,21 +124,21 @@ const Home = () => {
                                 className="font-mono text-accent text-2xl animate-blink"
                                 style={{ textShadow: "0 0 20px rgba(255, 255, 255, 0.5)" }}
                             >|</span>
-                        </motion.div>
+                        </div>
 
                         {/* Description */}
-                        <motion.p
-                            variants={itemVariants}
-                            className="font-body text-white/55 text-base leading-relaxed max-w-[520px] mx-auto xl:mx-0 mb-8"
+                        <p
+                            className="font-body text-white/55 text-base leading-relaxed max-w-[520px] mx-auto xl:mx-0 mb-8 animate-fade-in-up"
+                            style={{ animationDelay: "0.66s" }}
                         >
                             I'm an aspiring AI Engineer with a strong passion in ML model optimization and deployment,
                             seeking to drive impactful solutions at the intersection of research and production systems.
-                        </motion.p>
+                        </p>
 
                         {/* CTA buttons */}
-                        <motion.div
-                            variants={itemVariants}
-                            className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 mb-8"
+                        <div
+                            className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 mb-8 animate-fade-in-up"
+                            style={{ animationDelay: "0.78s" }}
                         >
                             <a href="/assets/HaHuyHoang_CV.pdf" download>
                                 <motion.button
@@ -193,12 +176,12 @@ const Home = () => {
                             >
                                 View Projects
                             </motion.a>
-                        </motion.div>
+                        </div>
 
                         {/* Social icons */}
-                        <motion.div
-                            variants={itemVariants}
-                            className="flex items-center justify-center xl:justify-start gap-3"
+                        <div
+                            className="flex items-center justify-center xl:justify-start gap-3 animate-fade-in-up"
+                            style={{ animationDelay: "0.9s" }}
                         >
                             {socials.map((s, i) => (
                                 <Link key={i} href={s.path} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
@@ -220,8 +203,8 @@ const Home = () => {
                                     </motion.div>
                                 </Link>
                             ))}
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
 
                     {/* ── Hero portrait — bold, large with accent circle ── */}
                     <div 
@@ -343,11 +326,9 @@ const Home = () => {
             </div>
 
             {/* ── Stats bar ────────────────────────────────── */}
-            <motion.div
-                className="container mx-auto mt-12 xl:mt-16 pb-8"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            <div
+                className="container mx-auto mt-12 xl:mt-16 pb-8 animate-fade-in-up"
+                style={{ animationDelay: "0.8s" }}
             >
                 <div
                     className="flex flex-wrap justify-center xl:justify-start gap-px rounded-2xl overflow-hidden"
@@ -362,21 +343,21 @@ const Home = () => {
                         <motion.div
                             key={i}
                             className="flex-1 min-w-[130px] py-5 px-6 text-center xl:text-left"
-                            style={{ background: "rgba(0,0,0,0.03)" }}
-                            whileHover={{ background: "rgba(0, 0, 0, 0.05)" }}
+                            style={{ background: "rgba(0,0,0,0)" }}
+                            whileHover={{ background: "rgba(0, 0, 0, 0)" }}
                             transition={{ duration: 0.2 }}
                         >
                             <div
                                 className="text-3xl xl:text-4xl font-heading font-bold mb-1"
-                                style={{ color: "#fbbf24", textShadow: "0 0 10px rgba(251, 191, 36, 0.5)" }}
+                                style={{ color: "#f1bd39ff", textShadow: "0 0 10px rgba(251, 191, 36, 0.5)" }}
                             >
                                 {stat.num}
                             </div>
-                            <div className="font-body text-xs text-white/90 leading-tight">{stat.label}</div>
+                            <div className="font-body text-xs text-white/100 leading-tight">{stat.label}</div>
                         </motion.div>
                     ))}
                 </div>
-            </motion.div>
+            </div>
 
             {/* ── Tech marquee ──────────────────────────── */}
             <div className="overflow-hidden py-6 mt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>

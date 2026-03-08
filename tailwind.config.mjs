@@ -67,6 +67,12 @@ export default {
                 '2xl': '1rem',
                 '3xl': '1.5rem',
             },
+            keyframes: {
+                'fade-in-up': {
+                    '0%': { opacity: '0', transform: 'translateY(30px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                }
+            },
             animation: {
                 'float': 'float 4s ease-in-out infinite',
                 'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
@@ -74,6 +80,7 @@ export default {
                 'marquee': 'marquee 25s linear infinite',
                 'spin-slow': 'spin-slow 20s linear infinite',
                 'shimmer': 'shimmer-text 4s linear infinite',
+                'fade-in-up': 'fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both',
             },
         }
     },
