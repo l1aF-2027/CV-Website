@@ -228,7 +228,7 @@ const Home = () => {
                         className="flex-shrink-0 order-1 xl:order-2 relative"
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                     >
                         <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] xl:w-[480px] xl:h-[600px] mx-auto xl:mx-0">
 
@@ -364,8 +364,8 @@ const Home = () => {
                         <motion.div
                             key={i}
                             className="flex-1 min-w-[130px] py-5 px-6 text-center xl:text-left"
-                            style={{ background: "rgba(255,255,255,0.03)" }}
-                            whileHover={{ background: "rgba(255, 255, 255, 0.05)" }}
+                            style={{ background: "rgba(0,0,0,0.03)" }}
+                            whileHover={{ background: "rgba(0, 0, 0, 0.05)" }}
                             transition={{ duration: 0.2 }}
                         >
                             <div

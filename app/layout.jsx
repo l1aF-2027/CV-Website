@@ -108,7 +108,7 @@ export const metadata = {
 };
 
 // JSON-LD – Structured data for Google rich results (Person schema)
-const jsonLd = {
+const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Hà Huy Hoàng",
@@ -146,6 +146,15 @@ const jsonLd = {
     "Hà Huy Hoàng is an AI Engineer specializing in ML model optimization, Edge AI deployment, and Data Science. Graduate of VNU-HCM UIT with GPA 9.1/4.0, 2nd Place at UIT Data Science Challenge 2024.",
 };
 
+// JSON-LD – Structured data for Google to pick up the Site Name
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Ha Huy Hoang",
+  alternateName: ["Ha Huy Hoang", "Ha Huy Hoang Portfolio"],
+  url: siteUrl,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -153,7 +162,7 @@ export default function RootLayout({ children }) {
         {/* JSON-LD structured data */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([personJsonLd, websiteJsonLd]) }}
         />
       </head>
       <body className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
