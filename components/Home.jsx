@@ -224,11 +224,9 @@ const Home = () => {
                     </motion.div>
 
                     {/* ── Hero portrait — bold, large with accent circle ── */}
-                    <motion.div
+                    <div 
                         className="flex-shrink-0 order-1 xl:order-2 relative"
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ animation: "slide-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both" }}
                     >
                         <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] xl:w-[480px] xl:h-[600px] mx-auto xl:mx-0">
 
@@ -340,7 +338,7 @@ const Home = () => {
                                 </div>
                             </motion.div>
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
 
@@ -374,7 +372,7 @@ const Home = () => {
                             >
                                 {stat.num}
                             </div>
-                            <div className="font-body text-xs text-white/40 leading-tight">{stat.label}</div>
+                            <div className="font-body text-xs text-white/90 leading-tight">{stat.label}</div>
                         </motion.div>
                     ))}
                 </div>
