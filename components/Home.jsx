@@ -208,7 +208,6 @@ const Home = () => {
                     {/* ── Hero portrait — bold, large with accent circle ── */}
                     <div
                         className="flex-shrink-0 order-1 xl:order-2 relative"
-                        style={{ animation: "slide-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both" }}
                     >
                         <div className="relative w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] xl:w-[480px] xl:h-[480px] mx-auto xl:mx-0">
 

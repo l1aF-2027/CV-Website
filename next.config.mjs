@@ -7,6 +7,15 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: true,
+    cssChunking: 'strict',
+  },
+  modularizeImports: {
+    'react-icons/?(((\\w*)?/?)*)': {
+      transform: 'react-icons/{{ matches.[1] }}/{{member}}',
+    },
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
+    },
   },
 };
 
