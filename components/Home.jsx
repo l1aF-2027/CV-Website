@@ -207,21 +207,21 @@ const Home = () => {
                     </div>
 
                     {/* ── Hero portrait — bold, large with accent circle ── */}
-                    <div 
+                    <div
                         className="flex-shrink-0 order-1 xl:order-2 relative"
-                        style={{ animation: "slide-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both" }}
+                        style={{ animation: "slide-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both" }}
                     >
-                        <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] xl:w-[480px] xl:h-[600px] mx-auto xl:mx-0">
+                        <div className="relative w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] xl:w-[480px] xl:h-[480px] mx-auto xl:mx-0">
 
                             {/* ── Decorative accent circle behind the person ── */}
                             <motion.div
-                                className="absolute rounded-full"
+                                className="absolute rounded-full z-[-1]"
                                 style={{
-                                    width: "85%",
+                                    width: "95%",
                                     height: "0",
-                                    paddingBottom: "85%",
-                                    top: "5%",
-                                    left: "50%",
+                                    paddingBottom: "95%",
+                                    top: "14%",
+                                    left: "48%",
                                     transform: "translateX(-50%)",
                                     background: "linear-gradient(135deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.25) 50%, rgba(255, 255, 255,0.15) 100%)",
                                     border: "1.5px solid rgba(255, 255, 255,0.2)",
@@ -241,8 +241,8 @@ const Home = () => {
                             <div
                                 className="absolute w-16 h-16 xl:w-24 xl:h-24 rounded-full hidden xl:block"
                                 style={{
-                                    top: "2%",
-                                    right: "-8%",
+                                    top: "8%",
+                                    right: "-6%",
                                     background: "linear-gradient(135deg, rgba(255, 255, 255,0.3), rgba(255, 255, 255,0.15))",
                                     border: "1px solid rgba(255, 255, 255,0.25)",
                                     boxShadow: "0 0 30px rgba(255, 255, 255,0.2)",
@@ -253,8 +253,8 @@ const Home = () => {
                             <div
                                 className="absolute w-4 h-4 xl:w-6 xl:h-6 rounded-full hidden xl:block"
                                 style={{
-                                    bottom: "25%",
-                                    left: "-5%",
+                                    bottom: "15%",
+                                    left: "2%",
                                     background: "rgba(255, 255, 255,0.4)",
                                     boxShadow: "0 0 15px rgba(255, 255, 255,0.5)",
                                 }}
@@ -264,12 +264,12 @@ const Home = () => {
                             <div
                                 className="absolute inset-0"
                                 style={{
-                                    maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
-                                    WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+                                    maskImage: "linear-gradient(to bottom, black 90%, transparent 100%)",
+                                    WebkitMaskImage: "linear-gradient(to bottom, black 90%, transparent 100%)",
                                 }}
                             >
                                 <Image
-                                    src="/assets/image.png"
+                                    src="/assets/image.webp"
                                     alt="Ha Huy Hoang"
                                     fill
                                     className="object-cover object-top"
@@ -277,13 +277,13 @@ const Home = () => {
                                     priority={true}
                                     fetchPriority="high"
                                     decoding="sync"
-                                    sizes="(max-width: 1280px) 300px, 480px"
+                                    sizes="(max-width: 1280px) 360px, 480px"
                                 />
                             </div>
 
                             {/* Floating stat badge — top right */}
                             <motion.div
-                                className="absolute top-6 -right-2 sm:-right-8 xl:-right-5 px-3.5 py-2 rounded-xl font-body text-[10px] sm:text-xs font-semibold text-white"
+                                className="absolute top-8 -right-2 sm:-right-8 xl:-right-5 px-3.5 py-2 rounded-xl font-body text-[10px] sm:text-xs font-semibold text-white"
                                 style={{
                                     background: "rgba(255, 255, 255, 0.27)",
                                     backdropFilter: "blur(12px)",
@@ -303,7 +303,7 @@ const Home = () => {
 
                             {/* Floating badge — bottom left */}
                             <motion.div
-                                className="absolute bottom-[10%] sm:bottom-[20%] xl:bottom-[30%] -left-6 sm:-left-10 xl:-left-12 px-3.5 py-2 rounded-xl font-body text-[10px] sm:text-xs font-semibold text-primary"
+                                className="absolute bottom-[10%] sm:bottom-[15%] xl:bottom-[20%] -left-4 sm:-left-8 xl:-left-10 px-3.5 py-2 rounded-xl font-body text-[10px] sm:text-xs font-semibold text-primary"
                                 style={{
                                     background: "rgba(251, 191, 36, 0.90)",
                                     backdropFilter: "blur(12px)",
