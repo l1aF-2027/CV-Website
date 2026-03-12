@@ -12,7 +12,7 @@ const Contact = dynamic(() => import("@/components/Contact"), { ssr: true })
 // KeyboardBackground uses canvas and window, so we absolutely must disable SSR
 const KeyboardBackground = dynamic(() => import("@/components/KeyboardBackground"), { ssr: false })
 
-function ScrollReset() {
+export default function Page() {
   useEffect(() => {
     document.documentElement.classList.add('no-scroll-behavior')
     window.scrollTo(0, 0)
@@ -20,13 +20,9 @@ function ScrollReset() {
       document.documentElement.classList.remove('no-scroll-behavior')
     }, 100)
   }, [])
-  return null
-}
 
-export default function Page() {
   return (
     <main className="text-white relative w-full">
-      <ScrollReset />
       <KeyboardBackground />
       {/* min-h-screen on each section ensures clicking nav always shows a full clean viewport */}
       <section id="home" className="min-h-screen">
@@ -49,4 +45,3 @@ export default function Page() {
     </main>
   )
 }
-

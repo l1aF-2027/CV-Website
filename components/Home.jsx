@@ -9,9 +9,9 @@ import Link from "next/link";
 
 // Typewriter hook
 function useTypewriter(words, speed = 80, pause = 2000) {
-    const [text, setText] = useState(words[0]);
+    const [text, setText] = useState("");
     const [wordIndex, setWordIndex] = useState(0);
-    const [charIndex, setCharIndex] = useState(words[0].length);
+    const [charIndex, setCharIndex] = useState(0);
     const [deleting, setDeleting] = useState(false);
 
     useEffect(() => {
@@ -88,6 +88,7 @@ const Home = () => {
                             style={{
                                 background: "rgba(255, 255, 255, 0.07)",
                                 border: "1px solid rgba(255, 255, 255, 0.2)",
+                                animationDelay: "0.3s"
                             }}
                         >
                             <span
@@ -100,7 +101,7 @@ const Home = () => {
                         {/* Name */}
                         <h1
                             className="font-heading font-bold leading-none mb-2 animate-fade-in-up"
-                            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+                            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", animationDelay: "0.42s" }}
                         >
                             <span className="text-white/90">Hello, I'm</span>
                             <br />
@@ -109,8 +110,8 @@ const Home = () => {
 
                         {/* Typewriter role */}
                         <div
-                            className="flex items-center justify-center xl:justify-start gap-1 mt-3 mb-6"
-                            
+                            className="flex items-center justify-center xl:justify-start gap-1 mt-3 mb-6 animate-fade-in-up"
+                            style={{ animationDelay: "0.54s" }}
                         >
                             <span className="font-heading font-semibold text-xl xl:text-2xl text-white/50">~/</span>
                             <span
@@ -128,7 +129,7 @@ const Home = () => {
                         {/* Description */}
                         <p
                             className="font-body text-white/55 text-base leading-relaxed max-w-[520px] mx-auto xl:mx-0 mb-8 animate-fade-in-up"
-                            style={{ animationDelay: "0.15s" }}
+                            style={{ animationDelay: "0.66s" }}
                         >
                             I'm an aspiring AI Engineer with a strong passion in ML model optimization and deployment,
                             seeking to drive impactful solutions at the intersection of research and production systems.
@@ -137,7 +138,7 @@ const Home = () => {
                         {/* CTA buttons */}
                         <div
                             className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 mb-8 animate-fade-in-up"
-                            style={{ animationDelay: "0.25s" }}
+                            style={{ animationDelay: "0.78s" }}
                         >
                             <a href="/assets/HaHuyHoang_CV.pdf" download>
                                 <motion.button
@@ -180,7 +181,7 @@ const Home = () => {
                         {/* Social icons */}
                         <div
                             className="flex items-center justify-center xl:justify-start gap-3 animate-fade-in-up"
-                            style={{ animationDelay: "0.35s" }}
+                            style={{ animationDelay: "0.9s" }}
                         >
                             {socials.map((s, i) => (
                                 <Link key={i} href={s.path} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
