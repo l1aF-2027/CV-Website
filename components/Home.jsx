@@ -91,16 +91,32 @@ const Home = () => {
             {/* ── Center Image Layer (Person) - Removed animation to fix LCP issue ── */}
             <div className="relative xl:absolute xl:inset-0 z-10 flex items-start justify-center pointer-events-none pt-20 sm:pt-24 xl:pt-28 flex-shrink-0">
                 <div className="relative w-full max-w-[500px] sm:max-w-[700px] xl:max-w-[1000px] h-[45vh] sm:h-[55vh] xl:h-[75vh]">
-                    <Image
-                        src="/assets/image.webp"
-                        alt="Ha Huy Hoang"
-                        fill
-                        className="object-contain object-bottom drop-shadow-2xl"
-                        priority={true}
-                        fetchPriority="high"
-                        decoding="sync"
-                        sizes="(max-width: 640px) 70vw, (max-width: 1024px) 50vw, 1000px"
-                    />
+                    {/* Desktop Image */}
+                    <div className="hidden sm:block relative w-full h-full">
+                        <Image
+                            src="/assets/image.webp"
+                            alt="Ha Huy Hoang"
+                            fill
+                            className="object-contain object-bottom xl:drop-shadow-2xl"
+                            priority={true}
+                            fetchPriority="high"
+                            decoding="sync"
+                            sizes="(max-width: 1280px) 700px, 1000px"
+                        />
+                    </div>
+                    {/* Mobile Image (Generated specifically for < 640px viewports to save payload) */}
+                    <div className="block sm:hidden relative w-full h-full">
+                        <Image
+                            src="/assets/image-mobile.webp"
+                            alt="Ha Huy Hoang"
+                            fill
+                            className="object-contain object-bottom"
+                            priority={true}
+                            fetchPriority="high"
+                            decoding="sync"
+                            sizes="100vw"
+                        />
+                    </div>
                 </div>
             </div>
 
