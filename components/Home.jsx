@@ -59,321 +59,203 @@ const Home = () => {
         2200
     );
 
+    const [isDesktop, setIsDesktop] = useState(true);
+
+    useEffect(() => {
+        const handleResize = () => setIsDesktop(window.innerWidth >= 1280);
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     return (
-        <section className="min-h-screen flex flex-col justify-center relative overflow-hidden">
-            {/* Ambient glow blobs */}
+        <div className="min-h-screen relative flex flex-col xl:justify-end overflow-x-hidden">
+            {/* ── Ambient glow blobs ── */}
             <div
-                className="absolute top-1/3 left-10 w-[500px] h-[500px] rounded-full pointer-events-none"
+                className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full pointer-events-none z-0 hidden xl:block"
                 style={{
-                    background: "radial-gradient(circle, rgba(255, 255, 255,0.07) 0%, transparent 70%)",
-                    filter: "blur(40px)",
+                    background: "radial-gradient(circle, rgba(255, 255, 255,0.05) 0%, transparent 70%)",
+                    filter: "blur(60px)",
                 }}
             />
             <div
-                className="absolute top-1/4 right-10 w-[400px] h-[400px] rounded-full pointer-events-none"
+                className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full pointer-events-none z-0 hidden xl:block"
                 style={{
-                    background: "radial-gradient(circle, rgba(255, 255, 255,0.07) 0%, transparent 70%)",
-                    filter: "blur(40px)",
+                    background: "radial-gradient(circle, rgba(251, 191, 36,0.03) 0%, transparent 70%)",
+                    filter: "blur(60px)",
                 }}
             />
 
-            <div className="container mx-auto py-12 xl:py-0">
-                <div className="flex flex-col xl:flex-row items-center justify-between gap-12 xl:gap-20">
+            {/* ── Center Super-Text BACKGROUND (Giant Name) - REMOVED (moved to foreground) ── */}
 
-                    {/* ── Text column ──────────────────────────── */}
-                    <div className="flex-1 text-center xl:text-left order-2 xl:order-1">
-                        {/* Available badge */}
-                        <div
-                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 font-body text-sm text-white/70 animate-fade-in-up"
-                            style={{
-                                background: "rgba(255, 255, 255, 0.07)",
-                                border: "1px solid rgba(255, 255, 255, 0.2)",
-                                animationDelay: "0.3s"
-                            }}
-                        >
-                            <span
-                                className="w-2 h-2 rounded-full bg-emerald-400"
-                                style={{ boxShadow: "0 0 8px rgba(255, 255, 255, 0.8)", animation: "pulse-glow 2s ease-in-out infinite" }}
-                            />
-                            Available for new opportunities
-                        </div>
-
-                        {/* Name */}
-                        <h1
-                            className="font-heading font-bold leading-none mb-2 animate-fade-in-up"
-                            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", animationDelay: "0.42s" }}
-                        >
-                            <span className="text-white/90">Hello, I'm</span>
-                            <br />
-                            <span className="text-accent">Ha Huy Hoang</span>
-                        </h1>
-
-                        {/* Typewriter role */}
-                        <div
-                            className="flex items-center justify-center xl:justify-start gap-1 mt-3 mb-6 animate-fade-in-up"
-                            style={{ animationDelay: "0.54s" }}
-                        >
-                            <span className="font-heading font-semibold text-xl xl:text-2xl text-white/50">~/</span>
-                            <span
-                                className="font-heading font-semibold text-xl xl:text-2xl text-accent"
-                                style={{ textShadow: "0 0 20px rgba(255, 255, 255, 0.5)" }}
-                            >
-                                {role}
-                            </span>
-                            <span
-                                className="font-mono text-accent text-2xl animate-blink"
-                                style={{ textShadow: "0 0 20px rgba(255, 255, 255, 0.5)" }}
-                            >|</span>
-                        </div>
-
-                        {/* Description */}
-                        <p
-                            className="font-body text-white/55 text-base leading-relaxed max-w-[520px] mx-auto xl:mx-0 mb-8 animate-fade-in-up"
-                            style={{ animationDelay: "0.66s" }}
-                        >
-                            I'm an aspiring AI Engineer with a strong passion in ML model optimization and deployment,
-                            seeking to drive impactful solutions at the intersection of research and production systems.
-                        </p>
-
-                        {/* CTA buttons */}
-                        <div
-                            className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 mb-8 animate-fade-in-up"
-                            style={{ animationDelay: "0.78s" }}
-                        >
-                            <a href="/assets/HaHuyHoang_CV.pdf" download>
-                                <motion.button
-                                    aria-label="Download Curriculum Vitae"
-                                    className="flex items-center gap-2.5 px-7 py-3.5 rounded-full font-heading font-semibold text-sm text-black relative overflow-hidden group"
-                                    style={{ background: "linear-gradient(135deg, #ffffff, #e2e8f0)" }}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.97 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                                >
-                                    <span className="relative z-10 flex items-center gap-2">
-                                        Download CV
-                                        <FiDownload className="w-4 h-4" />
-                                    </span>
-                                    <div
-                                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                        style={{ background: "linear-gradient(135deg, #e2e8f0, #ffffff)" }}
-                                    />
-                                </motion.button>
-                            </a>
-
-                            <motion.a
-                                href="#work"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" });
-                                }}
-                                className="flex items-center gap-2 px-7 py-3.5 rounded-full font-heading font-semibold text-sm text-white/80 transition-colors hover:text-white"
-                                style={{
-                                    background: "rgba(255,255,255,0.05)",
-                                    border: "1px solid rgba(255,255,255,0.12)",
-                                }}
-                                whileHover={{ scale: 1.05, borderColor: "rgba(255, 255, 255,0.3)" }}
-                                whileTap={{ scale: 0.97 }}
-                            >
-                                View Projects
-                            </motion.a>
-                        </div>
-
-                        {/* Social icons */}
-                        <div
-                            className="flex items-center justify-center xl:justify-start gap-3 animate-fade-in-up"
-                            style={{ animationDelay: "0.9s" }}
-                        >
-                            {socials.map((s, i) => (
-                                <Link key={i} href={s.path} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
-                                    <motion.div
-                                        className="w-10 h-10 rounded-xl flex items-center justify-center text-white/50 transition-colors hover:text-accent"
-                                        style={{
-                                            background: "rgba(255,255,255,0.05)",
-                                            border: "1px solid rgba(255,255,255,0.1)",
-                                        }}
-                                        whileHover={{
-                                            scale: 1.15,
-                                            borderColor: "rgba(255, 255, 255,0.4)",
-                                            boxShadow: "0 0 15px rgba(255, 255, 255,0.25)",
-                                        }}
-                                        whileTap={{ scale: 0.9 }}
-                                        transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                                    >
-                                        {s.icon}
-                                    </motion.div>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* ── Hero portrait — bold, large with accent circle ── */}
-                    <div
-                        className="flex-shrink-0 order-1 xl:order-2 relative"
-                    >
-                        <div className="relative w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] xl:w-[480px] xl:h-[480px] mx-auto xl:mx-0">
-
-                            {/* ── Decorative accent circle behind the person ── */}
-                            <motion.div
-                                className="absolute rounded-full z-[-1]"
-                                style={{
-                                    width: "95%",
-                                    height: "0",
-                                    paddingBottom: "95%",
-                                    top: "14%",
-                                    left: "48%",
-                                    transform: "translateX(-50%)",
-                                    background: "linear-gradient(135deg, rgba(255, 255, 255,0.2) 0%, rgba(255, 255, 255,0.25) 50%, rgba(255, 255, 255,0.15) 100%)",
-                                    border: "1.5px solid rgba(255, 255, 255,0.2)",
-                                    boxShadow: "0 0 60px rgba(255, 255, 255,0.15), 0 0 120px rgba(255, 255, 255,0.1), inset 0 0 60px rgba(255, 255, 255,0.05)",
-                                }}
-                                animate={{
-                                    boxShadow: [
-                                        "0 0 60px rgba(255, 255, 255,0.15), 0 0 120px rgba(255, 255, 255,0.1), inset 0 0 60px rgba(255, 255, 255,0.05)",
-                                        "0 0 80px rgba(255, 255, 255,0.25), 0 0 140px rgba(255, 255, 255,0.15), inset 0 0 80px rgba(255, 255, 255,0.08)",
-                                        "0 0 60px rgba(255, 255, 255,0.15), 0 0 120px rgba(255, 255, 255,0.1), inset 0 0 60px rgba(255, 255, 255,0.05)",
-                                    ],
-                                }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            />
-
-                            {/* Secondary smaller circle — top right decorative */}
-                            <div
-                                className="absolute w-16 h-16 xl:w-24 xl:h-24 rounded-full hidden xl:block"
-                                style={{
-                                    top: "8%",
-                                    right: "-6%",
-                                    background: "linear-gradient(135deg, rgba(255, 255, 255,0.3), rgba(255, 255, 255,0.15))",
-                                    border: "1px solid rgba(255, 255, 255,0.25)",
-                                    boxShadow: "0 0 30px rgba(255, 255, 255,0.2)",
-                                }}
-                            />
-
-                            {/* Small accent dot — bottom left */}
-                            <div
-                                className="absolute w-4 h-4 xl:w-6 xl:h-6 rounded-full hidden xl:block"
-                                style={{
-                                    bottom: "15%",
-                                    left: "2%",
-                                    background: "rgba(255, 255, 255,0.4)",
-                                    boxShadow: "0 0 15px rgba(255, 255, 255,0.5)",
-                                }}
-                            />
-
-                            {/* ── The person image — large and prominent ── */}
-                            <div
-                                className="absolute inset-0"
-                                style={{
-                                    maskImage: "linear-gradient(to bottom, black 90%, transparent 100%)",
-                                    WebkitMaskImage: "linear-gradient(to bottom, black 90%, transparent 100%)",
-                                }}
-                            >
-                                <Image
-                                    src="/assets/image.webp"
-                                    alt="Ha Huy Hoang"
-                                    fill
-                                    className="object-cover object-top"
-                                    style={{ zIndex: 2 }}
-                                    priority={true}
-                                    fetchPriority="high"
-                                    decoding="sync"
-                                    sizes="(max-width: 1280px) 360px, 480px"
-                                />
-                            </div>
-
-                            {/* Floating stat badge — top right */}
-                            <motion.div
-                                className="absolute top-8 -right-2 sm:-right-8 xl:-right-5 px-3.5 py-2 rounded-xl font-body text-[10px] sm:text-xs font-semibold text-white"
-                                style={{
-                                    background: "rgba(255, 255, 255, 0.27)",
-                                    backdropFilter: "blur(12px)",
-                                    border: "1px solid rgba(255, 255, 255,0.5)",
-                                    boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
-                                    zIndex: 10,
-                                }}
-                                initial={{ opacity: 0, scale: 0.8, y: -10 }}
-                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                transition={{ delay: 1.0, duration: 0.5 }}
-                            >
-                                <div className="flex items-center gap-2.5">
-                                    <GraduationCap className="w-4 h-4 text-white" />
-                                    <span className="text-white">Valedictorian (GPA: 4.0)</span>
-                                </div>
-                            </motion.div>
-
-                            {/* Floating badge — bottom left */}
-                            <motion.div
-                                className="absolute bottom-[10%] sm:bottom-[15%] xl:bottom-[20%] -left-4 sm:-left-8 xl:-left-10 px-3.5 py-2 rounded-xl font-body text-[10px] sm:text-xs font-semibold text-primary"
-                                style={{
-                                    background: "rgba(251, 191, 36, 0.90)",
-                                    backdropFilter: "blur(12px)",
-                                    border: "1px solid rgba(251, 191, 36, 0.5)",
-                                    boxShadow: "0 4px 20px rgba(251, 191, 36, 0.5)",
-                                    zIndex: 10,
-                                }}
-                                initial={{ opacity: 0, scale: 0.8, x: -20 }}
-                                animate={{ opacity: 1, scale: 1, x: 0 }}
-                                transition={{ delay: 1.2, duration: 0.5 }}
-                            >
-                                <div className="flex items-center gap-2.5">
-                                    <Trophy className="w-4 h-4" />
-                                    <span>2nd Place UIT DS Challenge</span>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
+            {/* ── Center Image Layer (Person) - Removed animation to fix LCP issue ── */}
+            <div className="relative xl:absolute xl:inset-0 z-10 flex items-start justify-center pointer-events-none pt-20 sm:pt-24 xl:pt-28 flex-shrink-0">
+                <div className="relative w-full max-w-[500px] sm:max-w-[700px] xl:max-w-[1000px] h-[45vh] sm:h-[55vh] xl:h-[75vh]">
+                    <Image
+                        src="/assets/image.webp"
+                        alt="Ha Huy Hoang"
+                        fill
+                        className="object-contain object-bottom drop-shadow-2xl"
+                        priority={true}
+                        fetchPriority="high"
+                        decoding="sync"
+                        sizes="(max-width: 1280px) 850px, 1000px"
+                    />
                 </div>
             </div>
 
-            {/* ── Stats bar ────────────────────────────────── */}
-            <div
-                className="container mx-auto mt-12 xl:mt-16 pb-8 animate-fade-in-up"
-                style={{ animationDelay: "0.8s" }}
-            >
-                <div
-                    className="flex flex-wrap justify-center xl:justify-start gap-px rounded-2xl overflow-hidden"
-                    style={{ border: "1px solid rgba(255,255,255,0.07)" }}
+            {/* ── Front Layer Text ("Hello, I'm Ha Huy Hoang") ── */}
+            <div className="relative xl:absolute xl:bottom-[14vh] left-0 w-full z-20 flex flex-col items-center justify-start pointer-events-none -mt-24 sm:-mt-32 xl:mt-0">
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.9, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
+                    className="flex flex-col items-center gap-1 sm:gap-2"
                 >
-                    {[
-                        { num: "1+", label: "Years of Experience" },
-                        { num: "3+", label: "Projects Completed" },
-                        { num: "2", label: "Companies Worked" },
-                        { num: "7.0", label: "IELTS Score" },
-                    ].map((stat, i) => (
-                        <motion.div
-                            key={i}
-                            className="flex-1 min-w-[130px] py-5 px-6 text-center xl:text-left"
-                            style={{ background: "rgba(0,0,0,0)" }}
-                            whileHover={{ background: "rgba(0, 0, 0, 0)" }}
-                            transition={{ duration: 0.2 }}
-                        >
-                            <div
-                                className="text-3xl xl:text-4xl font-heading font-bold mb-1"
-                                style={{ color: "#f1bd39ff", textShadow: "0 0 10px rgba(251, 191, 36, 0.5)" }}
-                            >
-                                {stat.num}
-                            </div>
-                            <div className="font-body text-xs text-white/100 leading-tight">{stat.label}</div>
-                        </motion.div>
-                    ))}
-                </div>
+                    <span
+                        className="block text-xl sm:text-3xl xl:text-4xl font-semibold tracking-wide text-white"
+                        style={{ textShadow: "0 6px 20px rgba(0,0,0,0.9), 0 2px 5px rgba(0,0,0,0.8)" }}
+                    >
+                        Hello, I'm
+                    </span>
+                    <h1 className="font-heading font-black text-accent flex flex-col items-center text-center mx-auto" style={{ textShadow: "0 10px 40px rgba(0,0,0,0.9), 0 4px 10px rgba(0,0,0,0.8)" }}>
+                        <span style={{ fontSize: "clamp(3.5rem, 8vw, 7.5rem)", lineHeight: "0.9", letterSpacing: "-0.02em" }}>Ha Huy Hoang</span>
+                    </h1>
+                </motion.div>
             </div>
 
-            {/* ── Tech marquee ──────────────────────────── */}
-            <div className="overflow-hidden py-6 mt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                <div className="flex gap-6 animate-marquee whitespace-nowrap w-max">
-                    {techStack.map((tech, i) => (
-                        <span
-                            key={i}
-                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-body text-xs text-white/40"
-                            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
+            {/* ── Foreground Interactive Cards (Xòe bài) ── */}
+            <div className="container relative z-0 mx-auto px-4 sm:px-12 xl:px-24 2xl:px-40 mt-8 sm:mt-10 xl:mt-[10vh] xl:-translate-y-[180px] flex flex-col xl:flex-row items-center justify-between gap-6 xl:gap-0 pb-4 xl:pb-0">
+
+                {/* Left Card: Info & CTA */}
+                <motion.div
+                    className="w-full xl:w-[360px] p-5 sm:p-6 rounded-[2rem] origin-bottom-right flex-shrink-0"
+                    style={{
+                        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0))",
+                        backdropFilter: "blur(32px)",
+                        WebkitBackdropFilter: "blur(32px)",
+                        border: "1px solid rgba(255, 255, 255, 0.18)",
+                        boxShadow: "0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+                    }}
+                    initial={{ opacity: 0, x: isDesktop ? 150 : 0, y: isDesktop ? 100 : 50, rotate: isDesktop ? 30 : 0, scale: 0.9 }}
+                    animate={{ opacity: 1, x: 0, y: 0, rotate: isDesktop ? -14 : 0, scale: 1 }}
+                    whileHover={{ rotate: isDesktop ? -8 : 0, scale: 1.05, y: -5 }}
+                    transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.6 }}
+                >
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6 font-body text-[11px] sm:text-xs text-white/80" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        Available for work
+                    </div>
+
+                    <div className="font-heading font-semibold text-lg sm:text-xl text-accent mb-2">
+                        ~/ {role}
+                    </div>
+
+                    <p className="font-body text-white/60 text-xs sm:text-sm leading-relaxed mb-6">
+                        I'm an aspiring AI Engineer with a strong passion in ML model optimization and deployment,
+                        seeking to drive impactful solutions at the intersection of research and production.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                        <a href="/assets/HaHuyHoang_CV.pdf" download className="flex-1">
+                            <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-heading font-semibold text-xs text-black bg-white hover:bg-gray-200 transition-colors">
+                                Download CV <FiDownload className="w-4 h-4" />
+                            </button>
+                        </a>
+                        <a
+                            href="#work"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" });
+                            }}
+                            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-heading font-semibold text-xs text-white/90 transition-colors hover:bg-white/10"
+                            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
                         >
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent opacity-60" />
+                            Projects
+                        </a>
+                    </div>
+
+                    <div className="flex items-center gap-2.5">
+                        {socials.map((s, i) => (
+                            <Link key={i} href={s.path} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+                                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center text-white/60 hover:text-white transition-colors hover:scale-110" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                                    {s.icon}
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Right Card: Stats & Badges */}
+                <motion.div
+                    className="w-full xl:w-[360px] p-5 sm:p-6 rounded-3xl origin-bottom-left flex-shrink-0"
+                    style={{
+                        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0))",
+                        backdropFilter: "blur(32px)",
+                        WebkitBackdropFilter: "blur(32px)",
+                        border: "1px solid rgba(255, 255, 255, 0.18)",
+                        boxShadow: "0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+                    }}
+                    initial={{ opacity: 0, x: isDesktop ? -150 : 0, y: isDesktop ? 100 : 50, rotate: isDesktop ? -30 : 0, scale: 0.9 }}
+                    animate={{ opacity: 1, x: isDesktop ? 30 : 0, y: 0, rotate: isDesktop ? 14 : 0, scale: 1 }}
+                    whileHover={{ x: isDesktop ? 20 : 0, rotate: isDesktop ? 8 : 0, scale: 1.05, y: -5 }}
+                    transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.8 }}
+                >
+                    <div className="flex flex-col gap-3 mb-6">
+                        <div className="flex items-center gap-4 p-3.5 rounded-2xl" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white">
+                                <GraduationCap className="w-5 h-5" />
+                            </div>
+                            <div>
+                                <div className="font-heading font-semibold text-white/90 text-[13px] sm:text-[14px]">Valedictorian</div>
+                                <div className="font-body text-[11px] sm:text-xs text-white/50 mt-0.5">GPA: 4.0</div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 p-3.5 rounded-2xl" style={{ background: "rgba(251, 191, 36, 0.1)", border: "1px solid rgba(251, 191, 36, 0.2)" }}>
+                            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-amber-400/20 text-accent">
+                                <Trophy className="w-5 h-5" />
+                            </div>
+                            <div>
+                                <div className="font-heading font-semibold text-accent text-[13px] sm:text-[14px]">2nd Place Winner</div>
+                                <div className="font-body text-[11px] sm:text-xs text-amber-400/60 mt-0.5">UIT DS Challenge</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                        {[
+                            { num: "1+", label: "Years Exp." },
+                            { num: "3+", label: "Projects" },
+                            { num: "2", label: "Companies" },
+                            { num: "7.0", label: "IELTS" },
+                        ].map((stat, i) => (
+                            <div key={i} className="flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl text-center" style={{ background: "rgba(0,0,0,0.3)" }}>
+                                <div className="text-xl sm:text-2xl font-heading font-bold text-accent mb-1 drop-shadow-md">{stat.num}</div>
+                                <div className="font-body text-[9px] sm:text-[10px] text-white/60 uppercase tracking-wider">{stat.label}</div>
+                            </div>
+                        ))}
+                    </div>
+                </motion.div>
+
+            </div>
+
+            {/* Tech Stack Marquee Footer */}
+            <div className="w-full relative z-20 overflow-hidden h-14 flex items-center mt-2 bg-transparent border-t border-white/10">
+                <div className="flex gap-6 animate-marquee whitespace-nowrap w-max">
+                    {[...techStack, ...techStack].map((tech, i) => (
+                        <span
+                            key={`${tech}-${i}`}
+                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-body text-xs text-white/50 hover:text-white/80 transition-colors"
+                            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}
+                        >
+                            <span className="w-1 h-1 rounded-full bg-accent opacity-60" />
                             {tech}
                         </span>
                     ))}
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

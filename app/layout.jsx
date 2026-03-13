@@ -176,7 +176,7 @@ export default function RootLayout({ children }) {
       <body className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
         <div style={{ position: "relative", zIndex: 10 }}>
           <Header className="fixed top-0 left-0 w-full z-50" />
-          <main className="pt-10 xl:pt-20">
+          <main className="pt-0">
             {children}
           </main>
         </div>
