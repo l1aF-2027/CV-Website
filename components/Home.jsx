@@ -99,7 +99,7 @@ const Home = () => {
                         priority={true}
                         fetchPriority="high"
                         decoding="sync"
-                        sizes="(max-width: 1280px) 850px, 1000px"
+                        sizes="(max-width: 640px) 70vw, (max-width: 1024px) 50vw, 1000px"
                     />
                 </div>
             </div>

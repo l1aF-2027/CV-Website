@@ -159,14 +159,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Preload hero image for fastest LCP */}
-        <link
-          rel="preload"
-          href="/assets/image.webp"
-          as="image"
-          type="image/webp"
-          fetchPriority="high"
-        />
         {/* JSON-LD structured data */}
         <script
           type="application/ld+json"
