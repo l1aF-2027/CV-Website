@@ -2,6 +2,37 @@ import { Sora, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 
+// Inline critical CSS for immediate style
+const CRITICAL_CSS = `
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 213 31% 91%;
+    --card: 222 47% 15%;
+    --card-foreground: 213 31% 91%;
+    --secondary: 222 47% 20%;
+    --muted: 222 47% 20%;
+    --muted-foreground: 215 20% 65%;
+    --border: 222 47% 22%;
+    --input: 222 47% 22%;
+    --ring: 199 100% 50%;
+    --radius: 0.75rem;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+  }
+  body {
+    background: transparent;
+    color: hsl(var(--foreground));
+    font-family: var(--font-inter), system-ui, sans-serif;
+    line-height: 1.5;
+    margin: 0;
+  }
+  main {
+    display: block;
+  }
+`;
+
 const sora = Sora({
   subsets: ["latin"],
   weight: ['400', '500', '600', '700', '800'],
@@ -163,34 +194,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Critical CSS inline for faster FCP/LCP */}
-        <style dangerouslySetInnerHTML={{ __html: `
-          :root {
-            --background: 222 47% 11%;
-            --foreground: 213 31% 91%;
-            --card: 222 47% 15%;
-            --card-foreground: 213 31% 91%;
-            --secondary: 222 47% 20%;
-            --muted: 222 47% 20%;
-            --muted-foreground: 215 20% 65%;
-            --border: 222 47% 22%;
-            --input: 222 47% 22%;
-            --ring: 199 100% 50%;
-            --radius: 0.75rem;
-          }
-          html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 90px;
-          }
-          body {
-            background: transparent;
-            color: hsl(var(--foreground));
-            font-family: var(--font-inter), system-ui, sans-serif;
-            line-height: 1.5;
-          }
-          main {
-            display: block;
-          }
-        ` }} />
+        <style dangerouslySetInnerHTML={{ __html: CRITICAL_CSS }} />
+        {/* Preload fonts for faster text rendering */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* JSON-LD structured data */}
         <script
           type="application/ld+json"
