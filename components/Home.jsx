@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiDownload } from "react-icons/fi";
 import { FaGithub, FaLinkedinIn, FaFacebook, FaEnvelope } from "react-icons/fa";
 import { GraduationCap, Trophy } from "lucide-react";
@@ -50,9 +50,7 @@ const techStack = [
     "CUDA", "Edge AI", "Kafka", "n8n", "Transformers", "Computer Vision",
 ];
 
-
-
-const Home = () => {
+const Home = ({ isReady }) => {
     const role = useTypewriter(
         ["AI Engineer", "ML Practitioner", "Data Scientist", "Backend Developer"],
         80,
@@ -86,12 +84,9 @@ const Home = () => {
                 }}
             />
 
-            {/* ── Center Super-Text BACKGROUND (Giant Name) - REMOVED (moved to foreground) ── */}
-
-            {/* ── Center Image Layer (Person) - Removed animation to fix LCP issue ── */}
+            {/* ── Center Image Layer (Person) ── */}
             <div className="relative xl:absolute xl:inset-0 z-10 flex items-start justify-center pointer-events-none pt-20 sm:pt-24 xl:pt-28 flex-shrink-0">
                 <div className="relative w-full max-w-[500px] sm:max-w-[700px] xl:max-w-[1000px] h-[45vh] sm:h-[55vh] xl:h-[75vh]">
-                    {/* Desktop Image */}
                     <div className="hidden sm:block relative w-full h-full">
                         <Image
                             src="/assets/image.webp"
@@ -104,7 +99,6 @@ const Home = () => {
                             sizes="(max-width: 1280px) 700px, 1000px"
                         />
                     </div>
-                    {/* Mobile Image (Generated specifically for < 640px viewports to save payload) */}
                     <div className="block sm:hidden relative w-full h-full">
                         <Image
                             src="/assets/image-mobile.webp"
@@ -123,9 +117,9 @@ const Home = () => {
             {/* ── Front Layer Text ("Hello, I'm Ha Huy Hoang") ── */}
             <div className="relative xl:absolute xl:bottom-[14vh] left-0 w-full z-20 flex flex-col items-center justify-start pointer-events-none -mt-24 sm:-mt-32 xl:mt-0">
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.9, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
+                    initial={{ opacity: 0, y: 150, scale: 0.9, filter: "blur(10px)" }}
+                    animate={isReady ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" } : {}}
+                    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
                     className="flex flex-col items-center gap-1 sm:gap-2"
                 >
                     <span
@@ -153,10 +147,10 @@ const Home = () => {
                         border: "1px solid rgba(255, 255, 255, 0.18)",
                         boxShadow: "0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
                     }}
-                    initial={{ opacity: 0, x: isDesktop ? 150 : 0, y: isDesktop ? 100 : 50, rotate: isDesktop ? 30 : 0, scale: 0.9 }}
-                    animate={{ opacity: 1, x: 0, y: 0, rotate: isDesktop ? -14 : 0, scale: 1 }}
+                    initial={{ opacity: 0, x: isDesktop ? 300 : 0, y: isDesktop ? 200 : 100, rotate: isDesktop ? 45 : 0, scale: 0.8 }}
+                    animate={isReady ? { opacity: 1, x: 0, y: 0, rotate: isDesktop ? -14 : 0, scale: 1 } : {}}
                     whileHover={{ rotate: isDesktop ? -8 : 0, scale: 1.05, y: -5 }}
-                    transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.6 }}
+                    transition={{ type: "spring", stiffness: 40, damping: 12, delay: 0.5 }}
                 >
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6 font-body text-[11px] sm:text-xs text-white/80" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -212,10 +206,10 @@ const Home = () => {
                         border: "1px solid rgba(255, 255, 255, 0.18)",
                         boxShadow: "0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
                     }}
-                    initial={{ opacity: 0, x: isDesktop ? -150 : 0, y: isDesktop ? 100 : 50, rotate: isDesktop ? -30 : 0, scale: 0.9 }}
-                    animate={{ opacity: 1, x: isDesktop ? 30 : 0, y: 0, rotate: isDesktop ? 14 : 0, scale: 1 }}
+                    initial={{ opacity: 0, x: isDesktop ? -300 : 0, y: isDesktop ? 200 : 100, rotate: isDesktop ? -45 : 0, scale: 0.8 }}
+                    animate={isReady ? { opacity: 1, x: isDesktop ? 30 : 0, y: 0, rotate: isDesktop ? 14 : 0, scale: 1 } : {}}
                     whileHover={{ x: isDesktop ? 20 : 0, rotate: isDesktop ? 8 : 0, scale: 1.05, y: -5 }}
-                    transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.8 }}
+                    transition={{ type: "spring", stiffness: 40, damping: 12, delay: 0.7 }}
                 >
                     <div className="flex flex-col gap-3 mb-6">
                         <div className="flex items-center gap-4 p-3.5 rounded-2xl" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
@@ -257,7 +251,12 @@ const Home = () => {
             </div>
 
             {/* Tech Stack Marquee Footer */}
-            <div className="w-full relative z-20 overflow-hidden h-14 flex items-center mt-2 bg-transparent border-t border-white/10">
+            <motion.div 
+                className="w-full relative z-20 overflow-hidden h-14 flex items-center mt-2 bg-transparent border-t border-white/10"
+                initial={{ opacity: 0, y: 50 }}
+                animate={isReady ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 1 }}
+            >
                 <div className="flex gap-6 animate-marquee whitespace-nowrap w-max">
                     {[...techStack, ...techStack].map((tech, i) => (
                         <span
@@ -270,7 +269,7 @@ const Home = () => {
                         </span>
                     ))}
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 };
