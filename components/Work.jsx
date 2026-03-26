@@ -5,6 +5,7 @@ import { BsArrowUpRight, BsGithub } from "react-icons/bs";
 import Image from "next/image";
 import Link from "next/link";
 import CustomImage from "@/components/CustomImage";
+import { createPortal } from "react-dom";
 
 const projects = [
   {
@@ -43,31 +44,29 @@ const projects = [
 ];
 
 const ProjectCard = ({ project, index, isSpread, hoveredIndex, onHover, totalCards }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
+  const inView = true;
   const isHovered = hoveredIndex === index;
 
   // Calculate spread positions (fan-out effect)
-  const spreadRadius = 280;
+  const spreadRadius = 320;
   const angleStep = 360 / totalCards;
   const angle = (angleStep * index - 90) * (Math.PI / 180);
   const spreadX = isSpread ? Math.cos(angle) * spreadRadius : 0;
   const spreadY = isSpread ? Math.sin(angle) * spreadRadius : 0;
 
   // Domino offset (stacked appearance)
-  const dominoOffsetX = isSpread ? 0 : index * 12;
-  const dominoOffsetY = isSpread ? 0 : index * 8;
-  const dominoRotate = isSpread ? 0 : index * 2;
+  const dominoOffsetX = isSpread ? 0 : index * 16;
+  const dominoOffsetY = isSpread ? 0 : index * 10;
+  const dominoRotate = isSpread ? 0 : index * 3;
 
   // Z-index based on hover state
   const zIndex = isHovered ? 1000 : totalCards - index;
 
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}}
-      transition={{ delay: index * 0.08, duration: 0.6 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
       className="absolute rounded-2xl overflow-hidden cursor-pointer"
       style={{
         width: "380px",
@@ -80,12 +79,12 @@ const ProjectCard = ({ project, index, isSpread, hoveredIndex, onHover, totalCar
         y: isSpread ? spreadY : dominoOffsetY,
         rotate: dominoRotate,
         zIndex: zIndex,
-        scale: isHovered ? 1.08 : 1,
+        scale: isHovered ? 1.05 : 1,
       }}
       transition={{
         type: "spring",
-        stiffness: 300,
-        damping: 30,
+        stiffness: 250,
+        damping: 25,
         mass: 1,
       }}
       onMouseEnter={() => onHover(index)}
@@ -271,48 +270,59 @@ const Work = () => {
         </div>
 
         {/* Domino Projects Container */}
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center mt-8">
           <motion.div
             ref={containerRef}
-            className="relative w-full max-w-2xl h-[750px] cursor-pointer"
+            className="relative cursor-pointer"
+            style={{ width: "420px", height: "600px" }}
             onClick={handleContainerClick}
           >
-            {/* Folder Background */}
-            <motion.div
-              className="absolute inset-0 rounded-3xl overflow-hidden"
-              style={{
-                background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                boxShadow: "inset 0 0 40px rgba(251,191,36,0.05)",
-              }}
-              animate={{
-                boxShadow: isSpread
-                  ? "inset 0 0 20px rgba(251,191,36,0.02)"
-                  : "inset 0 0 40px rgba(251,191,36,0.05)",
-              }}
-              transition={{ duration: 0.6 }}
-            />
+            {/* Folder layers - creates 3D depth effect */}
+            {[2, 1, 0].map((layerIndex) => (
+              <motion.div
+                key={`layer-${layerIndex}`}
+                className="absolute left-0 right-0 rounded-xl"
+                style={{
+                  top: `${layerIndex * 8}px`,
+                  left: `${layerIndex * 4}px`,
+                  width: "100%",
+                  height: "100%",
+                  background: `linear-gradient(135deg, rgba(251,191,36,${0.08 - layerIndex * 0.02}) 0%, rgba(251,191,36,${0.03 - layerIndex * 0.01}) 100%)`,
+                  border: `1px solid rgba(251,191,36,${0.2 - layerIndex * 0.05})`,
+                  backdropFilter: "blur(10px)",
+                }}
+                animate={{
+                  opacity: isSpread ? 0.4 : 0.7,
+                }}
+                transition={{ duration: 0.6 }}
+              />
+            ))}
 
-            {/* Folder decorative top */}
+            {/* Folder Tab */}
             <motion.div
-              className="absolute -top-8 left-8 w-32 h-10 rounded-t-2xl"
+              className="absolute -top-12 left-6 rounded-t-2xl px-6 py-3"
               style={{
-                background: "linear-gradient(135deg, rgba(251,191,36,0.2) 0%, rgba(251,191,36,0.1) 100%)",
+                background: "linear-gradient(135deg, rgba(251,191,36,0.25) 0%, rgba(251,191,36,0.15) 100%)",
                 border: "1px solid rgba(251,191,36,0.3)",
                 borderBottom: "none",
+                backdropFilter: "blur(8px)",
               }}
               animate={{
                 opacity: isSpread ? 0.5 : 1,
+                y: isSpread ? -5 : 0,
               }}
               transition={{ duration: 0.6 }}
             >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-xs font-mono text-accent/60">Projects</div>
+              <div className="text-sm font-mono font-bold text-amber-300">
+                PROJECTS
               </div>
             </motion.div>
 
-            {/* Cards Container */}
-            <div className="absolute inset-0 flex items-center justify-center p-8">
+            {/* Cards Stack Container - absolute positioning */}
+            <div
+              className="absolute inset-0 flex items-center justify-center overflow-visible"
+              style={{ perspective: "1000px" }}
+            >
               {projects.map((project, index) => (
                 <ProjectCard
                   key={index}
@@ -326,33 +336,16 @@ const Work = () => {
               ))}
             </div>
 
-            {/* Spread instruction indicator */}
-            {!isSpread && (
-              <motion.div
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                <div className="text-xs font-mono text-white/40 uppercase tracking-widest">
-                  Click to spread cards
-                </div>
-              </motion.div>
-            )}
-
-            {/* Stack instruction indicator */}
-            {isSpread && (
-              <motion.div
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                <div className="text-xs font-mono text-white/40 uppercase tracking-widest">
-                  Click to stack cards
-                </div>
-              </motion.div>
-            )}
+            {/* Interactive Hint */}
+            <motion.div
+              className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-center whitespace-nowrap"
+              animate={{ opacity: isSpread ? 0.5 : 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <div className="text-xs font-mono text-white/50 uppercase tracking-widest">
+                {isSpread ? "Click to stack" : "Click to spread"}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
