@@ -274,20 +274,85 @@ const Work = () => {
         <div className="flex justify-center items-center">
           <motion.div
             ref={containerRef}
-            className="relative w-full max-w-lg h-[700px] cursor-pointer"
+            className="relative w-full max-w-2xl h-[750px] cursor-pointer"
             onClick={handleContainerClick}
           >
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={index}
-                project={project}
-                index={index}
-                isSpread={isSpread}
-                hoveredIndex={hoveredIndex}
-                onHover={setHoveredIndex}
-                totalCards={projects.length}
-              />
-            ))}
+            {/* Folder Background */}
+            <motion.div
+              className="absolute inset-0 rounded-3xl overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                boxShadow: "inset 0 0 40px rgba(251,191,36,0.05)",
+              }}
+              animate={{
+                boxShadow: isSpread
+                  ? "inset 0 0 20px rgba(251,191,36,0.02)"
+                  : "inset 0 0 40px rgba(251,191,36,0.05)",
+              }}
+              transition={{ duration: 0.6 }}
+            />
+
+            {/* Folder decorative top */}
+            <motion.div
+              className="absolute -top-8 left-8 w-32 h-10 rounded-t-2xl"
+              style={{
+                background: "linear-gradient(135deg, rgba(251,191,36,0.2) 0%, rgba(251,191,36,0.1) 100%)",
+                border: "1px solid rgba(251,191,36,0.3)",
+                borderBottom: "none",
+              }}
+              animate={{
+                opacity: isSpread ? 0.5 : 1,
+              }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-xs font-mono text-accent/60">Projects</div>
+              </div>
+            </motion.div>
+
+            {/* Cards Container */}
+            <div className="absolute inset-0 flex items-center justify-center p-8">
+              {projects.map((project, index) => (
+                <ProjectCard
+                  key={index}
+                  project={project}
+                  index={index}
+                  isSpread={isSpread}
+                  hoveredIndex={hoveredIndex}
+                  onHover={setHoveredIndex}
+                  totalCards={projects.length}
+                />
+              ))}
+            </div>
+
+            {/* Spread instruction indicator */}
+            {!isSpread && (
+              <motion.div
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <div className="text-xs font-mono text-white/40 uppercase tracking-widest">
+                  Click to spread cards
+                </div>
+              </motion.div>
+            )}
+
+            {/* Stack instruction indicator */}
+            {isSpread && (
+              <motion.div
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="text-xs font-mono text-white/40 uppercase tracking-widest">
+                  Click to stack cards
+                </div>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </div>
