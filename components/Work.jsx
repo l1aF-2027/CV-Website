@@ -1,8 +1,7 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { BsArrowUpRight, BsGithub } from "react-icons/bs";
-import Image from "next/image";
+import { BsArrowUpRight, BsGithub, BsFolder } from "react-icons/bs";
 import Link from "next/link";
 import CustomImage from "@/components/CustomImage";
 
@@ -16,7 +15,6 @@ const projects = [
     image: "/assets/work/thumb1.png",
     githubLink: "https://github.com/l1aF-2027/UIT-Data-Science-Challenge-2024",
     link: "https://multimodal-sacarsm-detection-on-vietnamese-social-media-texts.streamlit.app/",
-    color: "#ffffff",
   },
   {
     num: "02",
@@ -27,7 +25,6 @@ const projects = [
     image: "/assets/work/thumb2.png",
     githubLink: "https://github.com/l1aF-2027/Social-Trend-VietNam",
     link: "https://github.com/l1aF-2027/Social-Trend-VietNam/",
-    color: "#e2e8f0",
   },
   {
     num: "03",
@@ -38,120 +35,134 @@ const projects = [
     image: "/assets/work/thumb3.png",
     githubLink: "https://github.com/l1aF-2027/Website-QuanLyViecDangKiMonHocVaThuHocPhi",
     link: "https://uit-admissions-chatbot.vercel.app/",
-    color: "#ffffff",
   },
 ];
 
-const ProjectCard = ({ project, index }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
+const useMediaQuery = (query) => {
+  const [matches, setMatches] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    if (media.matches !== matches) {
+      setMatches(media.matches);
+    }
+    const listener = () => setMatches(media.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, [matches, query]);
+  return matches;
+};
+
+const ProjectCard = ({ project, index, isHoveredParent }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative rounded-2xl overflow-hidden cursor-default"
-      style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+      className="w-full h-full group relative pointer-events-auto flex flex-col"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      whileHover={{
-        y: -8,
-        borderColor: `${project.color}33`,
-        boxShadow: `0 30px 80px ${project.color}15`,
-      }}
+      whileHover={{ scale: 1.02, zIndex: 100 }}
     >
-      {/* Image */}
-      <div className="relative h-[200px] xl:h-[240px] overflow-hidden">
-        <CustomImage
-          src={project.image}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
-          alt={project.title}
-        />
-        {/* Overlay */}
-        <div
-          className="absolute inset-0 transition-opacity duration-500"
-          style={{ background: `linear-gradient(to bottom, transparent 20%, ${project.color}15 100%)`, opacity: hovered ? 1 : 0.5 }}
-        />
-
-        {/* Number badge */}
-        <div
-          className="absolute top-4 left-4 font-heading font-extrabold text-5xl leading-none select-none"
-          style={{ WebkitTextStroke: `2px #fbbf24`, color: "transparent" }}
-        >
+      {/* File Tab / Badge sticking out top (All Yellow) */}
+      <motion.div 
+        className="absolute -top-[36px] h-[36px] w-[56px] xl:w-[64px] bg-[#0a0f1c]/90 backdrop-blur-md border border-[#fbbf24]/50 border-b-0 rounded-t-lg flex items-center justify-center z-20 shadow-[0_-5px_10px_rgba(0,0,0,0.2)] transition-colors duration-300"
+        style={{ 
+          // PROJECTS tab takes up 120px. Remaining space max 480px on desktop.
+          // Spacing index dynamically based on screen width would need JS or media queries.
+          // We can use standard math: left- [dist]. Since card is wide, space them out.
+          // On mobile, card is 320px wide (max left ~260px). 130 + index * 64 works for mobile.
+          // On desktop, card is 600px wide. We can spread them further, but keeping tight is fine too.
+          // Using a percentage allows flex scaling:
+          left: `calc(130px + ${index * 15}%)`,
+          background: isHoveredParent || hovered ? `#fbbf2415` : undefined,
+          borderColor: isHoveredParent || hovered ? '#fbbf24' : undefined 
+        }}
+      >
+        <span className="font-mono font-bold text-sm tracking-widest text-[#fbbf24] transition-colors" style={{ color: isHoveredParent || hovered ? '#fbbf24' : undefined }}>
           {project.num}
+        </span>
+      </motion.div>
+
+      {/* Main Card Body - Horizontal Layout */}
+      <div 
+        className="w-full h-full rounded-b-2xl rounded-tr-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row bg-[#0f172a] border border-[#fbbf24]/30 relative transition-all duration-300"
+        style={{ borderColor: isHoveredParent || hovered ? '#fbbf24' : undefined }}
+      >
+        {/* Image Side */}
+        <div className="relative w-full md:w-5/12 h-[200px] md:h-full shrink-0 overflow-hidden border-b md:border-b-0 md:border-r border-[#fbbf24]/20">
+          <CustomImage
+            src={project.image}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            alt={project.title}
+          />
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 transition-opacity duration-500"
+            style={{ background: `linear-gradient(to bottom, transparent 20%, #fbbf2415 100%)`, opacity: hovered ? 1 : 0.5 }}
+          />
+
+          {/* Action buttons */}
+          <AnimatePresence>
+            {(hovered || isHoveredParent) && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.25 }}
+                className="absolute top-4 right-4 flex flex-col gap-2 z-10"
+              >
+                <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                  <motion.div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-[#fbbf24] hover:bg-[#fbbf24]/20 transition-colors shadow-lg pointer-events-auto"
+                    style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(10px)", border: "1px solid rgba(251,191,36,0.5)" }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <BsArrowUpRight size={16} />
+                  </motion.div>
+                </Link>
+                <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
+                  <motion.div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-[#fbbf24] hover:bg-[#fbbf24]/20 transition-colors shadow-lg pointer-events-auto"
+                    style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(10px)", border: "1px solid rgba(251,191,36,0.5)" }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <BsGithub size={16} />
+                  </motion.div>
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        {/* Action buttons - slide in on hover */}
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.25 }}
-              className="absolute top-4 right-4 flex gap-2"
-            >
-              <Link href={project.link} target="_blank" rel="noopener noreferrer">
-                <motion.div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white hover:text-accent transition-colors"
-                  style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)" }}
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <BsArrowUpRight size={14} />
-                </motion.div>
-              </Link>
-              <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
-                <motion.div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white hover:text-accent transition-colors"
-                  style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)" }}
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <BsGithub size={14} />
-                </motion.div>
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+        {/* Content Side */}
+        <div className="w-full md:w-7/12 p-5 xl:p-8 bg-[#0f172a] h-full flex flex-col">
+          <h3 className="font-heading font-bold text-white text-lg xl:text-2xl leading-snug mb-3 group-hover:text-accent transition-colors duration-300">
+            {project.title}
+          </h3>
+          <p className="font-body text-white/60 text-sm xl:text-base leading-relaxed mb-6 flex-grow line-clamp-3 md:line-clamp-none">
+            {project.description}
+          </p>
 
-      {/* Content */}
-      <div className="p-6">
-        <h3 className="font-heading font-bold text-white text-lg leading-snug mb-2 group-hover:text-white transition-colors duration-300">
-          {project.title}
-        </h3>
-        <p className="font-body text-white/40 text-sm leading-relaxed mb-4 line-clamp-2">
-          {project.description}
-        </p>
-
-        {/* Stack */}
-        <div className="flex flex-wrap gap-2">
-          {project.stack.map((tech, i) => (
-            <span
-              key={i}
-              className="px-2.5 py-1 rounded-md font-mono text-xs"
-              style={{
-                background: `${project.color}12`,
-                border: `1px solid ${project.color}33`,
-                color: project.color,
-              }}
-            >
-              {tech}
-            </span>
-          ))}
+          {/* Stack */}
+          <div className="flex flex-wrap gap-2 mt-auto">
+            {project.stack.map((tech, i) => (
+              <span
+                key={i}
+                className="px-3 py-1.5 rounded-md font-mono text-xs shadow-sm bg-[#fbbf24]/10 border border-[#fbbf24]/30 text-[#fbbf24]"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Bottom accent line */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ background: `linear-gradient(90deg, transparent, #fbbf24, transparent)` }}
-      />
+        {/* Bottom accent line */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-[4px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[#fbbf24]"
+        />
+      </div>
     </motion.div>
   );
 };
@@ -159,12 +170,80 @@ const ProjectCard = ({ project, index }) => {
 const Work = () => {
   const headRef = useRef(null);
   const headInView = useInView(headRef, { once: true, amount: 0.5 });
+  
+  const [isSpread, setIsSpread] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const isMobile = useMediaQuery("(max-width: 768px)"); // strict mobile for layout swapping
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const gap = 32;
+  const desktopWidth = 600;
+  const desktopHeight = 360;
+  const mobileWidth = 320;
+  const mobileHeight = 480;
+
+  const currentWidth = isMobile ? mobileWidth : desktopWidth;
+  const currentHeight = isMobile ? mobileHeight : desktopHeight;
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  };
+
+  const getStackedProps = (index) => {
+    return {
+      x: "0%",
+      y: 0, 
+      scale: 1,
+      rotate: 0,
+      zIndex: index, 
+    };
+  };
+
+  const getSpreadProps = (index, total, isMobile) => {
+    if (isMobile) {
+      // spread vertically downwards on strict mobile
+      return {
+        x: "0%",
+        y: index * (mobileHeight + gap) + 60, 
+        scale: 1,
+        rotate: 0,
+        zIndex: 10 + index, 
+      };
+    } else {
+      // For wide desktop cards, spread them with overlap like a hand of cards
+      const center = (total - 1) / 2;
+      const dist = index - center;
+      return {
+        x: `${dist * 45}%`, // x-offset overlapping (~270px)
+        y: Math.abs(dist) * 20 - 40, // rise up and arch out
+        scale: 1,
+        rotate: dist * 4, // slight rotation
+        zIndex: 10 + index,
+      };
+    }
+  };
+
+  const dynamicHeight = isSpread && mounted
+    ? isMobile 
+      ? (projects.length * mobileHeight) + ((projects.length - 1) * gap) + 100
+      : desktopHeight + 100 // desktop spread is horizontal, just pad vertical
+    : isMobile ? mobileHeight + 60 : desktopHeight + 60; 
 
   return (
-    <section className="min-h-[80vh] flex flex-col justify-center py-20 xl:py-28">
-      <div className="container mx-auto">
-        {/* Header */}
-        <div ref={headRef} className="text-center mb-16">
+    <section className="min-h-[100vh] flex flex-col justify-center py-20 xl:py-28 overflow-hidden relative">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="container mx-auto px-4 z-10 relative">
+        <div ref={headRef} className="text-center mb-16 xl:mb-24">
           <motion.span
             initial={{ opacity: 0, y: 15 }}
             animate={headInView ? { opacity: 1, y: 0 } : {}}
@@ -190,37 +269,94 @@ const Work = () => {
           >
             A selection of projects that demonstrate my experience with AI, data engineering, and full-stack development.
           </motion.p>
+        </div>
 
-          {/* GitHub CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={headInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6"
+        {/* Interactive Glass Folder Section */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={headInView ? "visible" : "hidden"}
+          className="relative w-full flex justify-center items-start mt-10 transition-all duration-700 ease-in-out"
+          style={{ minHeight: dynamicHeight }}
+        >
+          {/* Main absolute wrapper serving as the Horizontal Folder bounds */}
+          <div 
+            className="relative cursor-pointer transition-all duration-300"
+            style={{ 
+              width: mounted ? currentWidth : desktopWidth, 
+              height: mounted ? currentHeight : desktopHeight 
+            }}
+            onClick={() => setIsSpread(!isSpread)}
+            onMouseEnter={() => mounted && !isMobile && setIsSpread(true)}
+            onMouseLeave={() => mounted && !isMobile && setIsSpread(false)}
           >
-            <Link
-              href="https://github.com/l1aF-2027"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <motion.span
-                className="inline-flex items-center gap-2 font-body text-sm text-white/40 hover:text-white/80 transition-colors duration-200"
-                whileHover={{ scale: 1.03 }}
-              >
-                <BsGithub size={16} />
-                View all on GitHub
-                <BsArrowUpRight size={12} />
-              </motion.span>
-            </Link>
-          </motion.div>
-        </div>
+            {/* Folder Back Glass */}
+            <div className="absolute inset-0 bg-[#0a0f1c]/30 backdrop-blur-lg border border-[#fbbf24]/30 rounded-xl rounded-tl-none shadow-2xl pointer-events-none" style={{ zIndex: -1 }}>
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#fbbf24]/10 to-transparent rounded-b-xl" />
+            </div>
+            
+            {/* Folder Tab (PROJECTS) */}
+            <div className="absolute top-0 left-0 w-[120px] h-[36px] bg-[#0a0f1c]/40 border-t border-l border-r border-[#fbbf24]/30 rounded-t-xl transform -translate-y-full pointer-events-none flex items-center justify-center backdrop-blur-lg">
+              <span className="text-[#fbbf24] text-[11px] font-mono tracking-widest font-bold">PROJECTS</span>
+            </div>
 
-        {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
-          ))}
-        </div>
+            {mounted && projects.map((project, index) => {
+              const currentProps = isSpread 
+                ? getSpreadProps(index, projects.length, isMobile)
+                : getStackedProps(index);
+
+              const isHovered = hoveredIndex === index;
+              const isOtherHovered = hoveredIndex !== null && hoveredIndex !== index;
+
+              if (isHovered) {
+                currentProps.zIndex = 50; // Boost z-index of the wrapper so it overlaps sibling cards
+              }
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={getStackedProps(index)} // entry from stacked
+                  animate={{
+                    ...currentProps,
+                    filter: isOtherHovered ? "blur(6px)" : "blur(0px)",
+                    opacity: isOtherHovered ? 0.4 : 1,
+                  }}
+                  transition={{ 
+                    duration: 0.6, 
+                    type: "spring", 
+                    stiffness: 70, 
+                    damping: 14,
+                    mass: 0.8
+                  }}
+                  className="absolute top-0 left-0 w-full h-full"
+                  onHoverStart={() => isSpread && setHoveredIndex(index)}
+                  onHoverEnd={() => isSpread && setHoveredIndex(null)}
+                >
+                  <ProjectCard project={project} index={index} isHoveredParent={isSpread} />
+                </motion.div>
+              );
+            })}
+
+            {/* Folder Front Glass Overlay */}
+            <motion.div 
+              initial={{ opacity: 1 }}
+              animate={mounted ? { 
+                opacity: isSpread ? 0 : 1,
+                scale: isSpread ? 0.98 : 1
+              } : {}}
+              transition={{ duration: 0.3 }}
+              style={{ zIndex: 5, pointerEvents: "none" }} // Cover cards
+              className="absolute inset-0 bg-[#0a0f1c]/70 backdrop-blur-md border border-[#fbbf24]/40 rounded-xl rounded-tl-none shadow-[inset_0_2px_20px_rgba(251,191,36,0.05)] flex flex-col items-center justify-center overflow-hidden"
+            >
+              <BsFolder size={64} className="mb-4 text-[#fbbf24]/60 drop-shadow-lg" />
+              <span className="font-mono text-[10px] sm:text-[12px] tracking-widest text-[#fbbf24]/80 uppercase border border-[#fbbf24]/40 px-6 py-2 rounded-full bg-[#fbbf24]/10 shadow-[0_0_15px_rgba(251,191,36,0.15)] flex items-center gap-2">
+                CLICK / HOVER TO SPREAD
+              </span>
+            </motion.div>
+
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
