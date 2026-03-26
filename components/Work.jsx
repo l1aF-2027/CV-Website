@@ -281,12 +281,13 @@ const Work = () => {
             {[2, 1, 0].map((layerIndex) => (
               <motion.div
                 key={`layer-${layerIndex}`}
-                className="absolute left-0 right-0 rounded-xl"
+                className="absolute rounded-xl pointer-events-none"
                 style={{
                   top: `${layerIndex * 8}px`,
                   left: `${layerIndex * 4}px`,
-                  width: "100%",
-                  height: "100%",
+                  right: `${-layerIndex * 4}px`,
+                  width: "calc(100% - " + (layerIndex * 8) + "px)",
+                  height: "calc(100% - " + (layerIndex * 8) + "px)",
                   background: `linear-gradient(135deg, rgba(251,191,36,${0.08 - layerIndex * 0.02}) 0%, rgba(251,191,36,${0.03 - layerIndex * 0.01}) 100%)`,
                   border: `1px solid rgba(251,191,36,${0.2 - layerIndex * 0.05})`,
                   backdropFilter: "blur(10px)",
@@ -319,11 +320,13 @@ const Work = () => {
             </motion.div>
 
             {/* Cards Stack Container - absolute positioning */}
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center"
-              style={{ perspective: "1200px" }}
-              animate={{
-                pointerEvents: isSpread ? "auto" : "auto",
+            <div
+              className="absolute inset-0"
+              style={{
+                perspective: "1200px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               {projects.map((project, index) => (
@@ -337,7 +340,7 @@ const Work = () => {
                   totalCards={projects.length}
                 />
               ))}
-            </motion.div>
+            </div>
 
             {/* Interactive Hint */}
             <motion.div
