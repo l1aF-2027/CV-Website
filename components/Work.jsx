@@ -42,52 +42,87 @@ const projects = [
   },
 ];
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project, index, isSpread, hoveredIndex, onHover, totalCards }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
-  const [hovered, setHovered] = useState(false);
+  const isHovered = hoveredIndex === index;
+
+  // Calculate spread positions (fan-out effect)
+  const spreadRadius = 280;
+  const angleStep = 360 / totalCards;
+  const angle = (angleStep * index - 90) * (Math.PI / 180);
+  const spreadX = isSpread ? Math.cos(angle) * spreadRadius : 0;
+  const spreadY = isSpread ? Math.sin(angle) * spreadRadius : 0;
+
+  // Domino offset (stacked appearance)
+  const dominoOffsetX = isSpread ? 0 : index * 12;
+  const dominoOffsetY = isSpread ? 0 : index * 8;
+  const dominoRotate = isSpread ? 0 : index * 2;
+
+  // Z-index based on hover state
+  const zIndex = isHovered ? 1000 : totalCards - index;
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative rounded-2xl overflow-hidden cursor-default"
-      style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      whileHover={{
-        y: -8,
-        borderColor: `${project.color}33`,
-        boxShadow: `0 30px 80px ${project.color}15`,
+      initial={{ opacity: 0 }}
+      animate={inView ? { opacity: 1 } : {}}
+      transition={{ delay: index * 0.08, duration: 0.6 }}
+      className="absolute rounded-2xl overflow-hidden cursor-pointer"
+      style={{
+        width: "380px",
+        height: "auto",
+        background: "rgba(255,255,255,0.03)",
+        border: "1px solid rgba(255,255,255,0.08)",
       }}
+      animate={{
+        x: isSpread ? spreadX : dominoOffsetX,
+        y: isSpread ? spreadY : dominoOffsetY,
+        rotate: dominoRotate,
+        zIndex: zIndex,
+        scale: isHovered ? 1.08 : 1,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+        mass: 1,
+      }}
+      onMouseEnter={() => onHover(index)}
+      onMouseLeave={() => onHover(null)}
+      onTouchStart={() => onHover(index)}
+      onTouchEnd={() => onHover(null)}
     >
       {/* Image */}
       <div className="relative h-[200px] xl:h-[240px] overflow-hidden">
         <CustomImage
           src={project.image}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className={`object-cover transition-transform duration-700 ${isHovered ? "scale-110" : "scale-100"}`}
           alt={project.title}
         />
         {/* Overlay */}
-        <div
-          className="absolute inset-0 transition-opacity duration-500"
-          style={{ background: `linear-gradient(to bottom, transparent 20%, ${project.color}15 100%)`, opacity: hovered ? 1 : 0.5 }}
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(to bottom, transparent 20%, ${project.color}15 100%)`,
+          }}
+          animate={{ opacity: isHovered ? 1 : 0.5 }}
+          transition={{ duration: 0.3 }}
         />
 
         {/* Number badge */}
-        <div
+        <motion.div
           className="absolute top-4 left-4 font-heading font-extrabold text-5xl leading-none select-none"
           style={{ WebkitTextStroke: `2px #fbbf24`, color: "transparent" }}
+          animate={{ scale: isHovered ? 1.1 : 1 }}
         >
           {project.num}
-        </div>
+        </motion.div>
 
         {/* Action buttons - slide in on hover */}
         <AnimatePresence>
-          {hovered && (
+          {isHovered && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -95,7 +130,7 @@ const ProjectCard = ({ project, index }) => {
               transition={{ duration: 0.25 }}
               className="absolute top-4 right-4 flex gap-2"
             >
-              <Link href={project.link} target="_blank" rel="noopener noreferrer">
+              <Link href={project.link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                 <motion.div
                   className="w-9 h-9 rounded-xl flex items-center justify-center text-white hover:text-accent transition-colors"
                   style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)" }}
@@ -105,7 +140,7 @@ const ProjectCard = ({ project, index }) => {
                   <BsArrowUpRight size={14} />
                 </motion.div>
               </Link>
-              <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
+              <Link href={project.githubLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                 <motion.div
                   className="w-9 h-9 rounded-xl flex items-center justify-center text-white hover:text-accent transition-colors"
                   style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)" }}
@@ -122,7 +157,7 @@ const ProjectCard = ({ project, index }) => {
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="font-heading font-bold text-white text-lg leading-snug mb-2 group-hover:text-white transition-colors duration-300">
+        <h3 className="font-heading font-bold text-white text-lg leading-snug mb-2 hover:text-white transition-colors duration-300">
           {project.title}
         </h3>
         <p className="font-body text-white/40 text-sm leading-relaxed mb-4 line-clamp-2">
@@ -148,9 +183,11 @@ const ProjectCard = ({ project, index }) => {
       </div>
 
       {/* Bottom accent line */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-[2px]"
         style={{ background: `linear-gradient(90deg, transparent, #fbbf24, transparent)` }}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
       />
     </motion.div>
   );
@@ -159,9 +196,17 @@ const ProjectCard = ({ project, index }) => {
 const Work = () => {
   const headRef = useRef(null);
   const headInView = useInView(headRef, { once: true, amount: 0.5 });
+  const [isSpread, setIsSpread] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const containerRef = useRef(null);
+
+  const handleContainerClick = () => {
+    setIsSpread(!isSpread);
+    setHoveredIndex(null);
+  };
 
   return (
-    <section className="min-h-[80vh] flex flex-col justify-center py-20 xl:py-28">
+    <section className="min-h-[100vh] flex flex-col justify-center py-20 xl:py-28">
       <div className="container mx-auto">
         {/* Header */}
         <div ref={headRef} className="text-center mb-16">
@@ -191,6 +236,16 @@ const Work = () => {
             A selection of projects that demonstrate my experience with AI, data engineering, and full-stack development.
           </motion.p>
 
+          {/* Instruction text */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={headInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="font-body text-white/30 text-xs mt-4 tracking-wide uppercase"
+          >
+            {isSpread ? "Click to stack" : "Click to spread"} • Hover for details
+          </motion.p>
+
           {/* GitHub CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -215,11 +270,25 @@ const Work = () => {
           </motion.div>
         </div>
 
-        {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
-          ))}
+        {/* Domino Projects Container */}
+        <div className="flex justify-center items-center">
+          <motion.div
+            ref={containerRef}
+            className="relative w-full max-w-lg h-[700px] cursor-pointer"
+            onClick={handleContainerClick}
+          >
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={index}
+                project={project}
+                index={index}
+                isSpread={isSpread}
+                hoveredIndex={hoveredIndex}
+                onHover={setHoveredIndex}
+                totalCards={projects.length}
+              />
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
