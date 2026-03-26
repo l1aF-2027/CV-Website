@@ -48,16 +48,16 @@ const ProjectCard = ({ project, index, isSpread, hoveredIndex, onHover, totalCar
   const isHovered = hoveredIndex === index;
 
   // Calculate spread positions (fan-out effect)
-  const spreadRadius = 320;
+  const spreadRadius = 280;
   const angleStep = 360 / totalCards;
   const angle = (angleStep * index - 90) * (Math.PI / 180);
   const spreadX = isSpread ? Math.cos(angle) * spreadRadius : 0;
   const spreadY = isSpread ? Math.sin(angle) * spreadRadius : 0;
 
   // Domino offset (stacked appearance)
-  const dominoOffsetX = isSpread ? 0 : index * 16;
-  const dominoOffsetY = isSpread ? 0 : index * 10;
-  const dominoRotate = isSpread ? 0 : index * 3;
+  const dominoOffsetX = isSpread ? 0 : -index * 14;
+  const dominoOffsetY = isSpread ? 0 : index * 8;
+  const dominoRotate = isSpread ? 0 : index * 2;
 
   // Z-index based on hover state
   const zIndex = isHovered ? 1000 : totalCards - index;
@@ -273,8 +273,8 @@ const Work = () => {
         <div className="flex justify-center items-center mt-8">
           <motion.div
             ref={containerRef}
-            className="relative cursor-pointer"
-            style={{ width: "420px", height: "600px" }}
+            className="relative cursor-pointer mx-auto"
+            style={{ width: "450px", height: "550px" }}
             onClick={handleContainerClick}
           >
             {/* Folder layers - creates 3D depth effect */}
@@ -319,9 +319,12 @@ const Work = () => {
             </motion.div>
 
             {/* Cards Stack Container - absolute positioning */}
-            <div
-              className="absolute inset-0 flex items-center justify-center overflow-visible"
-              style={{ perspective: "1000px" }}
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center"
+              style={{ perspective: "1200px" }}
+              animate={{
+                pointerEvents: isSpread ? "auto" : "auto",
+              }}
             >
               {projects.map((project, index) => (
                 <ProjectCard
@@ -334,7 +337,7 @@ const Work = () => {
                   totalCards={projects.length}
                 />
               ))}
-            </div>
+            </motion.div>
 
             {/* Interactive Hint */}
             <motion.div
