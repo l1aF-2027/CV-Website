@@ -1,66 +1,55 @@
 "use client"
 
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
 import Image from "next/image"
-import Link from "next/link"
 
 const stations = ["home", "work", "about", "play"]
 
 export default function Home() {
+  const [active, setActive] = useState("home")
   const [stamped, setStamped] = useState(false)
 
-  const jumpTo = (id) => {
-    document.querySelector(`#${id}`)?.scrollIntoView({ behavior: "smooth" })
-  }
+  useEffect(() => {
+    const onScroll = () => {
+      const current = stations.slice().reverse().find((id) => {
+        const el = document.getElementById(id)
+        return el && window.scrollY >= el.offsetTop - 180
+      })
+      if (current) setActive(current)
+    }
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  const jumpTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
 
   return (
-    <div className="launchpad-home">
-      <aside className="launchpad-sidebar" aria-label="Main navigation">
-        <div className="launchpad-mark" aria-hidden="true"><span>▲</span></div>
-        <nav className="launchpad-nav">
-          {stations.map((station, index) => (
-            <button key={station} onClick={() => jumpTo(station)} className="launchpad-nav-item">
-              <span>{index + 1}.</span> {station}
-            </button>
-          ))}
-        </nav>
-        <span className="sidebar-caption">HHO / 2026</span>
+    <div className="yu-shell">
+      <aside className="yu-profile">
+        <div className="yu-avatar"><Image src="/assets/image.webp" alt="Ha Huy Hoang" fill sizes="80px" /></div>
+        <p className="yu-name">HA HUY<br />HOANG</p>
+        <p className="yu-bio">AI engineer and builder exploring useful, playful systems.</p>
+        <p className="yu-detail">UIT · COMPUTER SCIENCE<br />VIETNAM · 2026</p>
+        <div className="yu-mini-rocket" aria-hidden="true">↗</div>
+        <a href="mailto:hello@example.com" className="yu-contact">SAY HELLO ↗</a>
       </aside>
-
-      <section id="home" className="launchpad-hero">
-        <div className="hero-copy">
-          <p className="eyebrow">MISSION CONTROL · PERSONAL PORTFOLIO</p>
-          <h1>Ha Huy<br /><em>Hoang.</em></h1>
-          <p className="hero-quote">I build intelligent systems<br />people actually want to use.</p>
-          <p className="hero-meta">AI Engineer · ML Practitioner · Backend Developer</p>
-        </div>
-
-        <div className="portrait-stage">
-          <div className="portrait-label">CREW MEMBER / 01</div>
-          <div className="portrait-frame">
-            <Image src="/assets/image.webp" alt="Ha Huy Hoang" fill priority className="portrait-image" sizes="(max-width: 900px) 80vw, 42vw" />
+      <div className="yu-main">
+        <nav className="yu-stations" aria-label="Sections">
+          {stations.map((station) => <button key={station} className={active === station ? "active" : ""} onClick={() => jumpTo(station)}>{station}<i /></button>)}
+        </nav>
+        <section id="home" className="yu-home">
+          <div className="yu-intro"><span>MISSION 01 / HOME</span><h1>Building things<br /><em>with curiosity.</em></h1><p>Welcome to my little launchpad. Scroll around, inspect the projects, and take a seat at the keyboard.</p></div>
+          <div className="yu-collage">
+            <button className={`yu-pass ${stamped ? "stamped" : ""}`} onClick={() => setStamped(!stamped)}><small>CREW PASS · HHO-01</small><strong>{stamped ? "CLEARED" : "READY"}</strong><span>{stamped ? "STAMPED FOR LAUNCH" : "CLICK TO STAMP"}</span><b>↗</b></button>
+            <div className="yu-scene yu-scene-rocket"><span className="scene-grid" /><div className="rocket">▲</div><p>ROCKET LAB<br />LIFT-OFF SYSTEMS</p></div>
+            <div className="yu-scene yu-scene-keyboard"><div className="keys">{Array.from({ length: 28 }).map((_, i) => <i key={i} />)}</div><p>ASSEMBLE · TYPE · SHIP</p></div>
           </div>
-          <div className="orbit-line orbit-line-one" />
-          <div className="orbit-line orbit-line-two" />
-          <span className="coordinate coordinate-one">10°N 106°E</span>
-          <span className="coordinate coordinate-two">READY / 2026-7</span>
-        </div>
-
-        <div className="boarding-ticket" onClick={() => setStamped(!stamped)} role="button" tabIndex={0} onKeyDown={(event) => event.key === "Enter" && setStamped(!stamped)}>
-          <p className="ticket-instruction">{stamped ? "STAMPED · WELCOME ABOARD" : "HOVER TO SCAN · CLICK TO STAMP"}</p>
-          <div className="ticket-grid">
-            <div><small>FROM</small><strong>HOME</strong></div><b>→</b><div><small>TO</small><strong>WORK</strong></div>
-            <div><small>MISSION</small><strong>ROUND TRIP</strong></div><div><small>CREW</small><strong>you!</strong></div>
-            <div><small>DATE</small><strong>12SEP</strong></div><div><small>LAUNCH</small><strong>09:30</strong></div>
-          </div>
-          <div className="ticket-footer"><span>HHO-01 · launchpad portfolio</span><span className="ticket-code">{stamped ? "LAUNCHED" : "BOARDING"}</span></div>
-        </div>
-
-        <button className="scroll-cue" onClick={() => jumpTo("work")}>scroll to launch the work ↓</button>
-      </section>
-
-      <div id="about" className="sr-only"><Link href="/">About Ha Huy Hoang</Link></div>
+          <button className="yu-next" onClick={() => jumpTo("work")}>SCROLL TO WORK <span>↓</span></button>
+        </section>
+        <section id="about" className="yu-about"><span>MISSION 02 / ABOUT</span><h2>Human ideas,<br /><em>machine precision.</em></h2><p>I like making software that feels considered: clear interfaces, reliable data, and a little room for delight.</p></section>
+        <section id="play" className="yu-play"><span>MISSION 03 / PLAY</span><h2>Currently<br /><em>on the keyboard.</em></h2><div className="code-strip">const curiosity = await buildSomethingUseful();</div></section>
+      </div>
     </div>
   )
 }
