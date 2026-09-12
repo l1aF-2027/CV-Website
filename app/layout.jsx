@@ -160,22 +160,22 @@ const websiteJsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-background">
       <head>
         {/* Critical CSS inline for faster FCP/LCP */}
         <style dangerouslySetInnerHTML={{
           __html: `
           :root {
-            --background: 222 47% 11%;
-            --foreground: 213 31% 91%;
-            --card: 222 47% 15%;
-            --card-foreground: 213 31% 91%;
-            --secondary: 222 47% 20%;
-            --muted: 222 47% 20%;
-            --muted-foreground: 215 20% 65%;
-            --border: 222 47% 22%;
-            --input: 222 47% 22%;
-            --ring: 199 100% 50%;
+            --background: 0 0% 0%;
+            --foreground: 0 0% 96%;
+            --card: 0 0% 7%;
+            --card-foreground: 0 0% 96%;
+            --secondary: 0 0% 12%;
+            --muted: 0 0% 12%;
+            --muted-foreground: 0 0% 62%;
+            --border: 0 0% 18%;
+            --input: 0 0% 18%;
+            --ring: 45 100% 50%;
             --radius: 0.75rem;
           }
           html {
@@ -183,7 +183,7 @@ export default function RootLayout({ children }) {
             scroll-padding-top: 90px;
           }
           body {
-            background: transparent;
+            background: #000000;
             color: hsl(var(--foreground));
             font-family: var(--font-inter), system-ui, sans-serif;
             line-height: 1.5;

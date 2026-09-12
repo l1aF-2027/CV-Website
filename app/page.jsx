@@ -8,7 +8,7 @@ import Home from "@/components/Home"
 // Dynamically import heavy components below the fold
 const Services = dynamic(() => import("@/components/Services"), { ssr: true })
 const Resume = dynamic(() => import("@/components/Resume"), { ssr: true })
-const Work = dynamic(() => import("@/components/Work"), { ssr: true })
+const Work = dynamic(() => import("@/components/Work"), { ssr: false })
 const Contact = dynamic(() => import("@/components/Contact"), { ssr: true })
 
 // KeyboardBackground uses canvas and window, so we absolutely must disable SSR

@@ -79,7 +79,7 @@ const Home = ({ isReady }) => {
             <div
                 className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full pointer-events-none z-0 hidden xl:block"
                 style={{
-                    background: "radial-gradient(circle, rgba(251, 191, 36,0.03) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(255, 210, 31,0.05) 0%, transparent 70%)",
                     filter: "blur(60px)",
                 }}
             />
@@ -222,13 +222,13 @@ const Home = ({ isReady }) => {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-4 p-3.5 rounded-2xl" style={{ background: "rgba(251, 191, 36, 0.1)", border: "1px solid rgba(251, 191, 36, 0.2)" }}>
+                        <div className="flex items-center gap-4 p-3.5 rounded-2xl" style={{ background: "rgba(255, 210, 31, 0.1)", border: "1px solid rgba(251, 191, 36, 0.2)" }}>
                             <div className="w-10 h-10 rounded-full flex items-center justify-center bg-amber-400/20 text-accent">
                                 <Trophy className="w-5 h-5" />
                             </div>
                             <div>
                                 <div className="font-heading font-semibold text-accent text-[13px] sm:text-[14px]">2nd Place Winner</div>
-                                <div className="font-body text-[11px] sm:text-xs text-amber-400/60 mt-0.5">UIT DS Challenge</div>
+                                <div className="font-body text-[11px] sm:text-xs text-accent/60 mt-0.5">UIT DS Challenge</div>
                             </div>
                         </div>
                     </div>

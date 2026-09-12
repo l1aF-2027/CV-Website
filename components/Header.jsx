@@ -90,10 +90,10 @@ const Header = () => {
             onClick={handleHireClick}
             className="px-5 py-2.5 rounded-xl font-heading font-semibold text-xs text-black relative overflow-hidden group"
             style={{
-              background: "linear-gradient(135deg, #ffffff, #e2e8f0)",
+              background: "linear-gradient(135deg, #FFD21F, #fff1a8)",
               flexShrink: 0,
             }}
-            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(255, 255, 255,0.4)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 24px rgba(255, 210, 31,0.45)" }}
             whileTap={{ scale: 0.96 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           >

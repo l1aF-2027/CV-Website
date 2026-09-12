@@ -16,7 +16,7 @@ const projects = [
     image: "/assets/work/thumb1.png",
     githubLink: "https://github.com/l1aF-2027/UIT-Data-Science-Challenge-2024",
     link: "https://multimodal-sacarsm-detection-on-vietnamese-social-media-texts.streamlit.app/",
-    color: "#ffffff",
+    color: "#FFD21F",
   },
   {
     num: "02",
@@ -27,7 +27,7 @@ const projects = [
     image: "/assets/work/thumb2.png",
     githubLink: "https://github.com/l1aF-2027/Social-Trend-VietNam",
     link: "https://github.com/l1aF-2027/Social-Trend-VietNam/",
-    color: "#e2e8f0",
+    color: "#fff1a8",
   },
   {
     num: "03",
@@ -38,7 +38,7 @@ const projects = [
     image: "/assets/work/thumb3.png",
     githubLink: "https://github.com/l1aF-2027/Website-QuanLyViecDangKiMonHocVaThuHocPhi",
     link: "https://uit-admissions-chatbot.vercel.app/",
-    color: "#ffffff",
+    color: "#FFD21F",
   },
 ];
 

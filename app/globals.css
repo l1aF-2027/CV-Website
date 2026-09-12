@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
-    --foreground: 213 31% 91%;
-    --card: 222 47% 15%;
-    --card-foreground: 213 31% 91%;
-    --popover: 222 47% 15%;
-    --popover-foreground: 213 31% 91%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 222 47% 20%;
-    --secondary-foreground: 213 31% 91%;
-    --muted: 222 47% 20%;
-    --muted-foreground: 215 20% 65%;
-    --destructive: 0 83% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 222 47% 22%;
-    --input: 222 47% 22%;
-    --ring: 199 100% 50%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 96%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 62%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 96%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 45 100% 50%;
     --radius: 0.75rem;
   }
 
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
-    background: #0a0a14;
+    background: #000000;
   }
 
   body {
     @apply font-body text-white leading-loose antialiased;
-    background: #0a0a14;
+    background: #000000;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -74,7 +74,7 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0a0a14;
+    background: #000000;
   }
   ::-webkit-scrollbar-thumb {
     background: #ffffff55;
@@ -88,7 +88,7 @@
 @layer utilities {
   /* Gradient text */
   .gradient-text {
-    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 60%, #ffffff 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #FFD21F 55%, #fff1a8 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -102,7 +102,7 @@
   }
 
   .glow-gold {
-    box-shadow: 0 0 20px rgba(124, 58, 237, 0.3), 0 0 60px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 0 20px rgba(255, 210, 31, 0.3), 0 0 60px rgba(255, 210, 31, 0.1);
   }
 
   .glow-text {
@@ -131,12 +131,12 @@
   }
 
   .text-outline-accent {
-    -webkit-text-stroke: 1px #fbbf24;
+    -webkit-text-stroke: 1px #FFD21F;
     color: transparent;
   }
   
   .text-outline-hover {
-    -webkit-text-stroke: 1px #fbbf24;
+    -webkit-text-stroke: 1px #FFD21F;
   }
 
   /* Accent gradient border */
