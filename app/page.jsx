@@ -11,8 +11,6 @@ const Resume = dynamic(() => import("@/components/Resume"), { ssr: true })
 const Work = dynamic(() => import("@/components/Work"), { ssr: false })
 const Contact = dynamic(() => import("@/components/Contact"), { ssr: true })
 
-// KeyboardBackground uses canvas and window, so we absolutely must disable SSR
-const KeyboardBackground = dynamic(() => import("@/components/KeyboardBackground"), { ssr: false })
 
 export default function Page() {
   const [showPreloader, setShowPreloader] = useState(true)
@@ -50,7 +48,6 @@ export default function Page() {
         Animation trigger 'isRevealing' initiates the internal staggered reveals.
       */}
       <main className="text-white relative w-full z-0">
-        <KeyboardBackground />
         <section id="home" className="min-h-screen">
           <Home isReady={isRevealing} />
         </section>
