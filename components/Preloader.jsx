@@ -15,7 +15,7 @@ const Preloader = ({ onComplete, onExitStart }) => {
         }, 1800);
 
         return () => clearTimeout(timer);
-    }, [onComplete, onExitStart]);
+    }, []);
 
     const doorEase = [0.85, 0, 0.15, 1];
 

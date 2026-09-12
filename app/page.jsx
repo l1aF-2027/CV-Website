@@ -13,7 +13,7 @@ const Contact = dynamic(() => import("@/components/Contact"), { ssr: true })
 
 
 export default function Page() {
-  const [showPreloader, setShowPreloader] = useState(true)
+  const [showPreloader, setShowPreloader] = useState(false)
   const [isRevealing, setIsRevealing] = useState(false)
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function Page() {
         The site is always rendered (layered behind). 
         Animation trigger 'isRevealing' initiates the internal staggered reveals.
       */}
-      <main className="text-white relative w-full z-0">
+      <main className="relative z-0 w-full text-[var(--ink)]">
         <section id="home" className="min-h-screen">
           <Home isReady={isRevealing} />
         </section>
